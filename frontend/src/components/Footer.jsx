@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MdHotel, MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
+import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
 import {
   FiFacebook,
   FiTwitter,
@@ -14,17 +14,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="bg-primary-600 text-white rounded-lg p-2">
-                <MdHotel size={22} />
+            <Link to="/" className="flex items-center gap-3 mb-5">
+              <img
+                src="/logo.png"
+                alt="HAN Sudurpashchim"
+                className="h-12 w-auto object-contain flex-shrink-0 brightness-0 invert"
+              />
+              <div className="leading-tight">
+                <p className="font-bold text-white text-base leading-none">HAN Sudurpashchim</p>
+                <p className="text-xs text-gray-400 mt-0.5">Province No. 7 · Nepal</p>
               </div>
-              <div>
-                <p className="font-bold text-white text-base leading-none">
-                  HAN Sudurpashchim
-                </p>
-                <p className="text-xs text-gray-400 mt-0.5">Province No. 7</p>
-              </div>
-            </div>
+            </Link>
             <p className="text-sm leading-relaxed text-gray-400 mb-5">
               Hotel Association of Nepal — Sudurpashchim Province represents
               and promotes the hospitality industry across all eight districts

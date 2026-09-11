@@ -1,267 +1,254 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
-  MdVerified,
-  MdGroups,
-  MdHandshake,
-  MdEmojiEvents,
-  MdLocationOn,
-  MdHistory,
-  MdVisibility,
-  MdFlag,
+  MdVerified, MdGroups, MdHandshake, MdEmojiEvents,
+  MdLocationOn, MdFlag,
 } from "react-icons/md";
-import { FiArrowRight, FiTarget, FiEye, FiStar } from "react-icons/fi";
+import { FiArrowRight, FiTarget, FiEye } from "react-icons/fi";
+import {
+  fadeUp, staggerContainer, slideInLeft, slideInRight, scaleIn,
+} from "../lib/animations";
+import PageHero from "../components/PageHero";
 
 const timeline = [
-  { year: "1998", event: "Association Founded", desc: "Hotel Association of Nepal — Far-Western Region established in Dhangadhi with 5 founding member hotels." },
-  { year: "2002", event: "Provincial Expansion", desc: "Membership expanded to cover all seven districts of the then Far-Western Development Region." },
-  { year: "2008", event: "Tourism Promotion Drive", desc: "Launched first regional tourism campaign highlighting Shuklaphanta and Kailash route." },
-  { year: "2015", event: "Standards Framework", desc: "Introduced hotel classification and quality standards for member establishments." },
-  { year: "2018", event: "Province Restructuring", desc: "Officially re-registered as Hotel Association of Nepal — Sudurpashchim Province (Province No. 7) following federal restructuring." },
-  { year: "2022", event: "Digital Initiative", desc: "Launched digital platform to improve member visibility and online booking capabilities." },
-  { year: "2024", event: "Growing Strong", desc: "Membership surpassed 15 registered hotels and lodges with plans for ongoing expansion." },
+  { year: "1998", event: "Association Founded",    desc: "Established in Dhangadhi with 5 founding member hotels." },
+  { year: "2002", event: "Provincial Expansion",   desc: "Membership expanded to all seven districts of the Far-Western Development Region." },
+  { year: "2008", event: "Tourism Promotion",      desc: "Launched first regional campaign highlighting Shuklaphanta and the Kailash route." },
+  { year: "2015", event: "Standards Framework",    desc: "Introduced hotel classification and quality standards for member establishments." },
+  { year: "2018", event: "Province Restructuring", desc: "Re-registered as HAN Sudurpashchim Province (Province No. 7) after federal restructuring." },
+  { year: "2022", event: "Digital Initiative",     desc: "Launched digital platform to improve member visibility and booking capabilities." },
+  { year: "2024", event: "Growing Strong",         desc: "Membership surpassed 15 registered hotels with ongoing expansion plans." },
 ];
 
 const values = [
-  { icon: <MdVerified size={28} />, title: "Integrity", desc: "We uphold honest, transparent, and ethical practices across all our operations and member relationships.", color: "bg-primary-50 text-primary-600" },
-  { icon: <MdGroups size={28} />, title: "Community", desc: "We believe in the power of collective action and building a strong, supportive hospitality community.", color: "bg-secondary-50 text-secondary-600" },
-  { icon: <MdHandshake size={28} />, title: "Collaboration", desc: "We foster partnerships with government, tourism boards, and private stakeholders for mutual growth.", color: "bg-amber-50 text-amber-600" },
-  { icon: <MdEmojiEvents size={28} />, title: "Excellence", desc: "We champion high service standards to ensure every guest visiting our province has an outstanding stay.", color: "bg-teal-50 text-teal-600" },
+  { icon: <MdVerified   size={24} />, title: "Integrity",     desc: "Honest, transparent, and ethical practices across all operations.", bg: "bg-primary-50",   text: "text-primary-600"   },
+  { icon: <MdGroups     size={24} />, title: "Community",     desc: "Collective action and a strong, supportive hospitality community.",  bg: "bg-secondary-50", text: "text-secondary-600" },
+  { icon: <MdHandshake  size={24} />, title: "Collaboration", desc: "Partnerships with government, tourism boards, and private stakeholders.", bg: "bg-amber-50", text: "text-amber-600" },
+  { icon: <MdEmojiEvents size={24} />, title: "Excellence",  desc: "High service standards so every guest has an outstanding stay.",    bg: "bg-teal-50",     text: "text-teal-600"     },
 ];
 
 const team = [
-  { name: "Mr. Ram Bahadur Bista", role: "President", district: "Kailali", initials: "RB" },
-  { name: "Mrs. Sita Devi Chand", role: "Vice President", district: "Kanchanpur", initials: "SD" },
-  { name: "Mr. Hari Prasad Joshi", role: "General Secretary", district: "Doti", initials: "HP" },
-  { name: "Mr. Gopal Singh Dhami", role: "Treasurer", district: "Dadeldhura", initials: "GS" },
-  { name: "Mrs. Kamla Buda", role: "Joint Secretary", district: "Achham", initials: "KB" },
-  { name: "Mr. Surya Bahadur Rokaya", role: "Executive Member", district: "Bajhang", initials: "SR" },
-  { name: "Mr. Dhan Bahadur Karki", role: "Executive Member", district: "Baitadi", initials: "DK" },
-  { name: "Mrs. Mina Rawal", role: "Executive Member", district: "Darchula", initials: "MR" },
+  { name: "Mr. Ram Bahadur Bista",    role: "President",        district: "Kailali",     initials: "RB" },
+  { name: "Mrs. Sita Devi Chand",     role: "Vice President",   district: "Kanchanpur",  initials: "SD" },
+  { name: "Mr. Hari Prasad Joshi",    role: "General Secretary",district: "Doti",        initials: "HP" },
+  { name: "Mr. Gopal Singh Dhami",    role: "Treasurer",        district: "Dadeldhura",  initials: "GS" },
+  { name: "Mrs. Kamla Buda",          role: "Joint Secretary",  district: "Achham",      initials: "KB" },
+  { name: "Mr. Surya Bahadur Rokaya", role: "Exec. Member",     district: "Bajhang",     initials: "SR" },
+  { name: "Mr. Dhan Bahadur Karki",   role: "Exec. Member",     district: "Baitadi",     initials: "DK" },
+  { name: "Mrs. Mina Rawal",          role: "Exec. Member",     district: "Darchula",    initials: "MR" },
 ];
 
 const districts = [
-  { name: "Kailali", hq: "Dhangadhi", area: "3235 km²", pop: "775,709", known: "Wildlife, Terai culture" },
-  { name: "Kanchanpur", hq: "Bhimdatta", area: "1610 km²", pop: "451,248", known: "Shuklaphanta National Park" },
-  { name: "Doti", hq: "Dipayal Silgadhi", area: "2025 km²", pop: "211,746", known: "Dodhara Chandani Bridge" },
-  { name: "Achham", hq: "Mangalsen", area: "1680 km²", pop: "257,477", known: "Ramaroshan lakes" },
-  { name: "Dadeldhura", hq: "Amargadhi", area: "1538 km²", pop: "142,094", known: "Tripurasundari Temple" },
-  { name: "Baitadi", hq: "Dasharathchand", area: "1519 km²", pop: "275,400", known: "Pancheswar confluence" },
-  { name: "Darchula", hq: "Khalanga", area: "2322 km²", pop: "133,801", known: "Kailash Mansarovar route" },
-  { name: "Bajhang", hq: "Chainpur", area: "3422 km²", pop: "195,159", known: "Api Himal trekking" },
+  { name: "Kailali",     hq: "Dhangadhi",         known: "Wildlife, Terai culture"       },
+  { name: "Kanchanpur",  hq: "Bhimdatta",          known: "Shuklaphanta National Park"    },
+  { name: "Doti",        hq: "Dipayal Silgadhi",   known: "Dodhara Chandani Bridge"       },
+  { name: "Achham",      hq: "Mangalsen",           known: "Ramaroshan lakes"              },
+  { name: "Dadeldhura",  hq: "Amargadhi",           known: "Tripurasundari Temple"         },
+  { name: "Baitadi",     hq: "Dasharathchand",      known: "Pancheswar confluence"         },
+  { name: "Darchula",    hq: "Khalanga",            known: "Kailash Mansarovar route"      },
+  { name: "Bajhang",     hq: "Chainpur",            known: "Api Himal trekking"            },
 ];
+
+function Section({ children, className = "" }) {
+  return (
+    <motion.section
+      className={className}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-70px" }}
+    >
+      {children}
+    </motion.section>
+  );
+}
 
 export default function About() {
   return (
     <div>
-      {/* ── Page Hero ── */}
-      <section className="bg-gradient-to-br from-primary-700 to-secondary-700 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white text-sm font-medium px-4 py-1.5 rounded-full mb-5">
-              <MdLocationOn size={16} /> Province No. 7 — Nepal
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">About Our Association</h1>
-            <p className="text-primary-100 text-lg leading-relaxed max-w-2xl">
-              Since 1998, the Hotel Association of Nepal — Sudurpashchim Province
-              has been the unified voice of hospitality businesses across the
-              far-western region, driving growth, standards, and tourism promotion.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        image="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=75"
+        badge="Province No. 7 — Nepal"
+        title="About Our Association"
+        subtitle="Since 1998, HAN Sudurpashchim has been the unified voice of hospitality businesses across the far-western region, driving growth, standards, and tourism promotion."
+      />
 
-      {/* ── Mission & Vision ── */}
-      <section className="py-16">
+      {/* Mission & Vision */}
+      <Section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div variants={staggerContainer} className="grid md:grid-cols-2 gap-6">
             {/* Mission */}
-            <div className="card p-8 border-t-4 border-primary-500">
-              <div className="bg-primary-50 text-primary-600 p-3 rounded-xl w-fit mb-5">
-                <FiTarget size={28} />
+            <motion.div variants={slideInLeft}
+              className="bg-white border border-gray-100 rounded-xl p-7 shadow-sm border-t-4 border-t-primary-500">
+              <div className="bg-primary-50 text-primary-600 p-2.5 rounded-xl w-fit mb-4">
+                <FiTarget size={22} />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Mission</h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                To unite, represent, and empower the hospitality industry of
-                Sudurpashchim Province by providing advocacy, quality standards,
-                capacity building, and tourism promotion.
+              <h2 className="text-xl font-bold text-gray-800 mb-3">Our Mission</h2>
+              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                To unite, represent, and empower the hospitality industry of Sudurpashchim
+                Province through advocacy, quality standards, capacity building, and tourism promotion.
               </p>
               <ul className="space-y-2">
-                {[
-                  "Promote responsible and sustainable tourism",
-                  "Maintain quality standards across all member hotels",
-                  "Advocate for favorable government policies",
-                  "Support skill development and training programs",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 flex-shrink-0" />
+                {["Promote responsible and sustainable tourism", "Maintain quality standards across all member hotels",
+                  "Advocate for favorable government policies", "Support skill development and training"].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-500 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary-500 mt-1.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
             {/* Vision */}
-            <div className="card p-8 border-t-4 border-secondary-500">
-              <div className="bg-secondary-50 text-secondary-600 p-3 rounded-xl w-fit mb-5">
-                <FiEye size={28} />
+            <motion.div variants={slideInRight}
+              className="bg-white border border-gray-100 rounded-xl p-7 shadow-sm border-t-4 border-t-secondary-500">
+              <div className="bg-secondary-50 text-secondary-600 p-2.5 rounded-xl w-fit mb-4">
+                <FiEye size={22} />
               </div>
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Our Vision</h2>
-              <p className="text-gray-600 leading-relaxed mb-4">
-                To transform Sudurpashchim Province into a leading tourism
-                destination in South Asia, recognised for world-class hospitality,
-                natural wonders, and authentic cultural experiences.
+              <h2 className="text-xl font-bold text-gray-800 mb-3">Our Vision</h2>
+              <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                To transform Sudurpashchim Province into a leading tourism destination in South Asia,
+                recognised for world-class hospitality and authentic cultural experiences.
               </p>
               <ul className="space-y-2">
-                {[
-                  "Sudurpashchim as a top eco-tourism destination",
-                  "Internationally recognised hospitality standards",
-                  "Sustainable growth for local communities",
-                  "Preservation of cultural and natural heritage",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary-500 mt-2 flex-shrink-0" />
+                {["Sudurpashchim as a top eco-tourism destination", "Internationally recognised hospitality standards",
+                  "Sustainable growth for local communities", "Preservation of cultural and natural heritage"].map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-gray-500 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-secondary-500 mt-1.5 flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── Core Values ── */}
-      <section className="bg-gray-50 py-16">
+      {/* Core Values */}
+      <Section className="bg-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">What We Stand For</span>
-            <h2 className="section-title mt-2">Our Core Values</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div variants={fadeUp} className="text-center mb-10">
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-widest">What We Stand For</span>
+            <h2 className="text-3xl font-bold text-gray-800 mt-2">Our Core Values</h2>
+          </motion.div>
+          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="card p-6 text-center">
-                <div className={`${v.color} p-3 rounded-xl w-fit mx-auto mb-4`}>{v.icon}</div>
-                <h3 className="font-bold text-gray-800 text-lg mb-2">{v.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
-              </div>
+              <motion.div key={v.title} variants={scaleIn}
+                className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div className={`${v.bg} ${v.text} p-2.5 rounded-xl w-fit mx-auto mb-3`}>{v.icon}</div>
+                <h3 className="font-bold text-gray-800 mb-2">{v.title}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{v.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── History Timeline ── */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Our Journey</span>
-            <h2 className="section-title mt-2">History & Milestones</h2>
-            <p className="section-subtitle">Over two decades of serving the hospitality industry of far-western Nepal.</p>
-          </div>
+      {/* Timeline */}
+      <Section className="py-14">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div variants={fadeUp} className="text-center mb-10">
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-widest">Our Journey</span>
+            <h2 className="text-3xl font-bold text-gray-800 mt-2">History & Milestones</h2>
+            <p className="text-gray-500 text-sm mt-2">Over two decades serving the hospitality industry of far-western Nepal.</p>
+          </motion.div>
 
           <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary-100 -translate-x-1/2" />
-
-            <div className="space-y-8">
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gray-200 -translate-x-1/2" />
+            <motion.div variants={staggerContainer} className="space-y-6">
               {timeline.map((item, idx) => (
-                <div
-                  key={item.year}
-                  className={`relative flex gap-6 md:gap-0 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}
-                >
-                  {/* Card */}
-                  <div className={`w-full md:w-5/12 ${idx % 2 === 0 ? "md:pr-10 md:text-right" : "md:pl-10"} pl-14 md:pl-0`}>
-                    <div className="card p-5">
-                      <span className="text-primary-600 font-bold text-sm">{item.year}</span>
-                      <h3 className="font-bold text-gray-800 mt-1 mb-2">{item.event}</h3>
-                      <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                <motion.div key={item.year} variants={idx % 2 === 0 ? slideInLeft : slideInRight}
+                  className={`relative flex md:gap-0 gap-5 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                  <div className={`w-full md:w-5/12 pl-10 md:pl-0 ${idx % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
+                    <div className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm">
+                      <span className="text-primary-600 font-bold text-xs">{item.year}</span>
+                      <h3 className="font-bold text-gray-800 text-sm mt-1 mb-1">{item.event}</h3>
+                      <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
-
-                  {/* Dot */}
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 top-5 w-4 h-4 rounded-full bg-primary-600 border-4 border-white shadow-md z-10" />
-
-                  {/* Spacer for opposite side */}
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-4 w-3.5 h-3.5 rounded-full bg-primary-600 border-4 border-white shadow z-10" />
                   <div className="hidden md:block md:w-5/12" />
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── Executive Team ── */}
-      <section className="bg-gray-50 py-16">
+      {/* Executive team */}
+      <Section className="bg-white py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Leadership</span>
-            <h2 className="section-title mt-2">Executive Committee</h2>
-            <p className="section-subtitle">Elected representatives from all districts of the province.</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
-            {team.map((member) => (
-              <div key={member.name} className="card p-5 text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-white flex items-center justify-center text-xl font-bold mx-auto mb-3">
-                  {member.initials}
+          <motion.div variants={fadeUp} className="text-center mb-10">
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-widest">Leadership</span>
+            <h2 className="text-3xl font-bold text-gray-800 mt-2">Executive Committee</h2>
+            <p className="text-gray-500 text-sm mt-2">Elected representatives from all districts of the province.</p>
+          </motion.div>
+          <motion.div variants={staggerContainer} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {team.map((m) => (
+              <motion.div key={m.name} variants={scaleIn}
+                className="bg-white border border-gray-100 rounded-xl p-4 text-center shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 rounded-full bg-primary-600 text-white flex items-center justify-center text-lg font-bold mx-auto mb-3">
+                  {m.initials}
                 </div>
-                <h3 className="font-bold text-gray-800 text-sm leading-snug">{member.name}</h3>
-                <p className="text-primary-600 text-xs font-semibold mt-1">{member.role}</p>
+                <h3 className="font-bold text-gray-800 text-xs leading-snug">{m.name}</h3>
+                <p className="text-primary-600 text-[11px] font-semibold mt-1">{m.role}</p>
                 <div className="flex items-center justify-center gap-1 mt-1">
-                  <MdLocationOn size={12} className="text-gray-400" />
-                  <span className="text-gray-400 text-xs">{member.district}</span>
+                  <MdLocationOn size={11} className="text-gray-400" />
+                  <span className="text-gray-400 text-[10px]">{m.district}</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── Districts Coverage ── */}
-      <section className="py-16">
+      {/* Districts */}
+      <Section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Our Coverage</span>
-            <h2 className="section-title mt-2">Districts of Province No. 7</h2>
-            <p className="section-subtitle">We represent hotels across all eight districts of Sudurpashchim Province.</p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={fadeUp} className="text-center mb-10">
+            <span className="text-primary-600 font-semibold text-xs uppercase tracking-widest">Coverage</span>
+            <h2 className="text-3xl font-bold text-gray-800 mt-2">Districts of Province No. 7</h2>
+            <p className="text-gray-500 text-sm mt-2">We represent hotels across all eight districts.</p>
+          </motion.div>
+          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {districts.map((d, i) => (
-              <div key={d.name} className="card p-5 hover:border-l-4 hover:border-primary-500 transition-all">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="bg-primary-600 text-white text-xs font-bold w-7 h-7 rounded-lg flex items-center justify-center">
-                    {i + 1}
-                  </span>
-                  <MdFlag className="text-gray-300" size={20} />
+              <motion.div key={d.name} variants={fadeUp}
+                className="bg-white border border-gray-100 rounded-xl p-4 shadow-sm hover:border-primary-200 hover:shadow-md transition-all">
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="bg-primary-600 text-white text-xs font-bold w-6 h-6 rounded-lg flex items-center justify-center">{i + 1}</span>
+                  <MdFlag className="text-gray-300" size={16} />
                 </div>
-                <h3 className="font-bold text-gray-800 text-lg mb-1">{d.name}</h3>
+                <h3 className="font-bold text-gray-800 mb-0.5">{d.name}</h3>
                 <p className="text-primary-600 text-xs font-medium mb-2">{d.hq}</p>
-                <div className="space-y-1 text-xs text-gray-500">
-                  <p>Area: {d.area}</p>
-                  <p>Population: {d.pop}</p>
-                  <p className="text-gray-600 font-medium mt-2">Known for: {d.known}</p>
-                </div>
-              </div>
+                <p className="text-gray-500 text-xs">{d.known}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </Section>
 
-      {/* ── CTA ── */}
-      <section className="bg-gradient-to-r from-primary-600 to-secondary-700 text-white py-14">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Become a Member Today</h2>
-          <p className="text-primary-100 mb-8">
-            Join our growing network of hospitality professionals and benefit from
-            collective advocacy, training, and tourism promotion.
+      {/* CTA */}
+      <Section className="bg-primary-700 text-white py-14">
+        <motion.div variants={fadeUp} className="max-w-xl mx-auto px-4 text-center">
+          <img
+            src="/logo.png"
+            alt="HAN Sudurpashchim"
+            className="h-16 w-auto object-contain mx-auto mb-5 brightness-0 invert drop-shadow-lg"
+          />
+          <h2 className="text-3xl font-bold mb-3">Become a Member Today</h2>
+          <p className="text-primary-200 text-sm mb-8 leading-relaxed">
+            Join our growing network of hospitality professionals and benefit from collective
+            advocacy, training, and tourism promotion.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/contact" className="bg-white text-primary-700 hover:bg-primary-50 font-semibold px-8 py-3 rounded-xl transition-colors inline-flex items-center gap-2">
-              Apply Now <FiArrowRight />
+          <div className="flex flex-wrap justify-center gap-3">
+            <Link to="/contact" className="bg-white text-primary-700 hover:bg-primary-50 font-semibold px-7 py-2.5 rounded-xl transition-colors text-sm flex items-center gap-2 shadow-sm">
+              Apply Now <FiArrowRight size={13} />
             </Link>
-            <Link to="/membership" className="border-2 border-white/60 text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-xl transition-colors">
+            <Link to="/membership" className="border border-white/30 text-white hover:bg-white/10 font-semibold px-7 py-2.5 rounded-xl transition-colors text-sm">
               View Members
             </Link>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </Section>
     </div>
   );
 }
