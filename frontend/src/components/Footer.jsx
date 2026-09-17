@@ -1,95 +1,160 @@
 import { Link } from "react-router-dom";
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
-import { FiFacebook, FiTwitter, FiInstagram, FiYoutube } from "react-icons/fi";
+import { FiFacebook, FiTwitter, FiInstagram, FiYoutube, FiArrowRight } from "react-icons/fi";
 
-const districts = ["Kailali", "Kanchanpur", "Doti", "Achham", "Dadeldhura", "Baitadi", "Darchula", "Bajhang"];
+const districts = [
+  "Kailali", "Kanchanpur", "Doti", "Achham",
+  "Dadeldhura", "Baitadi", "Darchula", "Bajhang",
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-dark-900 border-t border-dark-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer>
 
-          {/* Brand */}
-          <div>
-            <Link to="/" className="flex items-center gap-2.5 mb-4">
-              <img src="/logo.png" alt="HAN Sudurpashchim" className="h-10 w-auto object-contain" />
-              <div className="leading-tight">
-                <p className="font-bold text-white text-sm leading-none">HAN Sudurpashchim</p>
-                <p className="text-xs text-dark-500 mt-0.5">Province No. 7 · Nepal</p>
+      {/* ── Main footer body — dark green ──────────────────────────────── */}
+      <div className="bg-primary-900 dark:bg-dark-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+            {/* Brand column */}
+            <div className="lg:col-span-1">
+              <Link to="/" className="flex items-center gap-3 mb-6">
+                <img
+                  src="/logo.png"
+                  alt="HAN Sudurpashchim"
+                  className="h-12 w-auto object-contain brightness-0 invert opacity-90"
+                />
+                <div>
+                  <p className="font-bold text-white text-sm leading-none tracking-tight">
+                    HAN Sudurpashchim
+                  </p>
+                  <p className="text-primary-300 text-xs mt-1 font-medium">
+                    Province No. 7 · Nepal
+                  </p>
+                </div>
+              </Link>
+
+              <p className="text-primary-200/70 text-sm leading-relaxed mb-6">
+                Hotel Association of Nepal — Sudurpashchim Province. The unified voice of
+                hospitality across all eight districts of Province No. 7.
+              </p>
+
+              {/* Social icons */}
+              <div className="flex gap-2">
+                {[
+                  { Icon: FiFacebook,  label: "Facebook"  },
+                  { Icon: FiTwitter,   label: "Twitter"   },
+                  { Icon: FiInstagram, label: "Instagram" },
+                  { Icon: FiYoutube,   label: "YouTube"   },
+                ].map(({ Icon, label }) => (
+                  <a
+                    key={label} href="#" aria-label={label}
+                    className="w-9 h-9 flex items-center justify-center
+                      border border-primary-700 hover:border-white
+                      text-primary-300 hover:text-white
+                      transition-colors duration-150"
+                  >
+                    <Icon size={15} />
+                  </a>
+                ))}
               </div>
-            </Link>
-            <p className="text-sm text-dark-500 leading-relaxed mb-5">
-              Hotel Association of Nepal — Sudurpashchim Province represents and promotes
-              the hospitality industry across all eight districts of Province No. 7.
-            </p>
-            <div className="flex gap-2">
-              {[
-                { icon: <FiFacebook size={16} />, href: "#" },
-                { icon: <FiTwitter  size={16} />, href: "#" },
-                { icon: <FiInstagram size={16} />, href: "#" },
-                { icon: <FiYoutube  size={16} />, href: "#" },
-              ].map((s, i) => (
-                <a key={i} href={s.href}
-                  className="w-8 h-8 flex items-center justify-center rounded-lg bg-dark-800 border border-dark-700 text-dark-400 hover:text-primary-400 hover:border-primary-700 transition-colors">
-                  {s.icon}
-                </a>
-              ))}
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Quick Links</h4>
-            <ul className="space-y-2.5">
-              {[{ l: "Home", to: "/" }, { l: "About Us", to: "/about" }, { l: "Member Hotels", to: "/membership" }, { l: "Contact Us", to: "/contact" }].map(({ l, to }) => (
-                <li key={to}>
-                  <Link to={to} className="text-sm text-dark-500 hover:text-primary-400 transition-colors">{l}</Link>
+            {/* Quick links */}
+            <div>
+              <h4 className="text-white font-bold text-xs uppercase tracking-[0.18em] mb-6 pb-3 border-b border-primary-700">
+                Quick Links
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  { l: "Home",          to: "/"           },
+                  { l: "About Us",      to: "/about"      },
+                  { l: "Member Hotels", to: "/membership" },
+                  { l: "Contact Us",    to: "/contact"    },
+                ].map(({ l, to }) => (
+                  <li key={to}>
+                    <Link
+                      to={to}
+                      className="flex items-center gap-2 text-sm text-primary-200/70 hover:text-white transition-colors group"
+                    >
+                      <FiArrowRight size={11} className="opacity-0 group-hover:opacity-100 transition-opacity -ml-3 group-hover:ml-0" />
+                      {l}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Districts */}
+            <div>
+              <h4 className="text-white font-bold text-xs uppercase tracking-[0.18em] mb-6 pb-3 border-b border-primary-700">
+                Districts Covered
+              </h4>
+              <ul className="grid grid-cols-2 gap-y-2.5 gap-x-4">
+                {districts.map(d => (
+                  <li key={d} className="flex items-center gap-2 text-sm text-primary-200/70">
+                    <span className="w-1 h-1 bg-primary-500 flex-shrink-0" />
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact */}
+            <div>
+              <h4 className="text-white font-bold text-xs uppercase tracking-[0.18em] mb-6 pb-3 border-b border-primary-700">
+                Contact Us
+              </h4>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <MdLocationOn className="text-primary-400 flex-shrink-0 mt-0.5" size={17} />
+                  <span className="text-sm text-primary-200/70 leading-relaxed">
+                    Dhangadhi-4, Kailali<br />Sudurpashchim Province, Nepal
+                  </span>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Districts */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Districts Covered</h4>
-            <ul className="space-y-2">
-              {districts.map(d => (
-                <li key={d} className="flex items-center gap-2 text-sm text-dark-500">
-                  <span className="w-1 h-1 rounded-full bg-primary-600 flex-shrink-0" />
-                  {d}
+                <li className="flex items-center gap-3">
+                  <MdPhone className="text-primary-400 flex-shrink-0" size={17} />
+                  <a href="tel:+977091521000"
+                    className="text-sm text-primary-200/70 hover:text-white transition-colors">
+                    +977-091-521000
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
+                <li className="flex items-start gap-3">
+                  <MdEmail className="text-primary-400 flex-shrink-0 mt-0.5" size={17} />
+                  <a href="mailto:info@hansudurpashchim.org.np"
+                    className="text-sm text-primary-200/70 hover:text-white transition-colors break-all leading-relaxed">
+                    info@hansudurpashchim.org.np
+                  </a>
+                </li>
+              </ul>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-semibold text-sm mb-4">Contact Us</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2.5 text-sm text-dark-500">
-                <MdLocationOn className="text-primary-600 mt-0.5 flex-shrink-0" size={16} />
-                <span>Dhangadhi-4, Kailali<br />Sudurpashchim Province, Nepal</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <MdPhone className="text-primary-600 flex-shrink-0" size={16} />
-                <a href="tel:+977091521000" className="text-sm text-dark-500 hover:text-primary-400 transition-colors">+977-091-521000</a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <MdEmail className="text-primary-600 flex-shrink-0" size={16} />
-                <a href="mailto:info@hansudurpashchim.org.np" className="text-sm text-dark-500 hover:text-primary-400 transition-colors break-all">info@hansudurpashchim.org.np</a>
-              </li>
-            </ul>
+              <div className="mt-6">
+                <Link to="/contact" className="inline-flex items-center gap-2
+                  bg-primary-600 hover:bg-primary-500 text-white text-xs font-bold
+                  px-5 py-2.5 transition-colors">
+                  Join the Association <FiArrowRight size={11} />
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      <div className="border-t border-dark-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-dark-600">
-          <p>&copy; {new Date().getFullYear()} Hotel Association of Nepal — Sudurpashchim Province. All rights reserved.</p>
-          <p>Registered under Tourism Act, Government of Nepal</p>
+      {/* ── Bottom bar ─────────────────────────────────────────────────── */}
+      <div className="bg-primary-950 dark:bg-black/40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4
+          flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-xs text-primary-300/60 font-medium">
+            &copy; {new Date().getFullYear()} Hotel Association of Nepal — Sudurpashchim Province.
+            All rights reserved.
+          </p>
+          <p className="text-xs text-primary-300/60">
+            Registered under Tourism Act, Government of Nepal
+          </p>
         </div>
       </div>
+
     </footer>
   );
 }

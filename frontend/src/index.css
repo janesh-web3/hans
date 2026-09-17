@@ -4,49 +4,141 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
+
   body {
-    @apply bg-dark-950 text-dark-100 font-sans antialiased;
+    @apply bg-white text-surface-900 font-sans antialiased;
   }
+  .dark body {
+    @apply bg-dark-950 text-dark-100;
+  }
+
   * { -webkit-tap-highlight-color: transparent; }
+
+  select option {
+    @apply bg-white text-surface-900;
+  }
+  .dark select option {
+    @apply bg-dark-800 text-dark-100;
+  }
+
+  /* Consistent heading weight */
+  h1, h2, h3, h4 {
+    @apply font-bold leading-tight tracking-tight;
+  }
 }
 
 @layer components {
-  /* Buttons */
+
+  /* ── Buttons ─────────────────────────────── */
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
+    @apply inline-flex items-center gap-2
+           bg-primary-600 hover:bg-primary-700 active:bg-primary-800
+           text-white text-sm font-semibold
+           px-6 py-3
+           transition-colors duration-150;
   }
   .btn-secondary {
-    @apply bg-secondary-600 hover:bg-secondary-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
+    @apply inline-flex items-center gap-2
+           bg-secondary-600 hover:bg-secondary-700 active:bg-secondary-800
+           text-white text-sm font-semibold
+           px-6 py-3
+           transition-colors duration-150;
   }
   .btn-ghost {
-    @apply border border-dark-700 hover:border-dark-500 text-dark-300 hover:text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
+    @apply inline-flex items-center gap-2
+           border border-surface-300 hover:border-primary-600
+           text-surface-700 hover:text-primary-700
+           text-sm font-semibold
+           px-6 py-3
+           transition-colors duration-150;
+  }
+  .dark .btn-ghost {
+    @apply border-dark-600 hover:border-primary-500 text-dark-200 hover:text-primary-400;
+  }
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2
+           border border-white/60 hover:border-white hover:bg-white/10
+           text-white text-sm font-semibold
+           px-6 py-3
+           transition-colors duration-150;
   }
 
-  /* Cards */
+  /* ── Cards ───────────────────────────────── */
   .card {
-    @apply bg-dark-900 border border-dark-800 rounded-xl;
+    @apply bg-white border border-surface-200;
   }
-  .card-hover {
-    @apply bg-dark-900 border border-dark-800 rounded-xl hover:border-dark-600 transition-colors duration-200;
+  .dark .card {
+    @apply bg-dark-900 border-dark-800;
   }
 
-  /* Section headings */
+  /* ── Section chrome ──────────────────────── */
+  /* Overline label above a heading */
   .section-label {
-    @apply text-primary-500 text-xs font-bold uppercase tracking-widest;
+    @apply block text-primary-600 text-xs font-bold uppercase tracking-[0.18em] mb-3;
   }
-  .section-title {
-    @apply text-white text-2xl sm:text-3xl font-bold leading-snug;
-  }
-  .section-sub {
-    @apply text-dark-400 text-sm leading-relaxed;
+  .dark .section-label {
+    @apply text-primary-400;
   }
 
-  /* Inputs */
+  /* Bold editorial heading */
+  .section-heading {
+    @apply text-surface-900 text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-4;
+  }
+  .dark .section-heading {
+    @apply text-white;
+  }
+
+  /* Sub-text under heading */
+  .section-body {
+    @apply text-surface-600 text-base leading-relaxed;
+  }
+  .dark .section-body {
+    @apply text-dark-400;
+  }
+
+  /* Green left-rule accent block */
+  .section-rule {
+    @apply border-l-4 border-primary-500 pl-5;
+  }
+
+  /* Horizontal rule between sections */
+  .divider {
+    @apply border-t border-surface-200;
+  }
+  .dark .divider {
+    @apply border-dark-800;
+  }
+
+  /* ── Forms ───────────────────────────────── */
   .input {
-    @apply w-full bg-dark-800 border border-dark-700 text-dark-100 placeholder-dark-500 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600 transition-colors;
+    @apply w-full bg-white border border-surface-300 text-surface-900
+           placeholder-surface-400 px-4 py-3 text-sm
+           focus:outline-none focus:border-primary-500 focus:ring-2
+           focus:ring-primary-500/20 transition-colors;
+  }
+  .dark .input {
+    @apply bg-dark-800 border-dark-700 text-dark-100
+           placeholder-dark-500
+           focus:border-primary-500 focus:ring-primary-500/20;
   }
   .input-error {
-    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  /* ── Page layout ─────────────────────────── */
+  .page-bg {
+    @apply bg-white min-h-screen;
+  }
+  .dark .page-bg {
+    @apply bg-dark-950;
+  }
+
+  /* Full-width section padding */
+  .section-pad {
+    @apply py-16 lg:py-20;
+  }
+  .section-pad-sm {
+    @apply py-10 lg:py-14;
   }
 }
 
@@ -56,4 +148,12 @@
     scrollbar-width: none;
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
+
+  /* Crisp top border accent on a block */
+  .border-top-primary {
+    border-top: 3px solid theme('colors.primary.600');
+  }
+  .border-top-secondary {
+    border-top: 3px solid theme('colors.secondary.600');
+  }
 }

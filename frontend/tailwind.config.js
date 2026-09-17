@@ -31,6 +31,21 @@ export default {
           900: "#1e3a8a",
           950: "#172554",
         },
+        // Light theme surface colors
+        surface: {
+          50:  "#ffffff",
+          100: "#f9fafb",
+          200: "#f3f4f6",
+          300: "#e5e7eb",
+          400: "#d1d5db",
+          500: "#9ca3af",
+          600: "#6b7280",
+          700: "#4b5563",
+          800: "#374151",
+          900: "#1f2937",
+          950: "#111827",
+        },
+        // Dark theme surfaces
         dark: {
           50:  "#f8fafc",
           100: "#f1f5f9",
@@ -53,16 +68,6 @@ export default {
           from: { opacity: "0", transform: "translateY(16px)" },
           to:   { opacity: "1", transform: "translateY(0)" },
         },
-        beam: {
-          "0%":   { transform: "translateX(-100%)", opacity: "0" },
-          "10%":  { opacity: "1" },
-          "90%":  { opacity: "1" },
-          "100%": { transform: "translateX(220%)", opacity: "0" },
-        },
-        shimmer: {
-          "0%":   { backgroundPosition: "-200% center" },
-          "100%": { backgroundPosition: "200% center" },
-        },
         pulse: {
           "0%, 100%": { opacity: "1" },
           "50%":      { opacity: "0.4" },
@@ -70,8 +75,6 @@ export default {
       },
       animation: {
         fadeUp:  "fadeUp 0.5s ease-out forwards",
-        beam:    "beam 4s ease-in-out infinite",
-        shimmer: "shimmer 2.5s linear infinite",
         pulse:   "pulse 2s ease-in-out infinite",
       },
     },

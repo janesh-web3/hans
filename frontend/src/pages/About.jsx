@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { MdVerified, MdGroups, MdHandshake, MdEmojiEvents, MdLocationOn, MdFlag } from "react-icons/md";
-import { FiArrowRight, FiTarget, FiEye } from "react-icons/fi";
-import { fadeUp, staggerContainer, slideInLeft, slideInRight, scaleIn } from "../lib/animations";
+import { FiArrowRight } from "react-icons/fi";
 import PageHero from "../components/PageHero";
 
 const timeline = [
@@ -13,13 +10,6 @@ const timeline = [
   { year: "2018", event: "Province Restructuring", desc: "Re-registered as HAN Sudurpashchim Province (Province No. 7) after federal restructuring." },
   { year: "2022", event: "Digital Initiative",     desc: "Launched digital platform to improve member visibility and booking capabilities." },
   { year: "2024", event: "Growing Strong",         desc: "Membership surpassed 15 registered hotels with ongoing expansion plans." },
-];
-
-const values = [
-  { icon: <MdVerified   size={20} />, title: "Integrity",     desc: "Honest, transparent, and ethical practices across all operations." },
-  { icon: <MdGroups     size={20} />, title: "Community",     desc: "Collective action and a strong, supportive hospitality community." },
-  { icon: <MdHandshake  size={20} />, title: "Collaboration", desc: "Partnerships with government, tourism boards, and private stakeholders." },
-  { icon: <MdEmojiEvents size={20} />, title: "Excellence",  desc: "High service standards so every guest has an outstanding stay." },
 ];
 
 const team = [
@@ -44,180 +34,215 @@ const districts = [
   { name: "Bajhang",    hq: "Chainpur",          known: "Api Himal trekking"         },
 ];
 
-function Section({ children, className = "" }) {
-  return (
-    <motion.section className={className} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
-      {children}
-    </motion.section>
-  );
-}
-
 export default function About() {
   return (
-    <div>
+    <div className="bg-white dark:bg-dark-950">
       <PageHero
         image="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=75"
         badge="Province No. 7 — Nepal"
         title="About Our Association"
-        subtitle="Since 1998, HAN Sudurpashchim has been the unified voice of hospitality businesses across the far-western region, driving growth, standards, and tourism promotion."
+        subtitle="Since 1998, HAN Sudurpashchim has been the unified voice of hospitality businesses across the far-western region."
       />
 
-      {/* Mission & Vision */}
-      <Section className="py-14">
+      {/* ── Mission & Vision ─────────────────────────────────────────────── */}
+      <section className="section-pad bg-white dark:bg-dark-900 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={staggerContainer} className="grid md:grid-cols-2 gap-5">
-            <motion.div variants={slideInLeft} className="card p-6 border-t-2 border-t-primary-600">
-              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-dark-800 text-primary-400 mb-4">
-                <FiTarget size={18} />
-              </div>
-              <h2 className="text-white font-bold text-lg mb-3">Our Mission</h2>
-              <p className="text-dark-400 text-sm leading-relaxed mb-4">
+
+          <div className="max-w-xl mb-12">
+            <span className="section-label">Who We Are</span>
+            <h2 className="section-heading">Mission &amp; Vision</h2>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-px bg-surface-200 dark:bg-dark-700">
+
+            {/* Mission */}
+            <div className="bg-white dark:bg-dark-900 p-10 border-t-4 border-primary-600">
+              <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">Our Mission</h3>
+              <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
                 To unite, represent, and empower the hospitality industry of Sudurpashchim Province
                 through advocacy, quality standards, capacity building, and tourism promotion.
               </p>
-              <ul className="space-y-2">
-                {["Promote responsible and sustainable tourism","Maintain quality standards across all member hotels","Advocate for favorable government policies","Support skill development and training"].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-dark-500 text-xs">
-                    <span className="w-1 h-1 rounded-full bg-primary-600 mt-1.5 flex-shrink-0" />{item}
+              <ul className="space-y-3">
+                {[
+                  "Promote responsible and sustainable tourism",
+                  "Maintain quality standards across all member hotels",
+                  "Advocate for favorable government policies",
+                  "Support skill development and training",
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
+                    <span className="w-[3px] h-4 bg-primary-500 flex-shrink-0 mt-0.5" />
+                    {item}
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
-            <motion.div variants={slideInRight} className="card p-6 border-t-2 border-t-secondary-600">
-              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-dark-800 text-secondary-400 mb-4">
-                <FiEye size={18} />
-              </div>
-              <h2 className="text-white font-bold text-lg mb-3">Our Vision</h2>
-              <p className="text-dark-400 text-sm leading-relaxed mb-4">
+            {/* Vision */}
+            <div className="bg-white dark:bg-dark-900 p-10 border-t-4 border-secondary-600">
+              <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">Our Vision</h3>
+              <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
                 To transform Sudurpashchim Province into a leading tourism destination in South Asia,
                 recognised for world-class hospitality and authentic cultural experiences.
               </p>
-              <ul className="space-y-2">
-                {["Sudurpashchim as a top eco-tourism destination","Internationally recognised hospitality standards","Sustainable growth for local communities","Preservation of cultural and natural heritage"].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-dark-500 text-xs">
-                    <span className="w-1 h-1 rounded-full bg-secondary-600 mt-1.5 flex-shrink-0" />{item}
+              <ul className="space-y-3">
+                {[
+                  "Sudurpashchim as a top eco-tourism destination",
+                  "Internationally recognised hospitality standards",
+                  "Sustainable growth for local communities",
+                  "Preservation of cultural and natural heritage",
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
+                    <span className="w-[3px] h-4 bg-secondary-500 flex-shrink-0 mt-0.5" />
+                    {item}
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          </motion.div>
-        </div>
-      </Section>
+            </div>
 
-      {/* Core Values */}
-      <Section className="py-14 border-t border-dark-800">
+          </div>
+        </div>
+      </section>
+
+      {/* ── History & Milestones ─────────────────────────────────────────── */}
+      <section className="section-pad bg-surface-50 dark:bg-dark-950 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={fadeUp} className="mb-10">
-            <p className="section-label mb-2">What We Stand For</p>
-            <h2 className="section-title">Our Core Values</h2>
-          </motion.div>
-          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {values.map(v => (
-              <motion.div key={v.title} variants={scaleIn} className="card p-5">
-                <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-dark-800 text-primary-400 mb-4">{v.icon}</div>
-                <h3 className="text-white font-semibold text-sm mb-2">{v.title}</h3>
-                <p className="text-dark-500 text-xs leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </Section>
 
-      {/* Timeline */}
-      <Section className="py-14 border-t border-dark-800">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={fadeUp} className="mb-10">
-            <p className="section-label mb-2">Our Journey</p>
-            <h2 className="section-title">History & Milestones</h2>
-            <p className="section-sub mt-2">Over two decades serving the hospitality industry of far-western Nepal.</p>
-          </motion.div>
-          <div className="relative">
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-dark-800 -translate-x-1/2" />
-            <motion.div variants={staggerContainer} className="space-y-6">
-              {timeline.map((item, idx) => (
-                <motion.div key={item.year} variants={fadeUp}
-                  className={`relative flex md:gap-0 gap-5 ${idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                  <div className={`w-full md:w-5/12 pl-10 md:pl-0 ${idx % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8"}`}>
-                    <div className="card p-4">
-                      <span className="text-primary-500 font-bold text-xs">{item.year}</span>
-                      <h3 className="text-white font-semibold text-sm mt-1 mb-1">{item.event}</h3>
-                      <p className="text-dark-500 text-xs leading-relaxed">{item.desc}</p>
+          <div className="grid lg:grid-cols-[380px_1fr] gap-16">
+
+            {/* Sticky heading column */}
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <span className="section-label">Our Journey</span>
+              <h2 className="section-heading">History &amp; Milestones</h2>
+              <p className="section-body">
+                Over two decades of serving the hospitality industry of far-western Nepal —
+                growing from five founding hotels to a province-wide network.
+              </p>
+            </div>
+
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical rule */}
+              <div className="absolute left-[18px] top-0 bottom-0 w-px bg-surface-200 dark:bg-dark-700" />
+
+              <div className="space-y-0">
+                {timeline.map((item, i) => (
+                  <div key={item.year} className="flex gap-8 pb-10 last:pb-0">
+                    {/* Dot */}
+                    <div className="relative flex-shrink-0 mt-1">
+                      <div className="w-9 h-9 bg-white dark:bg-dark-950 border-2 border-primary-500 flex items-center justify-center z-10 relative">
+                        <span className="text-[10px] font-bold text-primary-600 dark:text-primary-400">
+                          {item.year.slice(2)}
+                        </span>
+                      </div>
+                    </div>
+                    {/* Content */}
+                    <div className="pt-1">
+                      <p className="text-xs font-bold text-primary-600 dark:text-primary-500 uppercase tracking-widest mb-1">
+                        {item.year}
+                      </p>
+                      <h3 className="text-surface-900 dark:text-white font-bold text-base mb-1.5">
+                        {item.event}
+                      </h3>
+                      <p className="text-surface-500 dark:text-dark-400 text-sm leading-relaxed">
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-4 w-3 h-3 rounded-full bg-primary-600 border-2 border-dark-950 z-10" />
-                  <div className="hidden md:block md:w-5/12" />
-                </motion.div>
-              ))}
-            </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Executive Team */}
-      <Section className="py-14 border-t border-dark-800">
+      {/* ── Executive Committee ──────────────────────────────────────────── */}
+      <section className="section-pad bg-white dark:bg-dark-900 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={fadeUp} className="mb-10">
-            <p className="section-label mb-2">Leadership</p>
-            <h2 className="section-title">Executive Committee</h2>
-            <p className="section-sub mt-2">Elected representatives from all districts of the province.</p>
-          </motion.div>
-          <motion.div variants={staggerContainer} className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {team.map(m => (
-              <motion.div key={m.name} variants={scaleIn} className="card p-4 text-center">
-                <div className="w-12 h-12 rounded-full bg-dark-800 border border-dark-700 text-primary-400 flex items-center justify-center text-sm font-bold mx-auto mb-3">
-                  {m.initials}
+
+          <div className="max-w-xl mb-12">
+            <span className="section-label">Leadership</span>
+            <h2 className="section-heading">Executive Committee</h2>
+            <p className="section-body">
+              Elected representatives from all districts of the province.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-surface-200 dark:bg-dark-700">
+            {team.map((m, i) => (
+              <div key={m.name} className="bg-white dark:bg-dark-900 p-6 hover:bg-surface-50 dark:hover:bg-dark-800 transition-colors">
+                {/* Initials avatar */}
+                <div className="w-12 h-12 bg-primary-600 flex items-center justify-center mb-4">
+                  <span className="text-white font-bold text-sm">{m.initials}</span>
                 </div>
-                <h3 className="text-white font-semibold text-xs leading-snug">{m.name}</h3>
-                <p className="text-primary-500 text-[11px] font-medium mt-1">{m.role}</p>
-                <div className="flex items-center justify-center gap-1 mt-1">
-                  <MdLocationOn size={11} className="text-dark-600" />
-                  <span className="text-dark-600 text-[10px]">{m.district}</span>
-                </div>
-              </motion.div>
+                <p className="text-surface-900 dark:text-white font-bold text-sm leading-snug mb-1">{m.name}</p>
+                <p className="text-primary-600 dark:text-primary-400 text-xs font-semibold uppercase tracking-wide mb-1">
+                  {m.role}
+                </p>
+                <p className="text-surface-400 dark:text-dark-500 text-xs">{m.district}</p>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Districts */}
-      <Section className="py-14 border-t border-dark-800">
+      {/* ── Districts ────────────────────────────────────────────────────── */}
+      <section className="section-pad bg-surface-50 dark:bg-dark-950 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={fadeUp} className="mb-10">
-            <p className="section-label mb-2">Coverage</p>
-            <h2 className="section-title">Districts of Province No. 7</h2>
-          </motion.div>
-          <motion.div variants={staggerContainer} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div className="max-w-xl mb-12">
+            <span className="section-label">Coverage Area</span>
+            <h2 className="section-heading">Districts of Province No. 7</h2>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-surface-200 dark:bg-dark-700">
             {districts.map((d, i) => (
-              <motion.div key={d.name} variants={fadeUp} className="card-hover p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-primary-500 font-bold text-xs border border-primary-800 px-2 py-0.5 rounded">{String(i + 1).padStart(2, "0")}</span>
-                  <MdFlag className="text-dark-700" size={14} />
-                </div>
-                <h3 className="text-white font-semibold text-sm mb-0.5">{d.name}</h3>
-                <p className="text-primary-600 text-xs font-medium mb-2">{d.hq}</p>
-                <p className="text-dark-500 text-xs">{d.known}</p>
-              </motion.div>
+              <div key={d.name} className="bg-white dark:bg-dark-900 p-6 hover:bg-surface-50 dark:hover:bg-dark-800 transition-colors">
+                <p className="text-3xl font-bold text-surface-200 dark:text-dark-700 leading-none mb-3">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="text-surface-900 dark:text-white font-bold text-base mb-1">{d.name}</h3>
+                <p className="text-surface-400 dark:text-dark-500 text-xs font-medium mb-2">{d.hq}</p>
+                <p className="text-surface-500 dark:text-dark-400 text-sm leading-relaxed">{d.known}</p>
+              </div>
             ))}
-          </motion.div>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <Section className="py-14 border-t border-dark-800">
-        <motion.div variants={fadeUp} className="max-w-lg mx-auto px-4 text-center">
-          <img src="/logo.png" alt="HAN" className="h-10 w-auto object-contain mx-auto mb-5" />
-          <h2 className="section-title mb-3">Become a Member Today</h2>
-          <p className="section-sub mb-7 mx-auto">
-            Join our growing network of hospitality professionals and benefit from collective
-            advocacy, training, and tourism promotion.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/contact" className="btn-primary">Apply Now <FiArrowRight size={13} /></Link>
-            <Link to="/membership" className="btn-ghost">View Members</Link>
           </div>
-        </motion.div>
-      </Section>
+        </div>
+      </section>
+
+      {/* ── CTA ──────────────────────────────────────────────────────────── */}
+      <section className="bg-primary-700 dark:bg-primary-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+            <div>
+              <span className="block text-primary-300 text-xs font-bold uppercase tracking-[0.2em] mb-4">
+                Membership
+              </span>
+              <h2
+                className="text-white font-bold leading-tight mb-4"
+                style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)", letterSpacing: "-0.02em" }}
+              >
+                Become a Member
+              </h2>
+              <p className="text-white/70 text-base leading-relaxed max-w-xl">
+                Join our growing network and benefit from collective advocacy, training programmes,
+                and tourism promotion across Province No. 7.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 lg:flex-col">
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 bg-white text-primary-700 font-bold text-sm px-8 py-4 hover:bg-primary-50 transition-colors"
+              >
+                Apply Now <FiArrowRight size={14} />
+              </Link>
+              <Link to="/membership" className="btn-outline-white">
+                View Members
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </div>
   );
 }

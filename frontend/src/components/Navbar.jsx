@@ -1,23 +1,9 @@
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { FiMenu, FiX, FiChevronDown, FiArrowRight } from "react-icons/fi";
-import { MdHotel, MdLocationOn, MdCategory, MdStar, MdGroups } from "react-icons/md";
+import { FiMenu, FiX, FiChevronDown, FiArrowRight, FiPhone, FiMail } from "react-icons/fi";
 import { categories, locations } from "../data/hotels";
-import { megaDropdown } from "../lib/animations";
-
-const categoryIcons = {
-  "All Categories": <MdHotel size={14} />,
-  "5 Star":         <MdStar  size={14} />,
-  "4 Star":         <MdStar  size={14} />,
-  "3 Star":         <MdStar  size={14} />,
-  "2 Star":         <MdStar  size={14} />,
-  "1 Star":         <MdStar  size={14} />,
-  Resort:           <MdGroups size={14} />,
-  "Guest House":    <MdHotel size={14} />,
-  Lodge:            <MdHotel size={14} />,
-  Homestay:         <MdGroups size={14} />,
-};
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [menuOpen,      setMenuOpen]      = useState(false);
@@ -25,10 +11,9 @@ export default function Navbar() {
   const [mobileSubOpen, setMobileSubOpen] = useState(false);
   const [scrolled,      setScrolled]      = useState(false);
 
-  const openTimer  = useRef(null);
-  const closeTimer = useRef(null);
-  const headerRef  = useRef(null);
-  const navigate   = useNavigate();
+  const megaWrapRef = useRef(null);
+  const closeTimer  = useRef(null);
+  const navigate    = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -45,221 +30,297 @@ export default function Navbar() {
 
   useEffect(() => {
     const fn = (e) => {
-      if (headerRef.current && !headerRef.current.contains(e.target)) setMegaOpen(false);
+      if (megaWrapRef.current && !megaWrapRef.current.contains(e.target))
+        setMegaOpen(false);
     };
     document.addEventListener("mousedown", fn);
     return () => document.removeEventListener("mousedown", fn);
   }, []);
 
-  const onEnter = useCallback(() => {
-    clearTimeout(closeTimer.current);
-    openTimer.current = setTimeout(() => setMegaOpen(true), 60);
-  }, []);
-  const onLeave = useCallback(() => {
-    clearTimeout(openTimer.current);
-    closeTimer.current = setTimeout(() => setMegaOpen(false), 260);
-  }, []);
+  const handleMouseEnter = () => { clearTimeout(closeTimer.current); setMegaOpen(true); };
+  const handleMouseLeave = () => { closeTimer.current = setTimeout(() => setMegaOpen(false), 150); };
 
-  const go = (path) => { setMegaOpen(false); setMenuOpen(false); setMobileSubOpen(false); navigate(path); };
-
-  const linkCls = ({ isActive }) =>
-    `relative text-sm font-medium transition-colors duration-150 ${isActive ? "text-primary-400" : "text-dark-300 hover:text-white"}`;
+  const go = (path) => {
+    setMegaOpen(false); setMenuOpen(false); setMobileSubOpen(false);
+    navigate(path);
+  };
 
   return (
-    <header
-      ref={headerRef}
-      className={`bg-dark-900 sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-dark-800 shadow-[0_1px_10px_rgba(0,0,0,0.4)]" : "border-b border-dark-800/60"
-      }`}
-    >
-      {/* Announcement bar */}
-      <div className="bg-primary-700 text-white text-xs py-1 text-center font-medium tracking-wide">
-        Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
+    <header className={`sticky top-0 z-50 transition-shadow duration-200 ${scrolled ? "shadow-md" : ""}`}>
+
+      {/* ── Utility bar ─────────────────────────────────────────────────── */}
+      <div className="bg-primary-700 dark:bg-primary-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
+          <span className="text-[11px] font-medium tracking-wide text-white/80">
+            Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
+          </span>
+          <div className="hidden sm:flex items-center gap-5">
+            <a href="tel:+977091521000"
+               className="flex items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors">
+              <FiPhone size={11} /> +977-091-521000
+            </a>
+            <a href="mailto:info@hansudurpashchim.org.np"
+               className="flex items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors">
+              <FiMail size={11} /> info@hansudurpashchim.org.np
+            </a>
+          </div>
+        </div>
       </div>
 
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center h-[52px]">
+      {/* ── Main nav bar ─────────────────────────────────────────────────── */}
+      <div className="bg-white dark:bg-dark-900 border-b-2 border-primary-600">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center h-16 gap-8">
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0 mr-6 group">
-            <img src="/logo.png" alt="HAN" className="h-8 w-auto object-contain" />
-            <div className="hidden sm:block leading-tight">
-              <p className="font-bold text-white text-[13px] leading-none tracking-tight">HAN Sudurpashchim</p>
-              <p className="text-[10px] text-dark-500 mt-0.5">Province No. 7 · Nepal</p>
-            </div>
-          </Link>
-
-          {/* Desktop links */}
-          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
-            {[{ to: "/", label: "Home", end: true }, { to: "/about", label: "About" }].map(({ to, label, end }) => (
-              <NavLink key={to} to={to} end={end} className={linkCls}>
-                {({ isActive }) => (
-                  <span className="relative px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors block">
-                    {label}
-                    {isActive && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-                  </span>
-                )}
-              </NavLink>
-            ))}
-
-            {/* Membership mega */}
-            <div onMouseEnter={onEnter} onMouseLeave={onLeave} className="relative">
-              <button
-                onMouseEnter={onEnter}
-                onMouseLeave={onLeave}
-                className={`relative text-sm font-medium flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors ${megaOpen ? "text-primary-400" : "text-dark-300 hover:text-white"}`}
-              >
-                Membership
-                <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
-                  <FiChevronDown size={13} />
-                </motion.span>
-                {megaOpen && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-              </button>
-            </div>
-
-            {[{ to: "/contact", label: "Contact" }].map(({ to, label }) => (
-              <NavLink key={to} to={to} className={linkCls}>
-                {({ isActive }) => (
-                  <span className="relative px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors block">
-                    {label}
-                    {isActive && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-                  </span>
-                )}
-              </NavLink>
-            ))}
-          </div>
-
-          {/* Join Us */}
-          <div className="hidden lg:flex ml-auto">
-            <Link to="/contact" className="btn-primary">
-              Join Us <FiArrowRight size={13} />
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+              <img src="/logo.png" alt="HAN Sudurpashchim" className="h-10 w-auto object-contain" />
+              <div className="hidden sm:block">
+                <p className="font-bold text-surface-900 dark:text-white text-sm leading-none tracking-tight">
+                  HAN Sudurpashchim
+                </p>
+                <p className="text-[11px] text-surface-500 dark:text-dark-400 mt-0.5 font-medium">
+                  Province No. 7 · Nepal
+                </p>
+              </div>
             </Link>
-          </div>
 
-          {/* Mobile burger */}
-          <button className="lg:hidden ml-auto w-9 h-9 flex items-center justify-center rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors"
-            onClick={() => setMenuOpen(o => !o)}>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span key={menuOpen ? "x" : "m"} initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.12 }}>
-                {menuOpen ? <FiX size={19} /> : <FiMenu size={19} />}
-              </motion.span>
-            </AnimatePresence>
-          </button>
-        </div>
-      </nav>
-
-      {/* Mega dropdown — full width under header */}
-      <AnimatePresence>
-        {megaOpen && (
-          <motion.div
-            variants={megaDropdown} initial="hidden" animate="visible" exit="exit"
-            onMouseEnter={onEnter} onMouseLeave={onLeave}
-            className="hidden lg:block absolute left-0 right-0 top-full z-40 bg-dark-900 border-t border-b border-dark-800"
-          >
-            <div className="max-w-5xl mx-auto px-6 py-5">
-              {/* Header */}
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <img src="/logo.png" alt="HAN" className="h-7 w-auto object-contain" />
-                  <div>
-                    <p className="text-white font-bold text-sm">Member Hotels Directory</p>
-                    <p className="text-dark-500 text-xs mt-0.5">Province No. 7 · All 8 districts</p>
-                  </div>
-                </div>
-                <button onClick={() => go("/membership")} className="btn-primary text-xs px-3 py-1.5">
-                  View All <FiArrowRight size={11} />
-                </button>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6">
-                {/* By Category */}
-                <div>
-                  <p className="flex items-center gap-1.5 text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-2.5">
-                    <MdCategory size={12} className="text-primary-500" /> By Category
-                  </p>
-                  <div className="grid grid-cols-2 gap-0.5">
-                    {categories.map(cat => (
-                      <button key={cat} onClick={() => go(cat === "All Categories" ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
-                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors text-left group">
-                        <span className="w-5 h-5 flex items-center justify-center rounded-md bg-dark-800 group-hover:bg-dark-700 text-dark-500 group-hover:text-primary-400 flex-shrink-0 transition-colors">
-                          {categoryIcons[cat]}
-                        </span>
-                        <span className="text-xs font-medium">{cat}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* By Location */}
-                <div>
-                  <p className="flex items-center gap-1.5 text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-2.5">
-                    <MdLocationOn size={12} className="text-secondary-500" /> By Location
-                  </p>
-                  <div className="grid grid-cols-2 gap-0.5">
-                    {locations.map(loc => (
-                      <button key={loc} onClick={() => go(loc === "All Locations" ? "/membership" : `/membership?location=${encodeURIComponent(loc)}`)}
-                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors text-left group">
-                        <MdLocationOn size={12} className="text-dark-600 group-hover:text-secondary-400 flex-shrink-0 transition-colors" />
-                        <span className="text-xs font-medium truncate">{loc}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden overflow-hidden border-t border-dark-800 bg-dark-900">
-            <div className="px-4 pt-3 pb-4 space-y-1">
-              {[{ to: "/", l: "Home", end: true }, { to: "/about", l: "About" }, { to: "/contact", l: "Contact" }].map(({ to, l, end }) => (
-                <NavLink key={to} to={to} end={end}
-                  className={({ isActive }) => `block py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${isActive ? "bg-dark-800 text-primary-400" : "text-dark-300 hover:bg-dark-800 hover:text-white"}`}>
-                  {l}
+            {/* Desktop links */}
+            <div className="hidden lg:flex items-center gap-0 flex-1 h-full">
+              {[
+                { to: "/",       label: "Home",    end: true },
+                { to: "/about",  label: "About Us" },
+                { to: "/contact",label: "Contact"  },
+              ].map(({ to, label, end }) => (
+                <NavLink
+                  key={to} to={to} end={end}
+                  className={({ isActive }) =>
+                    `relative flex items-center h-full px-4 text-sm font-semibold transition-colors duration-150
+                     after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
+                     ${isActive
+                       ? "text-primary-700 dark:text-primary-400 after:bg-primary-600"
+                       : "text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200 dark:hover:after:bg-primary-900"
+                     }`
+                  }
+                >
+                  {label}
                 </NavLink>
               ))}
 
-              {/* Membership accordion */}
-              <div className="rounded-lg border border-dark-800 overflow-hidden">
-                <button onClick={() => setMobileSubOpen(o => !o)}
-                  className={`w-full flex items-center justify-between py-2.5 px-3 text-sm font-medium transition-colors ${mobileSubOpen ? "bg-dark-800 text-primary-400" : "text-dark-300 hover:bg-dark-800 hover:text-white"}`}>
-                  <span className="flex items-center gap-2"><MdHotel size={14} />Membership</span>
-                  <motion.span animate={{ rotate: mobileSubOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
-                    <FiChevronDown size={14} />
+              {/* Membership mega-menu trigger */}
+              <div
+                ref={megaWrapRef}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                className="relative h-full flex items-center"
+              >
+                <button
+                  className={`relative flex items-center gap-1.5 h-full px-4 text-sm font-semibold transition-colors duration-150
+                    after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
+                    ${megaOpen
+                      ? "text-primary-700 dark:text-primary-400 after:bg-primary-600"
+                      : "text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200"
+                    }`}
+                >
+                  Member Hotels
+                  <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
+                    <FiChevronDown size={13} />
                   </motion.span>
                 </button>
+
                 <AnimatePresence>
-                  {mobileSubOpen && (
-                    <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} transition={{ duration: 0.2 }}
-                      className="overflow-hidden border-t border-dark-800">
-                      <button onClick={() => go("/membership")} className="w-full flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-semibold">
-                        <MdHotel size={14} /> View All Member Hotels <FiArrowRight className="ml-auto" size={12} />
-                      </button>
-                      <div className="p-3 space-y-3 max-h-[50vh] overflow-y-auto">
+                  {megaOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.16 }}
+                      className="absolute left-0 top-full z-50 w-[580px]
+                        bg-white dark:bg-dark-900
+                        border border-surface-200 dark:border-dark-700
+                        shadow-xl"
+                    >
+                      <div className="absolute -top-2 left-0 right-0 h-2" />
+
+                      {/* Dropdown header */}
+                      <div className="bg-primary-600 px-6 py-4 flex items-center justify-between">
                         <div>
-                          <p className="text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-1.5 flex items-center gap-1"><MdCategory size={11} />By Category</p>
-                          <div className="grid grid-cols-2 gap-1">
-                            {categories.slice(1).map(cat => (
-                              <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
-                                className="flex items-center gap-1.5 text-xs text-dark-400 hover:text-primary-400 px-2 py-1.5 rounded hover:bg-dark-800 transition-colors">
-                                <span className="text-dark-600">{categoryIcons[cat]}</span>{cat}
+                          <p className="text-white font-bold text-sm">Member Hotels Directory</p>
+                          <p className="text-white/70 text-xs mt-0.5">All 8 districts · Province No. 7</p>
+                        </div>
+                        <button
+                          onClick={() => go("/membership")}
+                          className="flex items-center gap-1.5 bg-white text-primary-700 text-xs font-bold px-4 py-2 hover:bg-primary-50 transition-colors"
+                        >
+                          View All <FiArrowRight size={11} />
+                        </button>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-0 divide-x divide-surface-100 dark:divide-dark-800">
+                        {/* By Category */}
+                        <div className="p-5">
+                          <p className="text-[10px] font-bold text-surface-400 dark:text-dark-500 uppercase tracking-widest mb-3">
+                            By Category
+                          </p>
+                          <div className="space-y-0.5">
+                            {categories.map(cat => (
+                              <button
+                                key={cat}
+                                onClick={() => go(cat === "All Categories" ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
+                                className="w-full text-left px-3 py-2 text-sm
+                                  text-surface-700 dark:text-dark-300
+                                  hover:bg-primary-50 dark:hover:bg-primary-950/30
+                                  hover:text-primary-700 dark:hover:text-primary-400
+                                  transition-colors"
+                              >
+                                {cat}
                               </button>
                             ))}
                           </div>
                         </div>
-                        <div className="h-px bg-dark-800" />
+
+                        {/* By Location */}
+                        <div className="p-5">
+                          <p className="text-[10px] font-bold text-surface-400 dark:text-dark-500 uppercase tracking-widest mb-3">
+                            By District
+                          </p>
+                          <div className="space-y-0.5">
+                            {locations.map(loc => (
+                              <button
+                                key={loc}
+                                onClick={() => go(loc === "All Locations" ? "/membership" : `/membership?location=${encodeURIComponent(loc)}`)}
+                                className="w-full text-left px-3 py-2 text-sm
+                                  text-surface-700 dark:text-dark-300
+                                  hover:bg-primary-50 dark:hover:bg-primary-950/30
+                                  hover:text-primary-700 dark:hover:text-primary-400
+                                  transition-colors truncate"
+                              >
+                                {loc}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Right: theme toggle + CTA */}
+            <div className="hidden lg:flex items-center gap-3 ml-auto">
+              <ThemeToggle />
+              <Link to="/contact" className="btn-primary text-xs px-5 py-2.5">
+                Join the Association <FiArrowRight size={12} />
+              </Link>
+            </div>
+
+            {/* Mobile: theme + burger */}
+            <div className="lg:hidden ml-auto flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                className="w-9 h-9 flex items-center justify-center
+                  text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400
+                  transition-colors"
+                onClick={() => setMenuOpen(o => !o)}
+                aria-label="Toggle menu"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={menuOpen ? "x" : "m"}
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.12 }}
+                  >
+                    {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+                  </motion.span>
+                </AnimatePresence>
+              </button>
+            </div>
+
+          </div>
+        </nav>
+      </div>
+
+      {/* ── Mobile drawer ─────────────────────────────────────────────────── */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden overflow-hidden bg-white dark:bg-dark-900 border-b border-surface-200 dark:border-dark-800"
+          >
+            <div className="px-4 py-4 space-y-1">
+              {[
+                { to: "/",        label: "Home",    end: true },
+                { to: "/about",   label: "About Us" },
+                { to: "/contact", label: "Contact"  },
+              ].map(({ to, label, end }) => (
+                <NavLink
+                  key={to} to={to} end={end}
+                  className={({ isActive }) =>
+                    `block py-3 px-4 text-sm font-semibold border-l-4 transition-colors
+                     ${isActive
+                       ? "border-primary-600 text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/20"
+                       : "border-transparent text-surface-700 dark:text-dark-300 hover:border-primary-400 hover:text-primary-700 dark:hover:text-primary-400"
+                     }`
+                  }
+                >
+                  {label}
+                </NavLink>
+              ))}
+
+              {/* Membership accordion */}
+              <div className="border-l-4 border-transparent">
+                <button
+                  onClick={() => setMobileSubOpen(o => !o)}
+                  className={`w-full flex items-center justify-between py-3 px-4 text-sm font-semibold transition-colors
+                    ${mobileSubOpen
+                      ? "text-primary-700 dark:text-primary-400"
+                      : "text-surface-700 dark:text-dark-300"
+                    }`}
+                >
+                  Member Hotels
+                  <motion.span animate={{ rotate: mobileSubOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
+                    <FiChevronDown size={14} />
+                  </motion.span>
+                </button>
+
+                <AnimatePresence>
+                  {mobileSubOpen && (
+                    <motion.div
+                      initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden bg-surface-50 dark:bg-dark-800 border-t border-surface-200 dark:border-dark-700"
+                    >
+                      <button
+                        onClick={() => go("/membership")}
+                        className="w-full flex items-center gap-2 px-5 py-3
+                          bg-primary-600 text-white text-sm font-semibold"
+                      >
+                        View All Member Hotels
+                        <FiArrowRight className="ml-auto" size={13} />
+                      </button>
+
+                      <div className="p-4 grid grid-cols-2 gap-4 max-h-[45vh] overflow-y-auto">
                         <div>
-                          <p className="text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-1.5 flex items-center gap-1"><MdLocationOn size={11} />By Location</p>
+                          <p className="text-[10px] font-bold text-surface-400 uppercase tracking-widest mb-2">Category</p>
+                          {categories.slice(1).map(cat => (
+                            <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
+                              className="block w-full text-left py-1.5 text-sm text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">
+                              {cat}
+                            </button>
+                          ))}
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold text-surface-400 uppercase tracking-widest mb-2">District</p>
                           {locations.slice(1).map(loc => (
                             <button key={loc} onClick={() => go(`/membership?location=${encodeURIComponent(loc)}`)}
-                              className="w-full flex items-center gap-1.5 text-xs text-dark-400 hover:text-secondary-400 px-2 py-1.5 rounded hover:bg-dark-800 transition-colors">
-                              <MdLocationOn size={11} className="text-dark-600 flex-shrink-0" />{loc}
+                              className="block w-full text-left py-1.5 text-sm text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 transition-colors truncate">
+                              {loc}
                             </button>
                           ))}
                         </div>
@@ -269,9 +330,11 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link to="/contact" className="btn-primary w-full justify-center mt-1">
-                Join the Association <FiArrowRight size={13} />
-              </Link>
+              <div className="pt-3 pb-1">
+                <Link to="/contact" className="btn-primary w-full justify-center text-sm">
+                  Join the Association <FiArrowRight size={13} />
+                </Link>
+              </div>
             </div>
           </motion.div>
         )}
