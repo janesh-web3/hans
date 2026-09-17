@@ -7,16 +7,16 @@ import { categories, locations } from "../data/hotels";
 import { megaDropdown } from "../lib/animations";
 
 const categoryIcons = {
-  "All Categories": <MdHotel size={15} />,
-  "5 Star":         <MdStar  size={15} />,
-  "4 Star":         <MdStar  size={15} />,
-  "3 Star":         <MdStar  size={15} />,
-  "2 Star":         <MdStar  size={15} />,
-  "1 Star":         <MdStar  size={15} />,
-  Resort:           <MdGroups size={15} />,
-  "Guest House":    <MdHotel size={15} />,
-  Lodge:            <MdHotel size={15} />,
-  Homestay:         <MdGroups size={15} />,
+  "All Categories": <MdHotel size={14} />,
+  "5 Star":         <MdStar  size={14} />,
+  "4 Star":         <MdStar  size={14} />,
+  "3 Star":         <MdStar  size={14} />,
+  "2 Star":         <MdStar  size={14} />,
+  "1 Star":         <MdStar  size={14} />,
+  Resort:           <MdGroups size={14} />,
+  "Guest House":    <MdHotel size={14} />,
+  Lodge:            <MdHotel size={14} />,
+  Homestay:         <MdGroups size={14} />,
 };
 
 export default function Navbar() {
@@ -25,13 +25,11 @@ export default function Navbar() {
   const [mobileSubOpen, setMobileSubOpen] = useState(false);
   const [scrolled,      setScrolled]      = useState(false);
 
-  const openTimerRef  = useRef(null);
-  const closeTimerRef = useRef(null);
-  // Ref on the HEADER so we can position the panel relative to full width
-  const headerRef     = useRef(null);
-  const megaBtnRef    = useRef(null);
-  const navigate      = useNavigate();
-  const { pathname }  = useLocation();
+  const openTimer  = useRef(null);
+  const closeTimer = useRef(null);
+  const headerRef  = useRef(null);
+  const navigate   = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     setMenuOpen(false);
@@ -40,198 +38,153 @@ export default function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 6);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const fn = () => setScrolled(window.scrollY > 4);
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
   }, []);
 
-  // Close mega on outside click
   useEffect(() => {
-    const handler = (e) => {
-      if (headerRef.current && !headerRef.current.contains(e.target)) {
-        setMegaOpen(false);
-      }
+    const fn = (e) => {
+      if (headerRef.current && !headerRef.current.contains(e.target)) setMegaOpen(false);
     };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    document.addEventListener("mousedown", fn);
+    return () => document.removeEventListener("mousedown", fn);
   }, []);
 
-  const handleMegaEnter = useCallback(() => {
-    clearTimeout(closeTimerRef.current);
-    openTimerRef.current = setTimeout(() => setMegaOpen(true), 60);
+  const onEnter = useCallback(() => {
+    clearTimeout(closeTimer.current);
+    openTimer.current = setTimeout(() => setMegaOpen(true), 60);
+  }, []);
+  const onLeave = useCallback(() => {
+    clearTimeout(openTimer.current);
+    closeTimer.current = setTimeout(() => setMegaOpen(false), 260);
   }, []);
 
-  const handleMegaLeave = useCallback(() => {
-    clearTimeout(openTimerRef.current);
-    closeTimerRef.current = setTimeout(() => setMegaOpen(false), 250);
-  }, []);
+  const go = (path) => { setMegaOpen(false); setMenuOpen(false); setMobileSubOpen(false); navigate(path); };
 
-  function handleCategorySelect(cat) {
-    setMegaOpen(false); setMenuOpen(false); setMobileSubOpen(false);
-    const param = cat === "All Categories" ? "" : `?category=${encodeURIComponent(cat)}`;
-    navigate(`/membership${param}`);
-  }
-  function handleLocationSelect(loc) {
-    setMegaOpen(false); setMenuOpen(false); setMobileSubOpen(false);
-    const param = loc === "All Locations" ? "" : `?location=${encodeURIComponent(loc)}`;
-    navigate(`/membership${param}`);
-  }
-
-  const active = "text-primary-600 font-semibold";
-  const idle   = "text-gray-600 hover:text-primary-600 font-medium";
   const linkCls = ({ isActive }) =>
-    `relative text-sm transition-colors duration-200 ${isActive ? active : idle}`;
+    `relative text-sm font-medium transition-colors duration-150 ${isActive ? "text-primary-400" : "text-dark-300 hover:text-white"}`;
 
   return (
     <header
       ref={headerRef}
-      className={`bg-white sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "shadow-[0_1px_12px_rgba(0,0,0,0.07)]" : "border-b border-gray-100"
+      className={`bg-dark-900 sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? "border-b border-dark-800 shadow-[0_1px_10px_rgba(0,0,0,0.4)]" : "border-b border-dark-800/60"
       }`}
     >
       {/* Announcement bar */}
-      <div className="bg-primary-700 text-white text-xs py-1 text-center tracking-wide font-medium">
+      <div className="bg-primary-700 text-white text-xs py-1 text-center font-medium tracking-wide">
         Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
       </div>
 
-      {/* Main nav */}
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center h-[52px]">
 
-          {/* ── Logo ── */}
-          <Link to="/" className="flex items-center gap-2 flex-shrink-0 group mr-6">
-            <img
-              src="/logo.png"
-              alt="HAN Sudurpashchim"
-              className="h-8 w-auto object-contain flex-shrink-0"
-            />
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 flex-shrink-0 mr-6 group">
+            <img src="/logo.png" alt="HAN" className="h-8 w-auto object-contain" />
             <div className="hidden sm:block leading-tight">
-              <p className="font-bold text-gray-800 text-[13px] leading-none tracking-tight">HAN Sudurpashchim</p>
-              <p className="text-[10px] text-gray-400 font-medium mt-0.5">Province No. 7 · Nepal</p>
+              <p className="font-bold text-white text-[13px] leading-none tracking-tight">HAN Sudurpashchim</p>
+              <p className="text-[10px] text-dark-500 mt-0.5">Province No. 7 · Nepal</p>
             </div>
           </Link>
 
-          {/* ── Center links ── */}
-          <div className="hidden lg:flex items-center gap-1 flex-1 justify-center">
+          {/* Desktop links */}
+          <div className="hidden lg:flex items-center gap-0.5 flex-1 justify-center">
+            {[{ to: "/", label: "Home", end: true }, { to: "/about", label: "About" }].map(({ to, label, end }) => (
+              <NavLink key={to} to={to} end={end} className={linkCls}>
+                {({ isActive }) => (
+                  <span className="relative px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors block">
+                    {label}
+                    {isActive && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
+                  </span>
+                )}
+              </NavLink>
+            ))}
 
-            <NavLink to="/" end className={linkCls}>
-              {({ isActive }) => (
-                <span className="relative px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors block">
-                  Home
-                  {isActive && <motion.span layoutId="underline" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-                </span>
-              )}
-            </NavLink>
+            {/* Membership mega */}
+            <div onMouseEnter={onEnter} onMouseLeave={onLeave} className="relative">
+              <button
+                onMouseEnter={onEnter}
+                onMouseLeave={onLeave}
+                className={`relative text-sm font-medium flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors ${megaOpen ? "text-primary-400" : "text-dark-300 hover:text-white"}`}
+              >
+                Membership
+                <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
+                  <FiChevronDown size={13} />
+                </motion.span>
+                {megaOpen && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
+              </button>
+            </div>
 
-            <NavLink to="/about" className={linkCls}>
-              {({ isActive }) => (
-                <span className="relative px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors block">
-                  About
-                  {isActive && <motion.span layoutId="underline" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-                </span>
-              )}
-            </NavLink>
-
-            {/* Membership — trigger only, panel is in header */}
-            <button
-              ref={megaBtnRef}
-              onMouseEnter={handleMegaEnter}
-              onMouseLeave={handleMegaLeave}
-              className={`relative text-sm flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors ${megaOpen ? active : idle}`}
-              aria-expanded={megaOpen}
-            >
-              Membership
-              <motion.span animate={{ rotate: megaOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                <FiChevronDown size={13} />
-              </motion.span>
-              {megaOpen && <motion.span layoutId="underline" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-            </button>
-
-            <NavLink to="/contact" className={linkCls}>
-              {({ isActive }) => (
-                <span className="relative px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors block">
-                  Contact
-                  {isActive && <motion.span layoutId="underline" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
-                </span>
-              )}
-            </NavLink>
+            {[{ to: "/contact", label: "Contact" }].map(({ to, label }) => (
+              <NavLink key={to} to={to} className={linkCls}>
+                {({ isActive }) => (
+                  <span className="relative px-3 py-1.5 rounded-lg hover:bg-dark-800 transition-colors block">
+                    {label}
+                    {isActive && <motion.span layoutId="nav-bar" className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-primary-500" />}
+                  </span>
+                )}
+              </NavLink>
+            ))}
           </div>
 
-          {/* ── Join Us ── */}
-          <div className="hidden lg:flex items-center ml-auto">
-            <Link to="/contact" className="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white text-xs font-semibold px-4 py-1.5 rounded-lg transition-colors">
-              Join Us <FiArrowRight size={12} />
+          {/* Join Us */}
+          <div className="hidden lg:flex ml-auto">
+            <Link to="/contact" className="btn-primary">
+              Join Us <FiArrowRight size={13} />
             </Link>
           </div>
 
-          {/* ── Mobile hamburger ── */}
-          <button
-            className="lg:hidden ml-auto w-9 h-9 flex items-center justify-center rounded-xl text-gray-600 hover:bg-gray-50 transition-colors"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
+          {/* Mobile burger */}
+          <button className="lg:hidden ml-auto w-9 h-9 flex items-center justify-center rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors"
+            onClick={() => setMenuOpen(o => !o)}>
             <AnimatePresence mode="wait" initial={false}>
-              <motion.span key={menuOpen ? "x" : "m"} initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.15 }}>
-                {menuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+              <motion.span key={menuOpen ? "x" : "m"} initial={{ opacity: 0, rotate: -90 }} animate={{ opacity: 1, rotate: 0 }} exit={{ opacity: 0, rotate: 90 }} transition={{ duration: 0.12 }}>
+                {menuOpen ? <FiX size={19} /> : <FiMenu size={19} />}
               </motion.span>
             </AnimatePresence>
           </button>
         </div>
       </nav>
 
-      {/* ── Mega panel — full-width, centered under entire navbar ── */}
+      {/* Mega dropdown — full width under header */}
       <AnimatePresence>
         {megaOpen && (
           <motion.div
-            variants={megaDropdown}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            style={{ originY: 0 }}
-            onMouseEnter={handleMegaEnter}
-            onMouseLeave={handleMegaLeave}
-            className="hidden lg:block absolute left-0 right-0 top-full z-40 border-t border-gray-100 bg-white shadow-2xl"
+            variants={megaDropdown} initial="hidden" animate="visible" exit="exit"
+            onMouseEnter={onEnter} onMouseLeave={onLeave}
+            className="hidden lg:block absolute left-0 right-0 top-full z-40 bg-dark-900 border-t border-b border-dark-800"
           >
-            <div className="max-w-5xl mx-auto px-6 py-6">
-              {/* Header row */}
-              <div className="flex items-center justify-between mb-5">
+            <div className="max-w-5xl mx-auto px-6 py-5">
+              {/* Header */}
+              <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <img
-                    src="/logo.png"
-                    alt="HAN Sudurpashchim"
-                    className="h-9 w-auto object-contain flex-shrink-0"
-                  />
+                  <img src="/logo.png" alt="HAN" className="h-7 w-auto object-contain" />
                   <div>
-                    <p className="font-bold text-gray-800 text-sm leading-none">Member Hotels Directory</p>
-                    <p className="text-gray-400 text-xs mt-0.5">Province No. 7 · All 8 districts</p>
+                    <p className="text-white font-bold text-sm">Member Hotels Directory</p>
+                    <p className="text-dark-500 text-xs mt-0.5">Province No. 7 · All 8 districts</p>
                   </div>
                 </div>
-                <button
-                  onClick={() => navigate("/membership")}
-                  className="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-colors"
-                >
-                  View All Hotels <FiArrowRight size={11} />
+                <button onClick={() => go("/membership")} className="btn-primary text-xs px-3 py-1.5">
+                  View All <FiArrowRight size={11} />
                 </button>
               </div>
 
-              {/* Two columns */}
-              <div className="grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-6">
                 {/* By Category */}
                 <div>
-                  <p className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3 pb-2 border-b border-gray-100">
+                  <p className="flex items-center gap-1.5 text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-2.5">
                     <MdCategory size={12} className="text-primary-500" /> By Category
                   </p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {categories.map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => handleCategorySelect(cat)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-left hover:bg-primary-50 transition-colors group/c"
-                      >
-                        <span className="w-6 h-6 rounded-lg bg-gray-100 group-hover/c:bg-primary-100 flex items-center justify-center text-gray-400 group-hover/c:text-primary-600 transition-colors flex-shrink-0">
+                  <div className="grid grid-cols-2 gap-0.5">
+                    {categories.map(cat => (
+                      <button key={cat} onClick={() => go(cat === "All Categories" ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
+                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors text-left group">
+                        <span className="w-5 h-5 flex items-center justify-center rounded-md bg-dark-800 group-hover:bg-dark-700 text-dark-500 group-hover:text-primary-400 flex-shrink-0 transition-colors">
                           {categoryIcons[cat]}
                         </span>
-                        <span className="text-sm font-medium text-gray-700 group-hover/c:text-primary-700 transition-colors">{cat}</span>
+                        <span className="text-xs font-medium">{cat}</span>
                       </button>
                     ))}
                   </div>
@@ -239,18 +192,15 @@ export default function Navbar() {
 
                 {/* By Location */}
                 <div>
-                  <p className="flex items-center gap-2 text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-3 pb-2 border-b border-gray-100">
+                  <p className="flex items-center gap-1.5 text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-2.5">
                     <MdLocationOn size={12} className="text-secondary-500" /> By Location
                   </p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {locations.map((loc) => (
-                      <button
-                        key={loc}
-                        onClick={() => handleLocationSelect(loc)}
-                        className="flex items-center gap-2 px-3 py-2 rounded-xl text-left hover:bg-secondary-50 transition-colors group/l"
-                      >
-                        <MdLocationOn size={13} className="text-gray-300 group-hover/l:text-secondary-400 flex-shrink-0 transition-colors" />
-                        <span className="text-sm font-medium text-gray-700 group-hover/l:text-secondary-700 transition-colors truncate">{loc}</span>
+                  <div className="grid grid-cols-2 gap-0.5">
+                    {locations.map(loc => (
+                      <button key={loc} onClick={() => go(loc === "All Locations" ? "/membership" : `/membership?location=${encodeURIComponent(loc)}`)}
+                        className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-dark-400 hover:text-white hover:bg-dark-800 transition-colors text-left group">
+                        <MdLocationOn size={12} className="text-dark-600 group-hover:text-secondary-400 flex-shrink-0 transition-colors" />
+                        <span className="text-xs font-medium truncate">{loc}</span>
                       </button>
                     ))}
                   </div>
@@ -261,73 +211,55 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* ── Mobile drawer ── */}
+      {/* Mobile drawer */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden overflow-hidden border-t border-gray-100 bg-white"
-          >
-            <div className="px-4 pt-3 pb-5 space-y-1">
-              {[{ to: "/", label: "Home", end: true }, { to: "/about", label: "About" }, { to: "/contact", label: "Contact" }].map(({ to, label, end }) => (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden overflow-hidden border-t border-dark-800 bg-dark-900">
+            <div className="px-4 pt-3 pb-4 space-y-1">
+              {[{ to: "/", l: "Home", end: true }, { to: "/about", l: "About" }, { to: "/contact", l: "Contact" }].map(({ to, l, end }) => (
                 <NavLink key={to} to={to} end={end}
-                  className={({ isActive }) => `flex items-center py-2.5 px-3.5 rounded-xl text-sm font-medium transition-colors ${isActive ? "bg-primary-50 text-primary-600" : "text-gray-700 hover:bg-gray-50"}`}>
-                  {label}
+                  className={({ isActive }) => `block py-2.5 px-3 rounded-lg text-sm font-medium transition-colors ${isActive ? "bg-dark-800 text-primary-400" : "text-dark-300 hover:bg-dark-800 hover:text-white"}`}>
+                  {l}
                 </NavLink>
               ))}
 
-              <div className="rounded-xl border border-gray-100 overflow-hidden">
-                <button
-                  onClick={() => setMobileSubOpen((o) => !o)}
-                  className={`w-full flex items-center justify-between py-2.5 px-3.5 text-sm font-medium transition-colors ${mobileSubOpen ? "bg-primary-50 text-primary-600" : "text-gray-700 hover:bg-gray-50"}`}
-                >
-                  <span className="flex items-center gap-2.5">
-                    <MdHotel size={15} className={mobileSubOpen ? "text-primary-500" : "text-gray-400"} />
-                    Membership
-                  </span>
-                  <motion.span animate={{ rotate: mobileSubOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                    <FiChevronDown size={15} />
+              {/* Membership accordion */}
+              <div className="rounded-lg border border-dark-800 overflow-hidden">
+                <button onClick={() => setMobileSubOpen(o => !o)}
+                  className={`w-full flex items-center justify-between py-2.5 px-3 text-sm font-medium transition-colors ${mobileSubOpen ? "bg-dark-800 text-primary-400" : "text-dark-300 hover:bg-dark-800 hover:text-white"}`}>
+                  <span className="flex items-center gap-2"><MdHotel size={14} />Membership</span>
+                  <motion.span animate={{ rotate: mobileSubOpen ? 180 : 0 }} transition={{ duration: 0.18 }}>
+                    <FiChevronDown size={14} />
                   </motion.span>
                 </button>
-
                 <AnimatePresence>
                   {mobileSubOpen && (
-                    <motion.div
-                      initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }}
-                      transition={{ duration: 0.22 }}
-                      className="overflow-hidden border-t border-gray-100"
-                    >
-                      <button onClick={() => navigate("/membership")}
-                        className="w-full flex items-center gap-2 px-4 py-3 bg-primary-600 text-white text-sm font-semibold">
-                        <MdHotel size={15} /> View All Member Hotels
-                        <FiArrowRight className="ml-auto" size={13} />
+                    <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} transition={{ duration: 0.2 }}
+                      className="overflow-hidden border-t border-dark-800">
+                      <button onClick={() => go("/membership")} className="w-full flex items-center gap-2 px-4 py-2.5 bg-primary-600 text-white text-sm font-semibold">
+                        <MdHotel size={14} /> View All Member Hotels <FiArrowRight className="ml-auto" size={12} />
                       </button>
-                      <div className="p-4 space-y-4 max-h-[55vh] overflow-y-auto">
+                      <div className="p-3 space-y-3 max-h-[50vh] overflow-y-auto">
                         <div>
-                          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <MdCategory size={11} /> By Category
-                          </p>
+                          <p className="text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-1.5 flex items-center gap-1"><MdCategory size={11} />By Category</p>
                           <div className="grid grid-cols-2 gap-1">
-                            {categories.slice(1).map((cat) => (
-                              <button key={cat} onClick={() => handleCategorySelect(cat)}
-                                className="flex items-center gap-2 text-xs text-gray-600 hover:text-primary-600 px-2.5 py-1.5 rounded-lg hover:bg-primary-50 transition-colors">
-                                <span className="text-gray-300">{categoryIcons[cat]}</span>{cat}
+                            {categories.slice(1).map(cat => (
+                              <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
+                                className="flex items-center gap-1.5 text-xs text-dark-400 hover:text-primary-400 px-2 py-1.5 rounded hover:bg-dark-800 transition-colors">
+                                <span className="text-dark-600">{categoryIcons[cat]}</span>{cat}
                               </button>
                             ))}
                           </div>
                         </div>
-                        <div className="h-px bg-gray-100" />
+                        <div className="h-px bg-dark-800" />
                         <div>
-                          <p className="text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2 flex items-center gap-1">
-                            <MdLocationOn size={11} /> By Location
-                          </p>
-                          {locations.slice(1).map((loc) => (
-                            <button key={loc} onClick={() => handleLocationSelect(loc)}
-                              className="w-full flex items-center gap-2 text-xs text-gray-600 hover:text-secondary-600 px-2.5 py-1.5 rounded-lg hover:bg-secondary-50 transition-colors">
-                              <MdLocationOn size={11} className="text-gray-300 flex-shrink-0" />{loc}
+                          <p className="text-[11px] font-bold text-dark-500 uppercase tracking-wider mb-1.5 flex items-center gap-1"><MdLocationOn size={11} />By Location</p>
+                          {locations.slice(1).map(loc => (
+                            <button key={loc} onClick={() => go(`/membership?location=${encodeURIComponent(loc)}`)}
+                              className="w-full flex items-center gap-1.5 text-xs text-dark-400 hover:text-secondary-400 px-2 py-1.5 rounded hover:bg-dark-800 transition-colors">
+                              <MdLocationOn size={11} className="text-dark-600 flex-shrink-0" />{loc}
                             </button>
                           ))}
                         </div>
@@ -337,7 +269,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link to="/contact" className="flex items-center justify-center gap-2 bg-primary-600 text-white text-sm font-semibold py-2.5 px-4 rounded-xl mt-1">
+              <Link to="/contact" className="btn-primary w-full justify-center mt-1">
                 Join the Association <FiArrowRight size={13} />
               </Link>
             </div>

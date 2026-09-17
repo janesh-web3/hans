@@ -4,131 +4,122 @@ import { MdLocationOn, MdHotel } from "react-icons/md";
 import { FaFacebookF, FaWhatsapp, FaInstagram, FaTiktok } from "react-icons/fa";
 import HotelModal from "./HotelModal";
 
-const categoryColors = {
-  "5 Star":     "bg-yellow-50 text-yellow-700",
-  "4 Star":     "bg-purple-50 text-purple-700",
-  "3 Star":     "bg-blue-50   text-blue-700",
-  "2 Star":     "bg-green-50  text-green-700",
-  "1 Star":     "bg-gray-100  text-gray-600",
-  Resort:       "bg-teal-50   text-teal-700",
-  "Guest House":"bg-orange-50 text-orange-700",
-  Lodge:        "bg-amber-50  text-amber-700",
-  Homestay:     "bg-pink-50   text-pink-700",
+const categoryBadge = {
+  "5 Star":     "text-yellow-400 border-yellow-800 bg-yellow-950/40",
+  "4 Star":     "text-purple-400 border-purple-800 bg-purple-950/40",
+  "3 Star":     "text-blue-400   border-blue-800   bg-blue-950/40",
+  "2 Star":     "text-green-400  border-green-800  bg-green-950/40",
+  "1 Star":     "text-dark-400   border-dark-700   bg-dark-800/40",
+  Resort:       "text-teal-400   border-teal-800   bg-teal-950/40",
+  "Guest House":"text-orange-400 border-orange-800 bg-orange-950/40",
+  Lodge:        "text-amber-400  border-amber-800  bg-amber-950/40",
+  Homestay:     "text-pink-400   border-pink-800   bg-pink-950/40",
 };
 
-const gradients = [
-  "from-primary-500 to-primary-700",
-  "from-secondary-500 to-secondary-700",
-  "from-teal-500 to-primary-600",
-  "from-primary-400 to-secondary-600",
-  "from-emerald-500 to-primary-600",
-];
-
 const socialDefs = [
-  { key: "facebook",  icon: <FaFacebookF size={13} />, label: "Facebook",  bg: "bg-[#1877F2]" },
-  { key: "whatsapp",  icon: <FaWhatsapp  size={13} />, label: "WhatsApp",  bg: "bg-[#25D366]" },
-  { key: "instagram", icon: <FaInstagram size={13} />, label: "Instagram", bg: "bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]" },
-  { key: "tiktok",    icon: <FaTiktok    size={13} />, label: "TikTok",    bg: "bg-gray-900" },
+  { key: "facebook",  Icon: FaFacebookF, label: "Facebook",  bg: "#1877F2" },
+  { key: "whatsapp",  Icon: FaWhatsapp,  label: "WhatsApp",  bg: "#25D366" },
+  { key: "instagram", Icon: FaInstagram, label: "Instagram", bg: "linear-gradient(135deg,#833AB4,#FD1D1D,#FCAF45)" },
+  { key: "tiktok",    Icon: FaTiktok,    label: "TikTok",    bg: "#111" },
 ];
 
 export default function HotelCard({ hotel }) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const gradient   = gradients[(hotel.id - 1) % gradients.length];
-  const badge      = categoryColors[hotel.category] || "bg-gray-100 text-gray-600";
-  const coverImage = hotel.images?.[0];
+  const [open, setOpen] = useState(false);
+
+  const badge  = categoryBadge[hotel.category] || "text-dark-400 border-dark-700 bg-dark-800/40";
+  const cover  = hotel.images?.[0];
 
   return (
     <>
       <motion.div
         whileHover={{ y: -3 }}
-        transition={{ duration: 0.22, ease: "easeOut" }}
-        className="bg-white rounded-xl shadow-sm hover:shadow-md border border-gray-100 overflow-hidden cursor-pointer transition-shadow duration-300 group"
-        onClick={() => setModalOpen(true)}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="card-hover overflow-hidden cursor-pointer rounded-xl group"
+        onClick={() => setOpen(true)}
       >
         {/* Cover */}
-        <div className="relative h-44 overflow-hidden">
-          {coverImage ? (
-            <>
-              <img
-                src={coverImage}
-                alt={hotel.name}
-                className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
-            </>
+        <div className="relative h-44 overflow-hidden bg-dark-800">
+          {cover ? (
+            <img
+              src={cover}
+              alt={hotel.name}
+              className="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+              style={{ filter: "brightness(0.75)" }}
+            />
           ) : (
-            <div className={`bg-gradient-to-br ${gradient} w-full h-full flex items-center justify-center`}>
-              <MdHotel className="text-white/20 absolute" size={80} />
-              <MdHotel className="text-white relative z-10" size={36} />
+            <div className="w-full h-full flex items-center justify-center bg-dark-800">
+              <MdHotel size={40} className="text-dark-700" />
             </div>
           )}
 
           {/* Category badge */}
-          <span className={`absolute top-3 left-3 text-[11px] font-semibold px-2 py-0.5 rounded-full ${badge}`}>
+          <span className={`absolute top-3 left-3 text-[11px] font-semibold px-2 py-0.5 rounded-full border ${badge}`}>
             {hotel.category}
           </span>
 
           {/* Social icons — stop propagation */}
           <div
             className="absolute bottom-3 right-3 flex gap-1.5"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
-            {socialDefs.map(({ key, icon, label, bg }) => {
+            {socialDefs.map(({ key, Icon, label, bg }) => {
               const href = hotel.social?.[key];
               return href ? (
-                <motion.a
+                <a
                   key={key}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`${bg} text-white w-7 h-7 rounded-lg flex items-center justify-center shadow`}
+                  className="w-7 h-7 rounded-lg flex items-center justify-center text-white shadow-md"
+                  style={{ background: bg }}
+                  onClick={e => e.stopPropagation()}
                 >
-                  {icon}
-                </motion.a>
+                  <Icon size={12} />
+                </a>
               ) : null;
             })}
           </div>
         </div>
 
-        {/* Content */}
+        {/* Body */}
         <div className="p-4">
-          <h3 className="font-bold text-gray-800 text-base leading-snug mb-0.5 group-hover:text-primary-600 transition-colors line-clamp-1">
+          <h3 className="text-white font-semibold text-sm leading-snug mb-1 group-hover:text-primary-400 transition-colors line-clamp-1">
             {hotel.name}
           </h3>
-          <div className="flex items-center gap-1 text-gray-400 text-xs mb-3">
-            <MdLocationOn className="text-primary-500 flex-shrink-0" size={13} />
+          <div className="flex items-center gap-1 text-dark-500 text-xs mb-3">
+            <MdLocationOn size={12} className="text-primary-600 flex-shrink-0" />
             {hotel.location}
           </div>
 
-          <p className="text-gray-500 text-xs leading-relaxed mb-3 line-clamp-2">
+          <p className="text-dark-500 text-xs leading-relaxed mb-3 line-clamp-2">
             {hotel.description}
           </p>
 
-          {/* Stats row */}
+          {/* Stats */}
           <div className="flex gap-2 mb-3">
             {[
-              { val: hotel.rooms,      label: "Rooms",  cls: "bg-primary-50 text-primary-700"   },
-              { val: hotel.established, label: "Est.",   cls: "bg-gray-50   text-gray-700"       },
-              { val: hotel.memberSince, label: "Member", cls: "bg-secondary-50 text-secondary-700" },
-            ].map(({ val, label, cls }) => (
-              <div key={label} className={`flex-1 ${cls} rounded-lg px-2 py-1.5 text-center`}>
-                <p className="font-bold text-sm leading-none">{val}</p>
-                <p className="text-[10px] mt-0.5 opacity-70">{label}</p>
+              { v: hotel.rooms,       l: "Rooms",  c: "text-primary-400"   },
+              { v: hotel.established, l: "Est.",    c: "text-dark-300"      },
+              { v: hotel.memberSince, l: "Member",  c: "text-secondary-400" },
+            ].map(({ v, l, c }) => (
+              <div key={l} className="flex-1 bg-dark-800 rounded-lg px-2 py-1.5 text-center border border-dark-700">
+                <p className={`font-bold text-sm leading-none ${c}`}>{v}</p>
+                <p className="text-dark-600 text-[10px] mt-0.5">{l}</p>
               </div>
             ))}
           </div>
 
           {/* Amenities */}
           <div className="flex flex-wrap gap-1">
-            {hotel.amenities.slice(0, 3).map((a) => (
-              <span key={a} className="bg-gray-100 text-gray-500 text-[10px] px-2 py-0.5 rounded-full">{a}</span>
+            {hotel.amenities.slice(0, 3).map(a => (
+              <span key={a} className="text-[10px] text-dark-500 border border-dark-800 px-2 py-0.5 rounded-full">
+                {a}
+              </span>
             ))}
             {hotel.amenities.length > 3 && (
-              <span className="bg-primary-50 text-primary-600 text-[10px] px-2 py-0.5 rounded-full">
+              <span className="text-[10px] text-primary-600 border border-primary-900 px-2 py-0.5 rounded-full">
                 +{hotel.amenities.length - 3}
               </span>
             )}
@@ -136,7 +127,7 @@ export default function HotelCard({ hotel }) {
         </div>
       </motion.div>
 
-      {modalOpen && <HotelModal hotel={hotel} onClose={() => setModalOpen(false)} />}
+      {open && <HotelModal hotel={hotel} onClose={() => setOpen(false)} />}
     </>
   );
 }

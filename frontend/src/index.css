@@ -4,34 +4,50 @@
 
 @layer base {
   html { scroll-behavior: smooth; }
-
   body {
-    @apply font-sans antialiased;
-    background-color: #f4fdf6; /* very light green — primary-50 tint */
-    color: theme('colors.gray.800');
+    @apply bg-dark-950 text-dark-100 font-sans antialiased;
   }
-
   * { -webkit-tap-highlight-color: transparent; }
 }
 
 @layer components {
+  /* Buttons */
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-colors duration-200 inline-flex items-center gap-2;
+    @apply bg-primary-600 hover:bg-primary-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
   }
-  .btn-outline {
-    @apply border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-semibold px-6 py-2.5 rounded-xl transition-colors duration-200 inline-flex items-center gap-2;
+  .btn-secondary {
+    @apply bg-secondary-600 hover:bg-secondary-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
   }
-  .section-title    { @apply text-3xl md:text-4xl font-bold text-gray-800; }
-  .section-subtitle { @apply text-gray-500 text-sm mt-2; }
+  .btn-ghost {
+    @apply border border-dark-700 hover:border-dark-500 text-dark-300 hover:text-white font-semibold px-5 py-2.5 rounded-lg transition-colors duration-200 inline-flex items-center gap-2 text-sm;
+  }
 
-  /* Card — uses the same light green tint for white sections */
+  /* Cards */
   .card {
-    @apply bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300;
+    @apply bg-dark-900 border border-dark-800 rounded-xl;
+  }
+  .card-hover {
+    @apply bg-dark-900 border border-dark-800 rounded-xl hover:border-dark-600 transition-colors duration-200;
   }
 
-  /* "white" sections actually get a very slight green tint */
-  .section-bg-white { background-color: #ffffff; }
-  .section-bg-light { background-color: #f0fdf4; }  /* primary-50 */
+  /* Section headings */
+  .section-label {
+    @apply text-primary-500 text-xs font-bold uppercase tracking-widest;
+  }
+  .section-title {
+    @apply text-white text-2xl sm:text-3xl font-bold leading-snug;
+  }
+  .section-sub {
+    @apply text-dark-400 text-sm leading-relaxed;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full bg-dark-800 border border-dark-700 text-dark-100 placeholder-dark-500 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600 transition-colors;
+  }
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+  }
 }
 
 @layer utilities {

@@ -7,9 +7,8 @@ import { pageVariants } from "../lib/animations";
 
 export default function Layout() {
   const location = useLocation();
-  const prevPath  = useRef(location.pathname);
+  const prevPath = useRef(location.pathname);
 
-  // Instant scroll-to-top on every route change — runs before paint
   useEffect(() => {
     if (prevPath.current !== location.pathname) {
       prevPath.current = location.pathname;
@@ -18,7 +17,7 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-primary-50/40">
+    <div className="flex flex-col min-h-screen bg-dark-950">
       <Navbar />
       <main className="flex-1">
         <AnimatePresence mode="wait" initial={false}>
