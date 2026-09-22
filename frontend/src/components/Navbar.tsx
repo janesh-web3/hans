@@ -17,6 +17,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About Us" },
   { to: "/events", label: "Events" },
+  { to: "/membership", label: "Membership" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -33,8 +34,10 @@ export default function Navbar() {
   const { pathname } = useLocation();
 
   /**
-   * Publish the real header height as --nav-height, which `.hero-frame`
-   * subtracts from the viewport so a hero plus this header is exactly 100vh.
+   * Publish the real header height as --nav-height, used as the page's
+   * scroll-padding so anchor targets land below this header rather than
+   * underneath it. (Heroes no longer subtract it — `.hero-frame` is a flat
+   * 70vh, which leaves room for this header inside one screen.)
    *
    * Measured rather than hardcoded: the two bars are 36px and 64px but each
    * carries a 1px bottom border, and the total shifts again if a bar is
@@ -193,7 +196,7 @@ export default function Navbar() {
                           <p className="text-foreground-secondary text-xs mt-0.5">All 8 districts · Province No. 7</p>
                         </div>
                         <button
-                          onClick={() => go("/membership")}
+                          onClick={() => go("/directory")}
                           className="flex items-center gap-1.5 bg-accent text-accent-foreground text-xs font-bold px-4 py-2 rounded-lg hover:bg-accent-vivid transition-colors"
                         >
                           View All <FiArrowRight size={11} />
@@ -210,7 +213,7 @@ export default function Navbar() {
                             {[ALL_CATEGORIES, ...HOTEL_CATEGORIES].map((cat) => (
                               <button
                                 key={cat}
-                                onClick={() => go(cat === ALL_CATEGORIES ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
+                                onClick={() => go(cat === ALL_CATEGORIES ? "/directory" : `/directory?category=${encodeURIComponent(cat)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
                                   text-foreground-secondary
                                   hover:bg-muted
@@ -232,7 +235,7 @@ export default function Navbar() {
                             {SUDURPASHCHIM_DISTRICTS.map((d) => (
                               <button
                                 key={d}
-                                onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
+                                onClick={() => go(`/directory?district=${encodeURIComponent(d)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
                                   text-foreground-secondary
                                   hover:bg-muted
@@ -342,7 +345,7 @@ export default function Navbar() {
                       className="overflow-hidden bg-muted border-t border-border rounded-lg"
                     >
                       <button
-                        onClick={() => go("/membership")}
+                        onClick={() => go("/directory")}
                         className="w-full flex items-center gap-2 px-5 py-3
                           bg-accent text-accent-foreground text-sm font-semibold"
                       >
@@ -354,7 +357,7 @@ export default function Navbar() {
                         <div>
                           <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">Category</p>
                           {HOTEL_CATEGORIES.map((cat) => (
-                            <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
+                            <button key={cat} onClick={() => go(`/directory?category=${encodeURIComponent(cat)}`)}
                               className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-accent transition-colors">
                               {cat}
                             </button>
@@ -363,7 +366,7 @@ export default function Navbar() {
                         <div>
                           <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">District</p>
                           {SUDURPASHCHIM_DISTRICTS.map((d) => (
-                            <button key={d} onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
+                            <button key={d} onClick={() => go(`/directory?district=${encodeURIComponent(d)}`)}
                               className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-accent transition-colors truncate">
                               {d}
                             </button>

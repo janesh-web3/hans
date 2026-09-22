@@ -80,7 +80,7 @@ export default function FeaturedDistricts() {
                 className={SPANS[i]}
               >
                 <Link
-                  to={`/membership?district=${encodeURIComponent(district)}`}
+                  to={`/directory?district=${encodeURIComponent(district)}`}
                   className="group relative block h-[300px] overflow-hidden rounded-lg sm:h-[340px] lg:h-[400px]"
                 >
                   <img

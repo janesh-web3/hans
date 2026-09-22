@@ -38,9 +38,10 @@ const rise = {
  * The hero used at the top of every page.
  *
  * One component so the frame, the colour layer over the photograph and the
- * reveal timing are identical site-wide: a viewport-tall frame minus the
- * sticky header (`hero-frame`), the shared navy wash (`hero-scrim`), and a
- * word-by-word headline followed by the supporting copy and calls to action.
+ * reveal timing are identical site-wide: a 70vh frame (`hero-frame`) that sits
+ * inside one screen alongside the sticky header, the shared navy wash
+ * (`hero-scrim`), and a centred, word-by-word headline followed by the
+ * supporting copy and calls to action.
  */
 export default function PageHero({
   image,
@@ -84,14 +85,15 @@ export default function PageHero({
       {/* ── Content ────────────────────────────────────────────────────── */}
       <motion.div
         style={reduceMotion ? undefined : { y: contentY, opacity: contentOpacity }}
-        className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 pb-20 pt-24 sm:px-6 lg:px-8"
+        className="relative z-10 mx-auto w-full max-w-screen-2xl px-4 pb-20 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:px-8"
       >
-        <div className="max-w-3xl">
+        {/* Centred, with the bottom padding clearing the scroll cue. */}
+        <div className="mx-auto max-w-3xl text-center">
           {badge && (
             <motion.div
               {...rise}
               transition={{ duration: 0.7, ease }}
-              className="mb-5 flex items-center gap-3"
+              className="mb-5 flex items-center justify-center gap-3"
             >
               <span className="block h-[2px] w-8 bg-white/70" />
               <span className="text-xs font-bold uppercase tracking-luxury text-white/80">
@@ -113,7 +115,7 @@ export default function PageHero({
             <motion.p
               {...rise}
               transition={{ duration: 0.7, ease, delay: 0.45 }}
-              className="mb-8 max-w-2xl text-base font-light leading-relaxed text-white/80 sm:text-lg"
+              className="mx-auto mb-8 max-w-2xl text-base font-light leading-relaxed text-white/80 sm:text-lg"
             >
               {subtitle}
             </motion.p>
@@ -123,7 +125,7 @@ export default function PageHero({
             <motion.div
               {...rise}
               transition={{ duration: 0.7, ease, delay: 0.6 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap justify-center gap-4"
             >
               {primaryCta && (
                 <Button asChild size="lg">

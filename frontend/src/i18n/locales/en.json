@@ -475,6 +475,48 @@
     },
     "social": {
       "title": "Follow Us"
+    },
+    "contactHero": {
+      "eyebrow": "Get in Touch",
+      "titleBefore": "Let's Start a ",
+      "titleHighlight": "Conversation",
+      "titleAfter": ".",
+      "subtitle": "Whether you're a traveller seeking authentic Sudurpashchim experiences, a hotelier exploring membership, or a partner seeking collaboration — we're here to help.",
+      "scroll": "Scroll"
+    },
+    "infoSplit": {
+      "eyebrow": "Visit Our Office",
+      "title": "HAN Sudurpashchim Secretariat.",
+      "addressLabel": "Address",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "hoursLabel": "Office Hours",
+      "officeLabel": "Office",
+      "membershipLabel": "Membership",
+      "hoursWeekday": "Sun – Fri: 10:00 AM – 5:00 PM",
+      "hoursWeekend": "Saturday: Closed",
+      "cards": [
+        {
+          "title": "General Inquiries",
+          "desc": "For general questions, press, and partnerships.",
+          "cta": "Email Us"
+        },
+        {
+          "title": "Membership",
+          "desc": "For hoteliers interested in joining HAN.",
+          "cta": "Apply Now"
+        },
+        {
+          "title": "Media & Press",
+          "desc": "For journalists, content creators, and media.",
+          "cta": "Contact PR"
+        },
+        {
+          "title": "Emergency Support",
+          "desc": "24/7 hotline for HAN member properties.",
+          "cta": "Call Now"
+        }
+      ]
     }
   },
   "membership": {

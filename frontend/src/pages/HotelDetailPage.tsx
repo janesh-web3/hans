@@ -23,7 +23,7 @@ export default function HotelDetailPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <Link
-          to="/membership"
+          to="/directory"
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline mb-6"
         >
           <FiArrowLeft size={14} /> Back to Directory

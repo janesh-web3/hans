@@ -44,7 +44,7 @@ export default function JoinCTA() {
           </p>
 
           <Link
-            to="/contact"
+            to="/membership"
             className="group mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-10 py-4 text-sm font-medium uppercase tracking-widest text-foreground transition-all duration-300 hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900"
           >
             {t("home.joinCta.button")}

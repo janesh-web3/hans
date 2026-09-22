@@ -1,11 +1,12 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { MdPhone, MdEmail, MdLocationOn, MdAccessTime, MdSend, MdCheckCircle } from "react-icons/md";
+import { MdSend, MdCheckCircle, MdLocationOn } from "react-icons/md";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
-import PageHero from "@/components/PageHero";
+import ContactHero from "@/components/contact/ContactHero";
+import ContactInfoSplit from "@/components/contact/ContactInfoSplit";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { Reveal } from "@/components/motion/Reveal";
 import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
 
 interface ContactForm {
@@ -59,61 +60,10 @@ export default function ContactPage() {
 
   const ic = (f: keyof ContactForm) => `input${errors[f] ? " input-error" : ""}`;
 
-  const INFO = [
-    {
-      key: "address", title: t("contact.info.address.title"), Icon: MdLocationOn,
-      lines: [t("contact.info.address.line1"), t("contact.info.address.line2")],
-    },
-    {
-      key: "phone", title: t("contact.info.phone.title"), Icon: MdPhone,
-      lines: ["+977-091-521000", "+977-091-521001"], link: "tel:+977091521000",
-    },
-    {
-      key: "email", title: t("contact.info.email.title"), Icon: MdEmail,
-      lines: ["info@hansudurpashchim.org.np", "membership@hansudurpashchim.org.np"], link: "mailto:info@hansudurpashchim.org.np",
-    },
-    {
-      key: "hours", title: t("contact.info.hours.title"), Icon: MdAccessTime,
-      lines: [t("contact.info.hours.line1"), t("contact.info.hours.line2")],
-    },
-  ];
-
   return (
     <div className="bg-background">
-      <PageHero
-        image="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1400&auto=format&fit=crop&q=75"
-        badge={t("contact.hero.badge")}
-        title={t("contact.hero.title")}
-        subtitle={t("contact.hero.subtitle")}
-      />
-
-      {/* ── Info cards ───────────────────────────────────────────────────── */}
-      <section className="border-b border-border bg-background-card">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {INFO.map((c) => (
-              <RevealItem key={c.key}>
-                <Card className="p-8 rounded-xl border-t-4 border-t-primary-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
-                  <c.Icon className="text-accent mb-4" size={24} />
-                  <h3 className="text-foreground font-bold text-sm mb-3">{c.title}</h3>
-                  <div className="space-y-1.5">
-                    {c.lines.map((line, i) =>
-                      c.link && i === 0 ? (
-                        <a key={line} href={c.link}
-                          className="block text-sm font-semibold text-accent hover:underline">
-                          {line}
-                        </a>
-                      ) : (
-                        <p key={line} className="text-sm text-foreground-muted">{line}</p>
-                      )
-                    )}
-                  </div>
-                </Card>
-              </RevealItem>
-            ))}
-          </RevealGroup>
-        </div>
-      </section>
+      <ContactHero />
+      <ContactInfoSplit />
 
       {/* ── Form + Side panel ────────────────────────────────────────────── */}
       <section className="section-pad bg-background">

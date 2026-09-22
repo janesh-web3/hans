@@ -171,7 +171,7 @@ export default function FeaturedHotels() {
           </div>
 
           <Link
-            to="/membership"
+            to="/directory"
             className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium uppercase tracking-widest text-accent underline-offset-4 transition-colors duration-300 hover:underline dark:text-river-400"
           >
             {t("home.featured.viewAll")}

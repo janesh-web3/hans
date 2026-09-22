@@ -15,7 +15,8 @@ const QUICK_LINKS = [
   { l: "Home", to: "/" },
   { l: "About Us", to: "/about" },
   { l: "Events", to: "/events" },
-  { l: "Member Hotels", to: "/membership" },
+  { l: "Member Hotels", to: "/directory" },
+  { l: "Membership", to: "/membership" },
   { l: "Contact Us", to: "/contact" },
 ];
 

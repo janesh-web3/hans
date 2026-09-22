@@ -44,7 +44,7 @@ export default function ProvinceImpact() {
               transition={{ duration: 0.8, ease: "easeOut", delay: (i % 4) * 0.1 }}
             >
               <Link
-                to={`/membership?district=${encodeURIComponent(district)}`}
+                to={`/directory?district=${encodeURIComponent(district)}`}
                 className="group block transition-transform duration-500 ease-out hover:translate-x-2"
               >
                 <h3 className="mb-2 font-serif text-2xl font-bold text-foreground">{district}</h3>

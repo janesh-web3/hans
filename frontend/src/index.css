@@ -322,14 +322,24 @@
   }
 
   /*
-   * Hero frame: one viewport minus the sticky header, so hero + header is
-   * exactly 100vh. The svh unit repeats the rule for mobile browsers, where
-   * 100vh counts the area behind the address bar and the hero would otherwise
-   * jump as that bar hides on scroll.
+   * Hero frame: 70vh, so a hero plus the ~102px sticky header sits inside one
+   * screen and the whole hero — heading, copy, buttons and scroll cue — is
+   * visible without scrolling.
+   *
+   * A fixed height, not a minimum: with min-height a page whose subtitle wraps
+   * to an extra line grows past 70vh while the others stay put, so Home,
+   * About, Events, Membership, Directory and Contact ended up different
+   * heights. Fixed keeps all six identical.
+   *
+   * The svh repeats each rule for mobile browsers, where vh counts the area
+   * behind the address bar and the hero would otherwise jump as that bar
+   * hides. min-height is the floor for very short viewports (a landscape
+   * phone), and applies to every hero equally so they stay matched there too.
    */
   .hero-frame {
-    min-height: calc(100vh - var(--nav-height));
-    min-height: calc(100svh - var(--nav-height));
+    height: 70vh;
+    height: 70svh;
+    min-height: 32rem;
   }
 
   /*
