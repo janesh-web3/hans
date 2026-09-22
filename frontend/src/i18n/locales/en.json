@@ -330,6 +330,70 @@
       "body": "Join our growing network and benefit from collective advocacy, training programmes, and tourism promotion across Province No. 7.",
       "primary": "Apply Now",
       "secondary": "View Members"
+    },
+    "aboutHero": {
+      "eyebrow": "About Us",
+      "title": "Uniting Hospitality. Elevating Sudurpashchim.",
+      "subtitle": "We are the premier collective of verified hotels, resorts, and homestays dedicated to showcasing the untouched beauty and warm hospitality of Nepal's far-western province."
+    },
+    "ourStory": {
+      "eyebrow": "Our Mission",
+      "title": "Preserving Heritage, Crafting Unforgettable Stays.",
+      "body1": "The Hotel Association of Nepal, Sudurpashchim Province, was founded in 1998 by five hoteliers in Dhangadhi who believed the far-west deserved a seat at the table. Today we represent member properties across all eight districts, from Terai guest houses to high-valley homestays, and we carry their case to provincial and federal government alike.",
+      "body2": "Our work is unglamorous and essential. We set the standards a member property must meet, we train the teams who meet them, and we verify every listing before it reaches a traveller. The result is a promise a guest can rely on anywhere in the province, and a business environment where a family-run lodge can compete on service rather than on marketing spend."
+    },
+    "coreValues": {
+      "eyebrow": "What We Stand For",
+      "title": "The Pillars of Our Association",
+      "items": [
+        {
+          "title": "Uncompromising Quality",
+          "desc": "Rigorous verification standards ensuring world-class guest experiences. Every member property is assessed before listing and reviewed on a recurring cycle thereafter."
+        },
+        {
+          "title": "Sustainable Tourism",
+          "desc": "Championing eco-friendly practices that protect our mountains, rivers, and forests. Growth in the far-west has to leave Khaptad and Shuklaphanta better than it found them."
+        },
+        {
+          "title": "Community Empowerment",
+          "desc": "Elevating local hoteliers through advocacy, training, and unified representation. A homestay in Bajura should have the same voice in provincial policy as a hotel in Dhangadhi."
+        }
+      ]
+    },
+    "leadership": {
+      "eyebrow": "Leadership",
+      "title": "The Voices Guiding Our Vision",
+      "subtitle": "Elected office bearers drawn from member properties across all eight districts of the province."
+    },
+    "provinceImpact": {
+      "eyebrow": "Our Reach",
+      "title": "Our Reach Across Sudurpashchim",
+      "subtitle": "Eight districts, one association. Member properties in every corner of the province, from the Terai plains to the high Himalaya.",
+      "districts": {
+        "Kailali": "Terai grassland and the Karnali's last wide bend, where the province opens onto the plains.",
+        "Kanchanpur": "Shuklaphanta's open savannah, where herds of swamp deer gather in the failing light.",
+        "Doti": "Hill terraces above Silgadhi and the long ridge road into the far-western interior.",
+        "Bajhang": "The gateway to Khaptad and the Saipal massif, high, cold, and almost entirely quiet.",
+        "Bajura": "The Badimalika pilgrim trail, climbing from river gorge to alpine meadow in a single day.",
+        "Achham": "Ramaroshan's scattered lakes and meadows, held on every side by uncut forest.",
+        "Dadeldhura": "Pine ridges and the Tripurasundari temple, with cool air at almost every turn.",
+        "Baitadi": "Terraced hillsides above the Mahakali, looking across the water into India."
+      }
+    },
+    "partners": {
+      "label": "Trusted By & Affiliated With",
+      "items": [
+        "HAN Central",
+        "Ministry of Tourism",
+        "Nepal Tourism Board",
+        "Sudurpashchim Provincial Government"
+      ]
+    },
+    "aboutCta": {
+      "title": "Be Part of the Sudurpashchim Story",
+      "subtitle": "Whether you are a hotelier seeking representation or a traveller looking for authentic experiences, we invite you to connect with us.",
+      "primary": "Apply for Membership",
+      "secondary": "Contact Our Team"
     }
   },
   "contact": {
