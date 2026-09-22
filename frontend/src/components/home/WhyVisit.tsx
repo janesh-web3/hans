@@ -27,7 +27,7 @@ export default function WhyVisit() {
   const items = t("home.whyVisit.items", { returnObjects: true }) as VisitReason[];
 
   return (
-    <section className="bg-white py-24 lg:py-32 dark:bg-dark-950">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,10 +36,10 @@ export default function WhyVisit() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mx-auto mb-20 max-w-2xl text-center"
         >
-          <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
             {t("home.whyVisit.eyebrow")}
           </span>
-          <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+          <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
             {t("home.whyVisit.title")}
           </h2>
         </motion.div>
@@ -78,29 +78,29 @@ export default function WhyVisit() {
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
                   className={imageFirst ? "lg:order-2" : "lg:order-1"}
                 >
-                  <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+                  <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
                     {item.eyebrow}
                   </span>
 
-                  <h3 className="font-serif text-3xl font-bold leading-tight text-forest-900 dark:text-white">
+                  <h3 className="font-serif text-3xl font-bold leading-tight text-foreground">
                     {item.title}
                   </h3>
 
-                  <p className="mt-6 text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+                  <p className="mt-6 text-lg leading-relaxed text-foreground-secondary">
                     {item.body}
                   </p>
 
                   <ul className="mt-8 space-y-4">
                     {item.points.map((point) => (
                       <li key={point} className="flex items-start gap-3">
-                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-forest-100 dark:bg-forest-900">
+                        <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-ink-100 dark:bg-ink-900">
                           <Check
                             size={12}
                             strokeWidth={2.5}
-                            className="text-forest-700 dark:text-forest-300"
+                            className="text-ink-700 dark:text-ink-300"
                           />
                         </span>
-                        <span className="leading-relaxed text-stone-600 dark:text-dark-300">
+                        <span className="leading-relaxed text-foreground-secondary">
                           {point}
                         </span>
                       </li>

@@ -13,7 +13,7 @@ export default function DistrictsGrid() {
           <RevealItem key={district}>
             <Link
               to={`/membership?district=${encodeURIComponent(district)}`}
-              className="group relative block overflow-hidden rounded-xl bg-surface-200 dark:bg-dark-800"
+              className="group relative block overflow-hidden rounded-xl bg-muted"
               style={{ aspectRatio: "3 / 4" }}
             >
               <img

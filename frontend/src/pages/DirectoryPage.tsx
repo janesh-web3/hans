@@ -111,7 +111,7 @@ export default function DirectoryPage() {
   };
 
   return (
-    <div className="bg-white dark:bg-dark-950">
+    <div className="bg-background">
       <PageHero
         image="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1400&auto=format&fit=crop&q=75"
         badge="Province No. 7"
@@ -133,7 +133,7 @@ export default function DirectoryPage() {
             {/* Search + view toggle + mobile filter trigger */}
             <div className="flex flex-wrap gap-2 mb-6">
               <div className="relative flex-1 min-w-[200px]">
-                <MdSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-surface-400 dark:text-dark-500" size={18} />
+                <MdSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground-muted" size={18} />
                 <input
                   type="text"
                   placeholder="Search by name or district…"
@@ -144,7 +144,7 @@ export default function DirectoryPage() {
                 {search && (
                   <button
                     onClick={() => setSearch("")}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-surface-400 hover:text-surface-700 dark:text-dark-500 dark:hover:text-white"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-foreground-muted hover:text-foreground dark:hover:text-white"
                   >
                     <MdClose size={14} />
                   </button>
@@ -202,7 +202,7 @@ export default function DirectoryPage() {
             {isLoading && (
               <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                 {Array.from({ length: PAGE_SIZE }).map((_, i) => (
-                  <div key={i} className="rounded-lg overflow-hidden border border-surface-200 dark:border-dark-700">
+                  <div key={i} className="rounded-lg overflow-hidden border border-border">
                     <Skeleton className="h-[200px] w-full rounded-none" />
                     <div className="p-5 space-y-3">
                       <Skeleton className="h-4 w-3/4" />
@@ -218,11 +218,11 @@ export default function DirectoryPage() {
             {/* ── Results ──────────────────────────────────────────────── */}
             {!isLoading && !isError && (
               <>
-                <p className="text-surface-500 dark:text-dark-400 text-sm mb-6 font-medium">
+                <p className="text-foreground-muted text-sm mb-6 font-medium">
                   Showing{" "}
-                  <strong className="text-surface-900 dark:text-white">{filtered.length}</strong>
+                  <strong className="text-foreground">{filtered.length}</strong>
                   {" "}of{" "}
-                  <strong className="text-surface-900 dark:text-white">{pagination?.total ?? 0}</strong>
+                  <strong className="text-foreground">{pagination?.total ?? 0}</strong>
                   {" "}hotels
                   {hasActiveFilters && (
                     <button onClick={clearFilters} className="ml-4 text-primary-600 dark:text-primary-400 hover:underline text-xs font-semibold">
@@ -244,9 +244,9 @@ export default function DirectoryPage() {
                     <ProvinceMap hotels={filtered} />
                   )
                 ) : (
-                  <div className="text-center py-20 border border-surface-200 dark:border-dark-700 rounded-xl bg-surface-50 dark:bg-dark-900">
-                    <p className="text-surface-600 dark:text-dark-300 font-bold text-base mb-2">No hotels found</p>
-                    <p className="text-surface-400 dark:text-dark-500 text-sm mb-6">Try adjusting your filters.</p>
+                  <div className="text-center py-20 border border-border rounded-xl bg-background-secondary">
+                    <p className="text-foreground-secondary font-bold text-base mb-2">No hotels found</p>
+                    <p className="text-foreground-muted text-sm mb-6">Try adjusting your filters.</p>
                     <Button onClick={clearFilters}>Clear Filters</Button>
                   </div>
                 )}
@@ -261,7 +261,7 @@ export default function DirectoryPage() {
                     >
                       Previous
                     </Button>
-                    <span className="text-sm text-surface-500 dark:text-dark-400 font-medium">
+                    <span className="text-sm text-foreground-muted font-medium">
                       Page {pagination.page} of {pagination.totalPages}
                     </span>
                     <Button

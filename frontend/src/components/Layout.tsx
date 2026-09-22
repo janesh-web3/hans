@@ -19,7 +19,7 @@ export default function Layout() {
 
   return (
     <ThemeProvider>
-      <div className="flex flex-col min-h-screen bg-surface-100 dark:bg-dark-950 transition-colors duration-200">
+      <div className="flex flex-col min-h-screen bg-background transition-colors duration-200">
         <Navbar />
         <main className="flex-1">
           <AnimatePresence mode="wait" initial={false}>

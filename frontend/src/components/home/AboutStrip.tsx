@@ -17,7 +17,7 @@ export default function AboutStrip() {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-white py-24 lg:py-32 dark:bg-dark-950">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-20">
           {/* ── Left: sticky copy column ──────────────────────────────── */}
@@ -28,29 +28,29 @@ export default function AboutStrip() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="self-start lg:sticky lg:top-28"
           >
-            <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+            <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
               {t("home.aboutStrip.eyebrow")}
             </span>
 
-            <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+            <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
               {t("home.aboutStrip.title")}
             </h2>
 
             <div className="mt-8 space-y-6">
-              <p className="text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+              <p className="text-lg leading-relaxed text-foreground-secondary">
                 {t("home.aboutStrip.body1")}
               </p>
-              <p className="text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+              <p className="text-lg leading-relaxed text-foreground-secondary">
                 {t("home.aboutStrip.body2")}
               </p>
-              <p className="text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+              <p className="text-lg leading-relaxed text-foreground-secondary">
                 {t("home.aboutStrip.body3")}
               </p>
             </div>
 
             <Link
               to="/about"
-              className="group mt-10 inline-flex items-center gap-2 font-medium text-river-600 underline-offset-4 transition-colors duration-300 hover:underline dark:text-river-400"
+              className="group mt-10 inline-flex items-center gap-2 font-medium text-accent underline-offset-4 transition-colors duration-300 hover:underline dark:text-river-400"
             >
               {t("home.aboutStrip.cta")}
               <ArrowRight
@@ -78,11 +78,11 @@ export default function AboutStrip() {
               />
             </div>
 
-            <div className="absolute -bottom-6 left-6 rounded-xl bg-white px-8 py-6 shadow-xl sm:-left-8 dark:bg-dark-900">
-              <p className="font-serif text-2xl font-bold leading-none text-forest-900 dark:text-white">
+            <div className="absolute -bottom-6 left-6 rounded-xl bg-background-card px-8 py-6 shadow-xl sm:-left-8">
+              <p className="font-serif text-2xl font-bold leading-none text-foreground">
                 {t("home.aboutStrip.badge")}
               </p>
-              <p className="mt-2 text-xs uppercase tracking-widest text-stone-500 dark:text-dark-400">
+              <p className="mt-2 text-xs uppercase tracking-widest text-foreground-muted">
                 {t("home.aboutStrip.badgeSub")}
               </p>
             </div>

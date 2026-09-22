@@ -21,8 +21,8 @@ interface SectionDividerProps {
  */
 export default function SectionDivider({
   variant = "wave",
-  from = "bg-white dark:bg-dark-900",
-  to = "bg-surface-100 dark:bg-dark-950",
+  from = "bg-background-card",
+  to = "bg-surface-100",
   flip = false,
   height = 60,
   accent = false,

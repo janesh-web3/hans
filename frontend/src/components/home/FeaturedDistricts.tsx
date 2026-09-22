@@ -45,7 +45,7 @@ export default function FeaturedDistricts() {
   }, [data]);
 
   return (
-    <section className="bg-stone-50 py-24 lg:py-32 dark:bg-dark-900">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         {/* ── Centred section header ────────────────────────────────── */}
         <motion.div
@@ -55,13 +55,13 @@ export default function FeaturedDistricts() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mx-auto mb-16 max-w-2xl text-center"
         >
-          <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
             {t("home.districts.eyebrow")}
           </span>
-          <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+          <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
             {t("home.districts.title")}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+          <p className="mt-6 text-lg leading-relaxed text-foreground-secondary">
             {t("home.districts.subtitle")}
           </p>
         </motion.div>

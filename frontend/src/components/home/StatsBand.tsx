@@ -109,7 +109,7 @@ export default function StatsBand() {
   const inView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <section className="border-y border-stone-200 bg-stone-50 dark:border-dark-800 dark:bg-dark-900">
+    <section className="border-y border-border bg-background-secondary">
       <div ref={ref} className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat, i) => {
@@ -121,17 +121,17 @@ export default function StatsBand() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.1 }}
-                className={`flex flex-col items-center border-stone-200 px-6 py-12 text-center lg:py-16 dark:border-dark-800 ${stat.rules}`}
+                className={`flex flex-col items-center border-border px-6 py-12 text-center lg:py-16 ${stat.rules}`}
               >
                 <Icon
-                  className="mb-5 text-forest-700 dark:text-forest-400"
+                  className="mb-5 text-accent"
                   size={28}
                   strokeWidth={1.25}
                 />
-                <p className="font-serif text-4xl font-bold leading-none text-forest-900 md:text-5xl dark:text-white">
+                <p className="font-serif text-4xl font-bold leading-none text-foreground md:text-5xl">
                   <CountUp to={stat.value} suffix={stat.suffix} active={inView} />
                 </p>
-                <p className="mt-3 text-xs uppercase tracking-widest text-stone-500 dark:text-dark-400">
+                <p className="mt-3 text-xs uppercase tracking-widest text-foreground-muted">
                   {t(stat.labelKey)}
                 </p>
               </motion.div>

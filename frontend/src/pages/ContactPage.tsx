@@ -79,7 +79,7 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="bg-white dark:bg-dark-950">
+    <div className="bg-background">
       <PageHero
         image="https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=1400&auto=format&fit=crop&q=75"
         badge={t("contact.hero.badge")}
@@ -88,14 +88,14 @@ export default function ContactPage() {
       />
 
       {/* ── Info cards ───────────────────────────────────────────────────── */}
-      <section className="border-b border-surface-100 dark:border-dark-800 bg-white dark:bg-dark-900">
+      <section className="border-b border-border bg-background-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {INFO.map((c) => (
               <RevealItem key={c.key}>
                 <Card className="p-8 rounded-xl border-t-4 border-t-primary-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
                   <c.Icon className="text-primary-600 dark:text-primary-400 mb-4" size={24} />
-                  <h3 className="text-surface-900 dark:text-white font-bold text-sm mb-3">{c.title}</h3>
+                  <h3 className="text-foreground font-bold text-sm mb-3">{c.title}</h3>
                   <div className="space-y-1.5">
                     {c.lines.map((line, i) =>
                       c.link && i === 0 ? (
@@ -104,7 +104,7 @@ export default function ContactPage() {
                           {line}
                         </a>
                       ) : (
-                        <p key={line} className="text-sm text-surface-500 dark:text-dark-400">{line}</p>
+                        <p key={line} className="text-sm text-foreground-muted">{line}</p>
                       )
                     )}
                   </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Form + Side panel ────────────────────────────────────────────── */}
-      <section className="section-pad bg-surface-50 dark:bg-dark-950">
+      <section className="section-pad bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12 lg:gap-20">
 
@@ -126,10 +126,10 @@ export default function ContactPage() {
               <h2 className="section-heading">{t("contact.form.title")}</h2>
 
               {submitted ? (
-                <Card className="rounded-xl p-12 text-center border-t-4 border-t-gold-500">
+                <Card className="rounded-xl p-12 text-center border-t-4 border-t-river-500">
                   <MdCheckCircle className="text-primary-500 mx-auto mb-5" size={48} />
-                  <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-2">{t("contact.form.sentTitle")}</h3>
-                  <p className="text-surface-500 dark:text-dark-400 text-sm mb-8">{t("contact.form.sentBody")}</p>
+                  <h3 className="text-foreground font-bold text-xl mb-2">{t("contact.form.sentTitle")}</h3>
+                  <p className="text-foreground-muted text-sm mb-8">{t("contact.form.sentBody")}</p>
                   <Button onClick={() => { setForm(blank); setErrors({}); setSubmitted(false); }}>
                     {t("contact.form.sendAnother")}
                   </Button>
@@ -140,7 +140,7 @@ export default function ContactPage() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                        <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                           {t("contact.form.fullName")} *
                         </label>
                         <input name="name" value={form.name} onChange={onChange}
@@ -148,7 +148,7 @@ export default function ContactPage() {
                         {errors.name && <p className="text-red-500 text-xs mt-1.5">{errors.name}</p>}
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                        <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                           {t("contact.form.email")} *
                         </label>
                         <input name="email" type="email" value={form.email} onChange={onChange}
@@ -159,14 +159,14 @@ export default function ContactPage() {
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                        <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                           {t("contact.form.phone")}
                         </label>
                         <input name="phone" type="tel" value={form.phone} onChange={onChange}
                           placeholder="+977-" className="input" />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                        <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                           {t("contact.form.district")}
                         </label>
                         <select name="district" value={form.district} onChange={onChange} className="input">
@@ -177,7 +177,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                      <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                         {t("contact.form.hotelName")}
                       </label>
                       <input name="hotelName" value={form.hotelName} onChange={onChange}
@@ -185,7 +185,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                      <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                         {t("contact.form.reason")} *
                       </label>
                       <select name="reason" value={form.reason} onChange={onChange} className={ic("reason")}>
@@ -196,7 +196,7 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-surface-700 dark:text-dark-300 uppercase tracking-wide mb-2">
+                      <label className="block text-xs font-bold text-foreground-secondary uppercase tracking-wide mb-2">
                         {t("contact.form.message")} *
                       </label>
                       <textarea name="message" value={form.message} onChange={onChange}
@@ -217,14 +217,14 @@ export default function ContactPage() {
             <Reveal delay={0.1} className="space-y-6">
 
               {/* Membership benefits */}
-              <Card className="rounded-xl overflow-hidden border-t-4 border-t-gold-500 py-0">
-                <div className="flex items-center gap-3 px-6 py-5 border-b border-surface-100 dark:border-dark-800">
+              <Card className="rounded-xl overflow-hidden border-t-4 border-t-river-500 py-0">
+                <div className="flex items-center gap-3 px-6 py-5 border-b border-border">
                   <img src="/logo.png" alt="HAN" className="h-9 w-auto object-contain" />
-                  <h3 className="text-surface-900 dark:text-white font-bold text-sm">{t("contact.benefits.title")}</h3>
+                  <h3 className="text-foreground font-bold text-sm">{t("contact.benefits.title")}</h3>
                 </div>
                 <ul className="p-6 space-y-3">
                   {(t("contact.benefits.items", { returnObjects: true }) as string[]).map((b) => (
-                    <li key={b} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
+                    <li key={b} className="flex items-start gap-3 text-sm text-foreground-secondary">
                       <span className="w-[3px] h-4 bg-primary-500 flex-shrink-0 mt-0.5 rounded-full" />
                       {b}
                     </li>
@@ -234,10 +234,10 @@ export default function ContactPage() {
 
               {/* Map placeholder */}
               <Card className="rounded-xl overflow-hidden py-0">
-                <div className="bg-surface-100 dark:bg-dark-800 h-44 flex flex-col items-center justify-center text-center px-6">
+                <div className="bg-muted h-44 flex flex-col items-center justify-center text-center px-6">
                   <MdLocationOn className="text-primary-600 mb-2" size={32} />
-                  <p className="text-surface-800 dark:text-white font-bold text-sm">{t("contact.map.title")}</p>
-                  <p className="text-surface-500 dark:text-dark-400 text-xs mt-1">{t("contact.map.subtitle")}</p>
+                  <p className="text-foreground font-bold text-sm">{t("contact.map.title")}</p>
+                  <p className="text-foreground-muted text-xs mt-1">{t("contact.map.subtitle")}</p>
                   <a
                     href="https://maps.google.com/?q=Dhangadhi,Kailali,Nepal"
                     target="_blank" rel="noopener noreferrer"
@@ -250,7 +250,7 @@ export default function ContactPage() {
 
               {/* Social */}
               <Card className="rounded-xl px-6 py-5">
-                <h3 className="text-surface-900 dark:text-white font-bold text-sm mb-4">{t("contact.social.title")}</h3>
+                <h3 className="text-foreground font-bold text-sm mb-4">{t("contact.social.title")}</h3>
                 <div className="flex gap-3">
                   {[
                     { icon: <FiFacebook size={16} />, label: "Facebook" },

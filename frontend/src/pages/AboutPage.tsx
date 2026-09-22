@@ -15,7 +15,7 @@ import AboutCTA from "@/components/about/AboutCTA";
  */
 export default function AboutPage() {
   return (
-    <main className="bg-white dark:bg-dark-950">
+    <main className="bg-background">
       <AboutHero />
       <OurStory />
       <CoreValues />

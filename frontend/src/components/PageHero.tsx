@@ -60,8 +60,8 @@ export default function PageHero({
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
 
         <div className="flex items-center gap-3 mb-5">
-          <span className="block w-8 h-[2px] bg-gold-400" />
-          <span className="text-gold-400 text-xs font-bold uppercase tracking-luxury">
+          <span className="block w-8 h-[2px] bg-white/70" />
+          <span className="text-white/80 text-xs font-bold uppercase tracking-luxury">
             {badge ?? "HAN Sudurpashchim"}
           </span>
         </div>

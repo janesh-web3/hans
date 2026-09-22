@@ -9,7 +9,7 @@ const BACKGROUND =
 /**
  * Closing membership appeal.
  *
- * A darkened mountain photograph under a deep forest-green wash, so the
+ * A darkened mountain photograph under a deep ink-green wash, so the
  * white type reads cleanly while the image still carries the mood of the
  * province.
  */
@@ -17,7 +17,7 @@ export default function JoinCTA() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative overflow-hidden bg-forest-900">
+    <section className="relative overflow-hidden bg-ink-900">
       <img
         src={BACKGROUND}
         alt=""
@@ -25,7 +25,7 @@ export default function JoinCTA() {
         loading="lazy"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-forest-900/90" />
+      <div className="absolute inset-0 bg-ink-900/90" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 text-center sm:px-8 lg:px-12 lg:py-32">
@@ -45,7 +45,7 @@ export default function JoinCTA() {
 
           <Link
             to="/contact"
-            className="group mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-10 py-4 text-sm font-medium uppercase tracking-widest text-forest-900 transition-all duration-300 hover:bg-stone-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-forest-900"
+            className="group mt-8 inline-flex items-center gap-2 rounded-sm bg-white px-10 py-4 text-sm font-medium uppercase tracking-widest text-foreground transition-all duration-300 hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900"
           >
             {t("home.joinCta.button")}
             <ArrowRight

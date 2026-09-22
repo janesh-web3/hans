@@ -16,6 +16,7 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Home", end: true },
   { to: "/about", label: "About Us" },
+  { to: "/events", label: "Events" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -89,7 +90,7 @@ export default function Navbar() {
       </div>
 
       {/* ── Main nav bar ─────────────────────────────────────────────────── */}
-      <div className="bg-white dark:bg-dark-900 border-b-2 border-primary-700">
+      <div className="bg-background-card border-b-2 border-primary-700">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16 gap-8">
 
@@ -97,10 +98,10 @@ export default function Navbar() {
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
               <img src="/logo.png" alt="HAN Sudurpashchim" className="h-10 w-auto object-contain" />
               <div className="hidden sm:block">
-                <p className="font-bold text-surface-900 dark:text-white text-sm leading-none tracking-tight">
+                <p className="font-bold text-foreground text-sm leading-none tracking-tight">
                   HAN Sudurpashchim
                 </p>
-                <p className="text-[11px] text-surface-500 dark:text-dark-400 mt-0.5 font-medium">
+                <p className="text-[11px] text-foreground-muted mt-0.5 font-medium">
                   Province No. 7 · Nepal
                 </p>
               </div>
@@ -116,7 +117,7 @@ export default function Navbar() {
                      after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
                      ${isActive
                        ? "text-primary-700 dark:text-primary-400 after:bg-primary-700"
-                       : "text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200 dark:hover:after:bg-primary-900"
+                       : "text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200 dark:hover:after:bg-primary-900"
                      }`
                   }
                 >
@@ -136,7 +137,7 @@ export default function Navbar() {
                     after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
                     ${megaOpen
                       ? "text-primary-700 dark:text-primary-400 after:bg-primary-700"
-                      : "text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200"
+                      : "text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200"
                     }`}
                 >
                   Member Hotels
@@ -153,8 +154,8 @@ export default function Navbar() {
                       exit={{ opacity: 0, y: 8 }}
                       transition={{ duration: 0.16 }}
                       className="absolute left-0 top-full z-50 w-[580px] mt-2
-                        bg-white dark:bg-dark-900
-                        border border-surface-200 dark:border-dark-700
+                        bg-background-card
+                        border border-border
                         rounded-xl shadow-xl overflow-hidden"
                     >
                       {/* Dropdown header */}
@@ -171,10 +172,10 @@ export default function Navbar() {
                         </button>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-0 divide-x divide-surface-100 dark:divide-dark-800">
+                      <div className="grid grid-cols-2 gap-0 divide-x divide-border">
                         {/* By Category */}
                         <div className="p-5">
-                          <p className="text-[10px] font-bold text-surface-400 dark:text-dark-500 uppercase tracking-widest mb-3">
+                          <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-3">
                             By Category
                           </p>
                           <div className="space-y-0.5">
@@ -183,7 +184,7 @@ export default function Navbar() {
                                 key={cat}
                                 onClick={() => go(cat === ALL_CATEGORIES ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
-                                  text-surface-700 dark:text-dark-300
+                                  text-foreground-secondary
                                   hover:bg-primary-50 dark:hover:bg-primary-950/30
                                   hover:text-primary-700 dark:hover:text-primary-400
                                   transition-colors"
@@ -196,7 +197,7 @@ export default function Navbar() {
 
                         {/* By District */}
                         <div className="p-5">
-                          <p className="text-[10px] font-bold text-surface-400 dark:text-dark-500 uppercase tracking-widest mb-3">
+                          <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-3">
                             By District
                           </p>
                           <div className="space-y-0.5">
@@ -205,7 +206,7 @@ export default function Navbar() {
                                 key={d}
                                 onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
-                                  text-surface-700 dark:text-dark-300
+                                  text-foreground-secondary
                                   hover:bg-primary-50 dark:hover:bg-primary-950/30
                                   hover:text-primary-700 dark:hover:text-primary-400
                                   transition-colors truncate"
@@ -237,7 +238,7 @@ export default function Navbar() {
               <ThemeToggle />
               <button
                 className="w-9 h-9 flex items-center justify-center rounded-lg
-                  text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400
+                  text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400
                   transition-colors"
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-label="Toggle menu"
@@ -268,7 +269,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden overflow-hidden bg-white dark:bg-dark-900 border-b border-surface-200 dark:border-dark-800"
+            className="lg:hidden overflow-hidden bg-background-card border-b border-border"
           >
             <div className="px-4 py-4 space-y-1">
               {NAV_ITEMS.map(({ to, label, end }) => (
@@ -278,7 +279,7 @@ export default function Navbar() {
                     `block py-3 px-4 text-sm font-semibold border-l-4 rounded-r-lg transition-colors
                      ${isActive
                        ? "border-primary-700 text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/20"
-                       : "border-transparent text-surface-700 dark:text-dark-300 hover:border-primary-400 hover:text-primary-700 dark:hover:text-primary-400"
+                       : "border-transparent text-foreground-secondary hover:border-primary-400 hover:text-primary-700 dark:hover:text-primary-400"
                      }`
                   }
                 >
@@ -293,7 +294,7 @@ export default function Navbar() {
                   className={`w-full flex items-center justify-between py-3 px-4 text-sm font-semibold rounded-r-lg transition-colors
                     ${mobileSubOpen
                       ? "text-primary-700 dark:text-primary-400"
-                      : "text-surface-700 dark:text-dark-300"
+                      : "text-foreground-secondary"
                     }`}
                 >
                   Member Hotels
@@ -307,7 +308,7 @@ export default function Navbar() {
                     <motion.div
                       initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="overflow-hidden bg-surface-50 dark:bg-dark-800 border-t border-surface-200 dark:border-dark-700 rounded-lg"
+                      className="overflow-hidden bg-muted border-t border-border rounded-lg"
                     >
                       <button
                         onClick={() => go("/membership")}
@@ -320,19 +321,19 @@ export default function Navbar() {
 
                       <div className="p-4 grid grid-cols-2 gap-4 max-h-[45vh] overflow-y-auto">
                         <div>
-                          <p className="text-[10px] font-bold text-surface-400 uppercase tracking-widest mb-2">Category</p>
+                          <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">Category</p>
                           {HOTEL_CATEGORIES.map((cat) => (
                             <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
-                              className="block w-full text-left py-1.5 text-sm text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 transition-colors">
+                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 transition-colors">
                               {cat}
                             </button>
                           ))}
                         </div>
                         <div>
-                          <p className="text-[10px] font-bold text-surface-400 uppercase tracking-widest mb-2">District</p>
+                          <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">District</p>
                           {SUDURPASHCHIM_DISTRICTS.map((d) => (
                             <button key={d} onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
-                              className="block w-full text-left py-1.5 text-sm text-surface-700 dark:text-dark-300 hover:text-primary-700 dark:hover:text-primary-400 transition-colors truncate">
+                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 transition-colors truncate">
                               {d}
                             </button>
                           ))}

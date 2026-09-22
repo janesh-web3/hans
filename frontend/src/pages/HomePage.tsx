@@ -18,7 +18,7 @@ import JoinCTA from "@/components/home/JoinCTA";
  */
 export default function HomePage() {
   return (
-    <div className="bg-white dark:bg-dark-950">
+    <div className="bg-background">
       <HeroSection />
       <StatsBand />
       <AboutStrip />

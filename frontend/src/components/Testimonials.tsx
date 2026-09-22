@@ -59,10 +59,10 @@ export default function Testimonials() {
         <div className="flex">
           {items.map((item) => (
             <div key={item.name} className="flex-[0_0_100%] px-4 sm:px-10 text-center">
-              <p className="font-serif italic text-xl sm:text-2xl leading-relaxed text-surface-800 dark:text-white mb-8">
+              <p className="font-serif italic text-xl sm:text-2xl leading-relaxed text-foreground mb-8">
                 {item.quote}
               </p>
-              <p className="font-bold text-surface-900 dark:text-white text-sm">{item.name}</p>
+              <p className="font-bold text-foreground text-sm">{item.name}</p>
               <p className="text-primary-700 dark:text-primary-400 text-xs uppercase tracking-luxury mt-1">
                 {item.role}
               </p>
@@ -75,8 +75,8 @@ export default function Testimonials() {
         <button
           onClick={scrollPrev}
           aria-label="Previous testimonial"
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-surface-300 dark:border-dark-600
-            text-surface-500 dark:text-dark-300 hover:border-primary-700 hover:text-primary-700
+          className="w-9 h-9 flex items-center justify-center rounded-full border border-border-strong
+            text-foreground-muted hover:border-primary-700 hover:text-primary-700
             dark:hover:border-primary-400 dark:hover:text-primary-400 transition-colors"
         >
           <FiChevronLeft size={16} />
@@ -89,7 +89,7 @@ export default function Testimonials() {
               onClick={() => scrollTo(i)}
               aria-label={`Go to testimonial ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
-                selected === i ? "w-6 bg-primary-700 dark:bg-primary-400" : "w-1.5 bg-surface-300 dark:bg-dark-600"
+                selected === i ? "w-6 bg-primary-700 dark:bg-primary-400" : "w-1.5 bg-border-strong"
               }`}
             />
           ))}
@@ -98,8 +98,8 @@ export default function Testimonials() {
         <button
           onClick={scrollNext}
           aria-label="Next testimonial"
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-surface-300 dark:border-dark-600
-            text-surface-500 dark:text-dark-300 hover:border-primary-700 hover:text-primary-700
+          className="w-9 h-9 flex items-center justify-center rounded-full border border-border-strong
+            text-foreground-muted hover:border-primary-700 hover:text-primary-700
             dark:hover:border-primary-400 dark:hover:text-primary-400 transition-colors"
         >
           <FiChevronRight size={16} />

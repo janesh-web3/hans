@@ -5,151 +5,185 @@ export default {
   theme: {
     extend: {
       colors: {
-        // ── shadcn/ui semantic tokens (CSS variables, defined in index.css) ──
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // ── Semantic tokens (CSS variables, defined in index.css) ─────────
+        // These carry BOTH themes: the variable is redefined under `.dark`, so
+        // `bg-background` is pale blue in light mode and deep navy in dark mode
+        // with no `dark:` variant needed. Prefer these over the raw scales
+        // below — they are what keeps one background across the whole site.
+        background: {
+          DEFAULT: "hsl(var(--background) / <alpha-value>)",
+          secondary: "hsl(var(--background-secondary) / <alpha-value>)",
+          card: "hsl(var(--card) / <alpha-value>)",
+        },
+        foreground: {
+          DEFAULT: "hsl(var(--foreground) / <alpha-value>)",
+          secondary: "hsl(var(--foreground-secondary) / <alpha-value>)",
+          muted: "hsl(var(--muted-foreground) / <alpha-value>)",
+        },
+        border: {
+          DEFAULT: "hsl(var(--border) / <alpha-value>)",
+          strong: "hsl(var(--border-strong) / <alpha-value>)",
+        },
+        input: "hsl(var(--input) / <alpha-value>)",
+        ring: "hsl(var(--ring) / <alpha-value>)",
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "hsl(var(--card) / <alpha-value>)",
+          foreground: "hsl(var(--card-foreground) / <alpha-value>)",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "hsl(var(--popover) / <alpha-value>)",
+          foreground: "hsl(var(--popover-foreground) / <alpha-value>)",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "hsl(var(--muted) / <alpha-value>)",
+          foreground: "hsl(var(--muted-foreground) / <alpha-value>)",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "hsl(var(--destructive) / <alpha-value>)",
+          foreground: "hsl(var(--destructive-foreground) / <alpha-value>)",
         },
 
-        // ── Brand: Forest Green (primary) ────────────────────────────────
-        // Full numeric scale for existing utility classes (bg-primary-700 etc.)
-        // plus DEFAULT/foreground so shadcn components (bg-primary) resolve too.
+        // ── Accent — the 10% ──────────────────────────────────────────────
+        // Reserved for highlighted text, key figures, active states and the
+        // primary CTA. `accent-gradient-start/end` feed <GradientText>.
+        accent: {
+          // AA-safe: use for text, borders and rings.
+          DEFAULT: "hsl(var(--accent) / <alpha-value>)",
+          foreground: "hsl(var(--accent-foreground) / <alpha-value>)",
+          // Brighter: fills, rules and active indicators only, never small
+          // text — see the note in index.css.
+          vivid: "hsl(var(--accent-vivid) / <alpha-value>)",
+          "vivid-foreground": "hsl(var(--accent-vivid-foreground) / <alpha-value>)",
+          gradient: {
+            start: "hsl(var(--accent-gradient-start) / <alpha-value>)",
+            end: "hsl(var(--accent-gradient-end) / <alpha-value>)",
+          },
+        },
+
+        // ── Brand: sky blue (primary) ─────────────────────────────────────
+        // Fixed scale for the numeric utilities (bg-primary-700 etc.) plus
+        // DEFAULT/foreground so shadcn components (bg-primary) resolve too.
         primary: {
-          50: "#f0fdf4",
-          100: "#dcfce7",
-          200: "#bbf7d0",
-          300: "#86efac",
-          400: "#4ade80",
-          500: "#22c55e",
-          600: "#16a34a",
-          700: "#15803d",
-          800: "#166534",
-          900: "#14532d",
-          950: "#052e16",
-          DEFAULT: "#15803d",
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+          950: "#082f49",
+          DEFAULT: "#0284c7",
           foreground: "#ffffff",
         },
 
-        // ── Brand: River Blue (secondary) ────────────────────────────────
+        // ── Brand: cyan (secondary) ───────────────────────────────────────
         secondary: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
-          950: "#172554",
-          DEFAULT: "#2563eb",
+          50: "#ecfeff",
+          100: "#cffafe",
+          200: "#a5f3fc",
+          300: "#67e8f9",
+          400: "#22d3ee",
+          500: "#06b6d4",
+          600: "#0891b2",
+          700: "#0e7490",
+          800: "#155e75",
+          900: "#164e63",
+          950: "#083344",
+          DEFAULT: "#0891b2",
           foreground: "#ffffff",
         },
 
-        // Light theme surface colors
-        surface: {
-          50: "#ffffff",
-          100: "#f9fafb",
-          200: "#f3f4f6",
-          300: "#e5e7eb",
-          400: "#d1d5db",
-          500: "#9ca3af",
-          600: "#6b7280",
-          700: "#4b5563",
-          800: "#374151",
-          900: "#1f2937",
-          950: "#111827",
-        },
-        // ── Accent: Gold/Amber — premium badges, ratings, quote marks ─────
-        gold: {
-          50: "#fbf7ef",
-          100: "#f5ead4",
-          200: "#ecd6ac",
-          300: "#dfbc7d",
-          400: "#d4a574",
-          500: "#c9a961",
-          600: "#b08d45",
-          700: "#8f7038",
-          800: "#725a30",
-          900: "#5e4b2a",
-          DEFAULT: "#c9a961",
-          foreground: "#1a1206",
-        },
-        // ── Luxury editorial: Forest Green (deep, muted) ────────────────
-        forest: {
-          50: "#f2faf6",
-          100: "#e5f4ec",
-          200: "#cdebdc",
-          300: "#a9dac2",
-          400: "#7cc2a0",
-          500: "#52a47b",
-          600: "#3a8562",
-          700: "#2D6A4F",
-          800: "#235239",
-          900: "#1B4332",
-          950: "#0f2a1e",
-          DEFAULT: "#2D6A4F",
+        // ── Ink: deep navy for headings and photo overlays ────────────────
+        // Replaces the old forest-green scale. ink-900 is the light-mode text
+        // colour; ink-950 is the dark-mode page background.
+        ink: {
+          50: "#f4f8fc",
+          100: "#e6eef7",
+          200: "#c7d8ea",
+          300: "#9db9d6",
+          400: "#6d92ba",
+          500: "#4a719c",
+          600: "#365982",
+          700: "#2b4869",
+          800: "#223a55",
+          900: "#1e293b",
+          950: "#0f172a",
+          DEFAULT: "#1e293b",
           foreground: "#ffffff",
         },
 
-        // ── Luxury editorial: River Blue (deep, muted) ──────────────────
+        // ── River: the accent blue as a fixed scale ───────────────────────
+        // river-500/600 read well on the pale background, river-400 on navy.
         river: {
-          50: "#f1f6fb",
-          100: "#e1ecf5",
-          200: "#c4d8ea",
-          300: "#9bbcdb",
-          400: "#6b99c6",
-          500: "#3f76ab",
-          600: "#2E5C8A",
-          700: "#2a5180",
-          800: "#254672",
-          900: "#1E3A5F",
-          950: "#14283f",
-          DEFAULT: "#2E5C8A",
+          50: "#f0f9ff",
+          100: "#e0f2fe",
+          200: "#bae6fd",
+          300: "#7dd3fc",
+          400: "#38bdf8",
+          500: "#0ea5e9",
+          600: "#0284c7",
+          700: "#0369a1",
+          800: "#075985",
+          900: "#0c4a6e",
+          950: "#082f49",
+          DEFAULT: "#0ea5e9",
           foreground: "#ffffff",
         },
 
-        // Dark theme surfaces
+        // ── Surface: blue-tinted neutrals (light mode) ────────────────────
+        // Cool greys only — a warm grey against this palette is what read as
+        // "harsh". 50/100 are the two page backgrounds, 200 the border,
+        // 500/600 the muted and secondary text, 900 the primary text.
+        surface: {
+          50: "#f5f9fc",
+          100: "#e8f4f8",
+          200: "#d1e3f0",
+          300: "#b6cfe2",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
+          700: "#334155",
+          800: "#243044",
+          900: "#1e293b",
+          950: "#0f172a",
+        },
+
+        // ── Dark: navy surfaces (dark mode) ──────────────────────────────
+        // 950 is the page background, 900 the card, 800 a border that stays
+        // visible against the card, 300/400 the secondary and muted text.
         dark: {
           50: "#f8fafc",
-          100: "#f1f5f9",
+          100: "#f8fafc",
           200: "#e2e8f0",
           300: "#cbd5e1",
           400: "#94a3b8",
           500: "#64748b",
           600: "#475569",
           700: "#334155",
-          800: "#1e293b",
-          900: "#0f172a",
-          950: "#020617",
+          800: "#273449",
+          900: "#1e293b",
+          950: "#0f172a",
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      // Blue-tinted shadows in light mode, plain black in dark mode. Driven by
+      // CSS variables so `shadow-sm` / `shadow-xl` switch with the theme
+      // instead of keeping a grey cast on navy.
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        DEFAULT: "var(--shadow)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        xl: "var(--shadow-xl)",
+        "2xl": "var(--shadow-2xl)",
+        none: "none",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],

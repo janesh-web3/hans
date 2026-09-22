@@ -476,5 +476,68 @@
     "social": {
       "title": "Follow Us"
     }
+  },
+  "membership": {
+    "hero": {
+      "eyebrow": "Membership",
+      "title": "Elevate Your Property. Unite Our Province.",
+      "subtitle": "Join a prestigious network of 150+ verified hospitality providers. Gain exclusive benefits, unified advocacy, and unparalleled visibility in Nepal's fastest-growing tourism region.",
+      "cta": "Start Your Application",
+      "imageAlt": "Hoteliers of Sudurpashchim gathered at a member property"
+    },
+    "benefits": {
+      "eyebrow": "The Advantage",
+      "title": "Why Join HAN Sudurpashchim?",
+      "items": [
+        {
+          "title": "Unified Advocacy",
+          "desc": "A powerful, collective voice liaising with provincial and federal tourism ministries."
+        },
+        {
+          "title": "Exclusive Visibility",
+          "desc": "Featured placement in our curated directory, marketing campaigns, and partner networks."
+        },
+        {
+          "title": "Capacity Building",
+          "desc": "Access to exclusive staff training, sustainability workshops, and industry seminars."
+        },
+        {
+          "title": "Trusted Credibility",
+          "desc": "The official \"HAN Verified\" badge, instantly signaling quality and safety to guests."
+        }
+      ]
+    }
+  },
+  "events": {
+    "hero": {
+      "eyebrow": "Events & Gatherings",
+      "title": "Where Hospitality Meets Community.",
+      "subtitle": "Join us for exclusive industry training, cultural celebrations, and networking events designed to elevate the standard of tourism in Sudurpashchim.",
+      "imageAlt": "Members of the association gathered at a hospitality training session"
+    },
+    "featured": {
+      "eyebrow": "Upcoming",
+      "title": "Signature Events",
+      "register": "Register",
+      "learnMore": "Learn More",
+      "errorTitle": "Events could not be loaded",
+      "errorBody": "The events service did not respond. Please refresh the page, or try again in a few minutes.",
+      "empty": "There are no upcoming events scheduled at the moment. Please check back soon.",
+      "liveNow": "Happening now"
+    },
+    "categories": {
+      "training": {
+        "label": "Training & Workshops",
+        "tag": "Training"
+      },
+      "cultural": {
+        "label": "Cultural Festivals",
+        "tag": "Festival"
+      },
+      "networking": {
+        "label": "Networking",
+        "tag": "Networking"
+      }
+    }
   }
 }

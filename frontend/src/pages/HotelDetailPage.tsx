@@ -19,7 +19,7 @@ export default function HotelDetailPage() {
   const next = () => setIdx((i) => (i === images.length - 1 ? 0 : i + 1));
 
   return (
-    <div className="bg-white dark:bg-dark-950 min-h-screen">
+    <div className="bg-background min-h-screen">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <Link
@@ -56,7 +56,7 @@ export default function HotelDetailPage() {
         {hotel && (
           <>
             {/* ── Gallery ──────────────────────────────────────────────── */}
-            <div className="relative h-80 sm:h-[28rem] rounded-xl overflow-hidden bg-surface-100 dark:bg-dark-800 mb-6">
+            <div className="relative h-80 sm:h-[28rem] rounded-xl overflow-hidden bg-muted mb-6">
               {images.length > 0 ? (
                 <>
                   <img
@@ -70,14 +70,14 @@ export default function HotelDetailPage() {
                       <button
                         onClick={prev}
                         aria-label="Previous photo"
-                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/85 dark:bg-black/60 text-surface-800 dark:text-white rounded-full p-2 border border-surface-200 dark:border-dark-700"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/85 dark:bg-black/60 text-foreground rounded-full p-2 border border-border"
                       >
                         <MdChevronLeft size={22} />
                       </button>
                       <button
                         onClick={next}
                         aria-label="Next photo"
-                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/85 dark:bg-black/60 text-surface-800 dark:text-white rounded-full p-2 border border-surface-200 dark:border-dark-700"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/85 dark:bg-black/60 text-foreground rounded-full p-2 border border-border"
                       >
                         <MdChevronRight size={22} />
                       </button>
@@ -96,10 +96,10 @@ export default function HotelDetailPage() {
                 </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-surface-400 dark:text-dark-600 text-sm">No photos available</span>
+                  <span className="text-foreground-muted text-sm">No photos available</span>
                 </div>
               )}
-              <span className="badge-gold absolute top-4 left-4 shadow-sm">Verified Member</span>
+              <span className="badge-accent absolute top-4 left-4 shadow-sm">Verified Member</span>
               <Badge className="absolute top-4 right-4 bg-black/50 hover:bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-[11px] uppercase tracking-widest">
                 {hotel.category}
               </Badge>
@@ -109,29 +109,29 @@ export default function HotelDetailPage() {
 
               {/* ── Main content ─────────────────────────────────────── */}
               <div>
-                <h1 className="font-serif text-3xl sm:text-4xl font-bold text-surface-900 dark:text-white mb-2 tracking-tight">
+                <h1 className="font-serif text-3xl sm:text-4xl font-bold text-foreground mb-2 tracking-tight">
                   {hotel.name}
                 </h1>
-                <p className="flex items-center gap-1.5 text-surface-500 dark:text-dark-400 text-sm mb-6">
+                <p className="flex items-center gap-1.5 text-foreground-muted text-sm mb-6">
                   <FiMapPin size={14} className="flex-shrink-0" />
                   {hotel.district} District — {hotel.contactInfo.address}
                 </p>
 
-                <h2 className="text-sm font-bold text-surface-900 dark:text-white uppercase tracking-widest mb-3">
+                <h2 className="text-sm font-bold text-foreground uppercase tracking-widest mb-3">
                   About
                 </h2>
-                <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-8">
+                <p className="text-foreground-secondary text-sm leading-relaxed mb-8">
                   {hotel.description}
                 </p>
 
                 {hotel.amenities.length > 0 && (
                   <>
-                    <h2 className="text-sm font-bold text-surface-900 dark:text-white uppercase tracking-widest mb-3">
+                    <h2 className="text-sm font-bold text-foreground uppercase tracking-widest mb-3">
                       Amenities
                     </h2>
                     <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-2.5 gap-x-4 mb-8">
                       {hotel.amenities.map((a) => (
-                        <li key={a} className="flex items-center gap-2 text-sm text-surface-600 dark:text-dark-400">
+                        <li key={a} className="flex items-center gap-2 text-sm text-foreground-secondary">
                           <FiCheckCircle size={14} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
                           {a}
                         </li>
@@ -143,33 +143,33 @@ export default function HotelDetailPage() {
 
               {/* ── Contact card ─────────────────────────────────────── */}
               <div>
-                <Card className="rounded-xl overflow-hidden border-t-4 border-t-gold-500 shadow-lg sticky top-24">
+                <Card className="rounded-xl overflow-hidden border-t-4 border-t-river-500 shadow-lg sticky top-24">
                   <div className="bg-primary-800 px-6 py-4">
                     <p className="text-white font-bold text-sm">Contact Details</p>
                   </div>
                   <CardContent className="p-6 space-y-4">
                     <div className="flex items-start gap-3">
                       <FiMapPin className="text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" size={16} />
-                      <span className="text-sm text-surface-600 dark:text-dark-400 leading-relaxed">
+                      <span className="text-sm text-foreground-secondary leading-relaxed">
                         {hotel.contactInfo.address}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <FiPhone className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                      <a href={`tel:${hotel.contactInfo.phone}`} className="text-sm text-surface-600 dark:text-dark-400 hover:text-primary-700 dark:hover:text-primary-400">
+                      <a href={`tel:${hotel.contactInfo.phone}`} className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400">
                         {hotel.contactInfo.phone}
                       </a>
                     </div>
                     <div className="flex items-center gap-3">
                       <FiMail className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                      <a href={`mailto:${hotel.contactInfo.email}`} className="text-sm text-surface-600 dark:text-dark-400 hover:text-primary-700 dark:hover:text-primary-400 break-all">
+                      <a href={`mailto:${hotel.contactInfo.email}`} className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 break-all">
                         {hotel.contactInfo.email}
                       </a>
                     </div>
                     {hotel.websiteUrl && (
                       <div className="flex items-center gap-3">
                         <FiGlobe className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                        <a href={hotel.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-surface-600 dark:text-dark-400 hover:text-primary-700 dark:hover:text-primary-400 break-all">
+                        <a href={hotel.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 break-all">
                           Visit Website
                         </a>
                       </div>

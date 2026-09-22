@@ -19,14 +19,14 @@ export default function PartnersStrip() {
   const partners = t("about.partners.items", { returnObjects: true }) as string[];
 
   return (
-    <section className="border-y border-stone-100 bg-white py-16 dark:border-dark-800 dark:bg-dark-950">
+    <section className="border-y border-border bg-background py-16">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8 text-center text-xs uppercase tracking-widest text-stone-400 dark:text-dark-500"
+          className="mb-8 text-center text-xs uppercase tracking-widest text-foreground-muted"
         >
           {t("about.partners.label")}
         </motion.p>
@@ -48,9 +48,9 @@ export default function PartnersStrip() {
                 <Mark
                   size={28}
                   strokeWidth={1}
-                  className="shrink-0 text-forest-700 dark:text-forest-400"
+                  className="shrink-0 text-accent"
                 />
-                <span className="max-w-[10rem] font-serif text-base font-bold leading-snug text-forest-900 dark:text-white">
+                <span className="max-w-[10rem] font-serif text-base font-bold leading-snug text-foreground">
                   {partner}
                 </span>
               </li>

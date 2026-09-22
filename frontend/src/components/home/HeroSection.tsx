@@ -36,7 +36,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-6 flex items-center gap-4"
           >
-            <span className="block h-px w-12 bg-gold-400" />
+            <span className="block h-px w-12 bg-white/70" />
             <span className="text-sm font-medium uppercase tracking-widest text-white/80">
               {t("home.hero.eyebrow")}
             </span>
@@ -63,13 +63,13 @@ export default function HeroSection() {
           >
             <Link
               to="/membership"
-              className="inline-flex items-center justify-center rounded-sm bg-forest-700 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-forest-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="inline-flex items-center justify-center rounded-sm bg-ink-700 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               {t("home.hero.ctaPrimary")}
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center rounded-sm border border-white/50 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-forest-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="inline-flex items-center justify-center rounded-sm border border-white/50 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               {t("home.hero.ctaSecondary")}
             </Link>

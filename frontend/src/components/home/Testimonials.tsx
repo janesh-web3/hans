@@ -46,7 +46,7 @@ export default function Testimonials() {
   const current = items[index];
 
   return (
-    <section className="relative overflow-hidden bg-stone-50 py-24 lg:py-32 dark:bg-dark-900">
+    <section className="relative overflow-hidden bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,10 +55,10 @@ export default function Testimonials() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-16 text-center"
         >
-          <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
             {t("home.testimonials.eyebrow")}
           </span>
-          <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+          <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
             {t("home.testimonials.title")}
           </h2>
         </motion.div>
@@ -67,7 +67,7 @@ export default function Testimonials() {
           {/* Decorative opening quote, sitting behind the text */}
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 select-none font-serif text-8xl leading-none text-forest-700/20 dark:text-forest-400/20"
+            className="pointer-events-none absolute -top-16 left-1/2 -translate-x-1/2 select-none font-serif text-8xl leading-none text-ink-700/20 dark:text-ink-400/20"
           >
             &ldquo;
           </span>
@@ -82,12 +82,12 @@ export default function Testimonials() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="mx-auto max-w-4xl text-center"
               >
-                <p className="font-serif text-2xl italic leading-relaxed text-forest-900 md:text-3xl dark:text-white">
+                <p className="font-serif text-2xl italic leading-relaxed text-foreground md:text-3xl">
                   {current.quote}
                 </p>
                 <footer className="mt-8">
-                  <p className="font-bold text-forest-900 dark:text-white">{current.name}</p>
-                  <p className="mt-1 text-sm text-stone-500 dark:text-dark-400">{current.role}</p>
+                  <p className="font-bold text-foreground">{current.name}</p>
+                  <p className="mt-1 text-sm text-foreground-muted">{current.role}</p>
                 </footer>
               </motion.blockquote>
             </AnimatePresence>
@@ -99,7 +99,7 @@ export default function Testimonials() {
               type="button"
               onClick={() => go(index - 1)}
               aria-label={t("home.testimonials.prev")}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 text-stone-600 transition-colors duration-300 hover:border-forest-700 hover:text-forest-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 dark:border-dark-700 dark:text-dark-300 dark:hover:border-forest-400 dark:hover:text-forest-400"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong text-foreground-secondary transition-colors duration-300 hover:border-ink-700 hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink-700 dark:hover:border-ink-400 dark:hover:text-ink-400"
             >
               <ChevronLeft size={18} strokeWidth={1.5} />
             </button>
@@ -112,10 +112,10 @@ export default function Testimonials() {
                   onClick={() => go(i)}
                   aria-label={item.name}
                   aria-current={i === index}
-                  className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 ${
+                  className={`h-2 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink-700 ${
                     i === index
-                      ? "w-8 bg-forest-700 dark:bg-forest-400"
-                      : "w-2 bg-stone-300 hover:bg-stone-400 dark:bg-dark-700 dark:hover:bg-dark-600"
+                      ? "w-8 bg-ink-700 dark:bg-ink-400"
+                      : "w-2 bg-border-strong hover:bg-foreground-muted"
                   }`}
                 />
               ))}
@@ -125,7 +125,7 @@ export default function Testimonials() {
               type="button"
               onClick={() => go(index + 1)}
               aria-label={t("home.testimonials.next")}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-stone-300 text-stone-600 transition-colors duration-300 hover:border-forest-700 hover:text-forest-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-700 dark:border-dark-700 dark:text-dark-300 dark:hover:border-forest-400 dark:hover:text-forest-400"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border-strong text-foreground-secondary transition-colors duration-300 hover:border-ink-700 hover:text-ink-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink-700 dark:hover:border-ink-400 dark:hover:text-ink-400"
             >
               <ChevronRight size={18} strokeWidth={1.5} />
             </button>

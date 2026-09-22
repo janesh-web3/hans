@@ -23,7 +23,7 @@ export default function OurStory() {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-white py-24 lg:py-32 dark:bg-dark-950">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,45fr)_minmax(0,55fr)] lg:gap-20">
           {/* ── Left: sticky mission copy ─────────────────────────────── */}
@@ -34,19 +34,19 @@ export default function OurStory() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="self-start lg:sticky lg:top-32"
           >
-            <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+            <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
               {t("about.ourStory.eyebrow")}
             </span>
 
-            <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+            <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
               {t("about.ourStory.title")}
             </h2>
 
             <div className="mt-8 space-y-6">
-              <p className="text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+              <p className="text-lg leading-relaxed text-foreground-secondary">
                 {t("about.ourStory.body1")}
               </p>
-              <p className="text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+              <p className="text-lg leading-relaxed text-foreground-secondary">
                 {t("about.ourStory.body2")}
               </p>
             </div>

@@ -3,31 +3,34 @@ import { motion } from "framer-motion";
 import { HeroText } from "@/components/motion/HeroText";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1800&auto=format&fit=crop&q=80";
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&auto=format&fit=crop&q=80";
 
 /**
- * Understated opening statement for the About page.
+ * Opening statement for the Events page.
  *
- * Deliberately quieter than the homepage hero: a single still image rather
- * than a slider, a left-weighted gradient, and copy that sits at four-fifths
- * of the viewport rather than filling it.
+ * Shorter than the About and Membership heroes at 70vh, and with a lighter
+ * wash over the photograph, because this page is a calendar rather than an
+ * argument — the reader should reach the first event quickly.
  */
-export default function AboutHero() {
+export default function EventsHero() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative flex min-h-[80vh] items-center overflow-hidden">
+    <section className="relative flex min-h-[70vh] items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
           src={HERO_IMAGE}
-          alt="The Himalaya of Sudurpashchim Province, Nepal"
+          alt={t("events.hero.imageAlt")}
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-900/80 via-ink-900/40 to-transparent" />
+        {/* The gradient above clears to transparent on the right, which leaves
+            full-width mobile copy sitting over bare photography. This flat wash
+            keeps that text legible below md and steps aside on wider screens. */}
+        <div className="absolute inset-0 bg-ink-900/50 md:hidden" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 sm:px-8 lg:px-12">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -37,12 +40,12 @@ export default function AboutHero() {
           >
             <span className="block h-px w-12 bg-white/70" />
             <span className="text-sm uppercase tracking-[0.2em] text-white/80">
-              {t("about.aboutHero.eyebrow")}
+              {t("events.hero.eyebrow")}
             </span>
           </motion.div>
 
           <h1 className="font-serif text-5xl font-bold leading-[1.1] text-white md:text-7xl">
-            <HeroText text={t("about.aboutHero.title")} wordStagger={0.07} delay={0.15} />
+            <HeroText text={t("events.hero.title")} wordStagger={0.07} delay={0.15} />
           </h1>
 
           <motion.p
@@ -51,7 +54,7 @@ export default function AboutHero() {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 }}
             className="mt-6 text-lg font-light leading-relaxed text-white/90 md:text-xl"
           >
-            {t("about.aboutHero.subtitle")}
+            {t("events.hero.subtitle")}
           </motion.p>
         </div>
       </div>

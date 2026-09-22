@@ -13,8 +13,8 @@ export default function ThemeToggle({ className = "" }: ThemeToggleProps) {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       title={dark ? "Light mode" : "Dark mode"}
       className={`w-9 h-9 flex items-center justify-center rounded-lg
-        text-surface-600 hover:text-surface-900 hover:bg-surface-200
-        dark:text-dark-400 dark:hover:text-white dark:hover:bg-dark-800
+        text-foreground-secondary hover:text-foreground hover:bg-muted
+        dark:hover:text-white dark:hover:bg-dark-800
         transition-colors duration-150 ${className}`}
     >
       {dark ? (

@@ -51,12 +51,12 @@ function iconFor(amenity: string): LucideIcon {
 /** Placeholder card shown while the directory request is in flight. */
 function HotelSkeleton() {
   return (
-    <div className="overflow-hidden rounded-lg border border-stone-100 bg-white shadow-sm dark:border-dark-800 dark:bg-dark-900">
-      <div className="aspect-[4/3] w-full animate-pulse bg-stone-200 dark:bg-dark-800" />
+    <div className="overflow-hidden rounded-lg border border-border bg-background-card shadow-sm">
+      <div className="aspect-[4/3] w-full animate-pulse bg-muted" />
       <div className="space-y-4 p-6">
-        <div className="h-5 w-2/3 animate-pulse rounded bg-stone-200 dark:bg-dark-800" />
-        <div className="h-3 w-1/2 animate-pulse rounded bg-stone-200 dark:bg-dark-800" />
-        <div className="h-3 w-1/3 animate-pulse rounded bg-stone-200 dark:bg-dark-800" />
+        <div className="h-5 w-2/3 animate-pulse rounded bg-muted" />
+        <div className="h-3 w-1/2 animate-pulse rounded bg-muted" />
+        <div className="h-3 w-1/3 animate-pulse rounded bg-muted" />
       </div>
     </div>
   );
@@ -74,10 +74,10 @@ function HotelCard({ hotel, verifiedLabel, detailsLabel }: HotelCardProps) {
   return (
     <Link
       to={`/hotel/${hotel._id}`}
-      className="group block overflow-hidden rounded-lg border border-stone-100 bg-white shadow-sm transition-shadow duration-300 hover:shadow-xl dark:border-dark-800 dark:bg-dark-900"
+      className="group block overflow-hidden rounded-lg border border-border bg-background-card shadow-sm transition-shadow duration-300 hover:shadow-xl"
     >
       {/* ── Photograph ───────────────────────────────────────────────── */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-stone-100 dark:bg-dark-800">
+      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
         {hotel.images?.[0] ? (
           <img
             src={hotel.images[0]}
@@ -87,22 +87,22 @@ function HotelCard({ hotel, verifiedLabel, detailsLabel }: HotelCardProps) {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center">
-            <BedDouble className="text-stone-300 dark:text-dark-600" size={32} strokeWidth={1.25} />
+            <BedDouble className="text-foreground-muted/60" size={32} strokeWidth={1.25} />
           </div>
         )}
 
-        <span className="absolute left-4 top-4 rounded-full bg-forest-700 px-3 py-1 text-xs font-medium text-white">
+        <span className="absolute left-4 top-4 rounded-full bg-ink-700 px-3 py-1 text-xs font-medium text-white">
           {verifiedLabel}
         </span>
       </div>
 
       {/* ── Body ─────────────────────────────────────────────────────── */}
       <div className="p-6">
-        <h3 className="mb-2 font-serif text-xl font-bold leading-snug text-forest-900 dark:text-white">
+        <h3 className="mb-2 font-serif text-xl font-bold leading-snug text-foreground">
           {hotel.name}
         </h3>
 
-        <p className="mb-4 flex items-center gap-1.5 text-sm text-stone-500 dark:text-dark-400">
+        <p className="mb-4 flex items-center gap-1.5 text-sm text-foreground-muted">
           <MapPin size={14} strokeWidth={1.5} />
           {hotel.district}, Sudurpashchim
         </p>
@@ -114,9 +114,9 @@ function HotelCard({ hotel, verifiedLabel, detailsLabel }: HotelCardProps) {
               return (
                 <li
                   key={amenity}
-                  className="flex items-center gap-1.5 text-xs text-stone-500 dark:text-dark-400"
+                  className="flex items-center gap-1.5 text-xs text-foreground-muted"
                 >
-                  <Icon size={14} strokeWidth={1.5} className="text-forest-700 dark:text-forest-400" />
+                  <Icon size={14} strokeWidth={1.5} className="text-accent" />
                   <span className="line-clamp-1">{amenity}</span>
                 </li>
               );
@@ -124,9 +124,9 @@ function HotelCard({ hotel, verifiedLabel, detailsLabel }: HotelCardProps) {
           </ul>
         )}
 
-        <div className="flex items-center justify-between border-t border-stone-100 pt-4 dark:border-dark-800">
-          <span className="font-bold text-river-600 dark:text-river-400">{hotel.category}</span>
-          <span className="inline-flex items-center gap-1 text-sm text-stone-600 underline underline-offset-4 transition-colors duration-300 group-hover:text-forest-700 dark:text-dark-300 dark:group-hover:text-forest-400">
+        <div className="flex items-center justify-between border-t border-border pt-4">
+          <span className="font-bold text-accent">{hotel.category}</span>
+          <span className="inline-flex items-center gap-1 text-sm text-foreground-secondary underline underline-offset-4 transition-colors duration-300 group-hover:text-ink-700 dark:group-hover:text-ink-400">
             {detailsLabel}
             <ArrowRight
               size={14}
@@ -151,7 +151,7 @@ export default function FeaturedHotels() {
   const hotels = data?.data ?? [];
 
   return (
-    <section className="bg-stone-50 py-24 lg:py-32 dark:bg-dark-900">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         {/* ── Header ───────────────────────────────────────────────── */}
         <motion.div
@@ -162,17 +162,17 @@ export default function FeaturedHotels() {
           className="mb-14 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
         >
           <div className="max-w-2xl">
-            <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+            <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
               {t("home.featured.eyebrow")}
             </span>
-            <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+            <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
               {t("home.featured.title")}
             </h2>
           </div>
 
           <Link
             to="/membership"
-            className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium uppercase tracking-widest text-river-600 underline-offset-4 transition-colors duration-300 hover:underline dark:text-river-400"
+            className="group inline-flex shrink-0 items-center gap-2 text-sm font-medium uppercase tracking-widest text-accent underline-offset-4 transition-colors duration-300 hover:underline dark:text-river-400"
           >
             {t("home.featured.viewAll")}
             <ArrowRight
@@ -203,7 +203,7 @@ export default function FeaturedHotels() {
             ))}
           </div>
         ) : hotels.length === 0 ? (
-          <p className="rounded-lg border border-stone-200 bg-white p-10 text-center text-stone-500 dark:border-dark-800 dark:bg-dark-950 dark:text-dark-400">
+          <p className="rounded-lg border border-border bg-background-card p-10 text-center text-foreground-muted">
             {t("home.featured.empty")}
           </p>
         ) : (

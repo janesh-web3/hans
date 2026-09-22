@@ -82,14 +82,14 @@ const COMMITTEE: CommitteeMember[] = [
  *
  * Plates sit in grayscale and warm into colour on hover while the image
  * scales and the gradient deepens. Where no portrait has been supplied the
- * plate renders a forest-green monogram instead, which takes the same
+ * plate renders a ink-green monogram instead, which takes the same
  * grayscale treatment so the grid still reads as one set.
  */
 export default function LeadershipTeam() {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-white py-24 lg:py-32 dark:bg-dark-950">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -98,13 +98,13 @@ export default function LeadershipTeam() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-16 max-w-2xl"
         >
-          <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
             {t("about.leadership.eyebrow")}
           </span>
-          <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+          <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
             {t("about.leadership.title")}
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-stone-600 dark:text-dark-300">
+          <p className="mt-6 text-lg leading-relaxed text-foreground-secondary">
             {t("about.leadership.subtitle")}
           </p>
         </motion.div>
@@ -127,7 +127,7 @@ export default function LeadershipTeam() {
                     className="h-full w-full object-cover grayscale transition-all duration-500 ease-out group-hover:scale-105 group-hover:grayscale-0"
                   />
                 ) : (
-                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-forest-700 to-forest-900 grayscale transition-all duration-500 ease-out group-hover:scale-105 group-hover:grayscale-0">
+                  <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-ink-700 to-ink-900 grayscale transition-all duration-500 ease-out group-hover:scale-105 group-hover:grayscale-0">
                     <span
                       aria-hidden="true"
                       className="font-serif text-6xl font-bold text-white/30"

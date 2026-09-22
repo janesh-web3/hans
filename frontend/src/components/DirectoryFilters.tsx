@@ -37,7 +37,7 @@ export default function DirectoryFilters({
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-surface-900 dark:text-white font-bold text-sm uppercase tracking-widest">
+        <h2 className="text-foreground font-bold text-sm uppercase tracking-widest">
           Filters
         </h2>
         {hasActiveFilters && (
@@ -52,7 +52,7 @@ export default function DirectoryFilters({
 
       {/* District */}
       <div className="space-y-2.5">
-        <Label className="text-xs font-bold text-surface-500 dark:text-dark-400 uppercase tracking-wide">
+        <Label className="text-xs font-bold text-foreground-muted uppercase tracking-wide">
           District
         </Label>
         <Select value={district} onValueChange={onDistrictChange}>
@@ -72,7 +72,7 @@ export default function DirectoryFilters({
 
       {/* Category */}
       <div className="space-y-2.5">
-        <Label className="text-xs font-bold text-surface-500 dark:text-dark-400 uppercase tracking-wide">
+        <Label className="text-xs font-bold text-foreground-muted uppercase tracking-wide">
           Category
         </Label>
         <Select value={category} onValueChange={onCategoryChange}>
@@ -92,7 +92,7 @@ export default function DirectoryFilters({
 
       {/* Amenities */}
       <div className="space-y-3">
-        <Label className="text-xs font-bold text-surface-500 dark:text-dark-400 uppercase tracking-wide">
+        <Label className="text-xs font-bold text-foreground-muted uppercase tracking-wide">
           Amenities
         </Label>
         <div className="space-y-2.5 max-h-64 overflow-y-auto pr-1">
@@ -105,7 +105,7 @@ export default function DirectoryFilters({
               />
               <Label
                 htmlFor={`amenity-${amenity}`}
-                className="text-sm font-normal text-surface-600 dark:text-dark-300 cursor-pointer"
+                className="text-sm font-normal text-foreground-secondary cursor-pointer"
               >
                 {amenity}
               </Label>

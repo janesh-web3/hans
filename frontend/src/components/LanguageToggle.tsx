@@ -20,8 +20,8 @@ export default function LanguageToggle({ className = "" }: LanguageToggleProps) 
       aria-label={isNepali ? t("language.en") : t("language.np")}
       title={isNepali ? t("language.en") : t("language.np")}
       className={`h-9 px-2.5 flex items-center justify-center rounded-lg text-xs font-bold
-        text-surface-600 hover:text-surface-900 hover:bg-surface-200
-        dark:text-dark-400 dark:hover:text-white dark:hover:bg-dark-800
+        text-foreground-secondary hover:text-foreground hover:bg-muted
+        dark:hover:text-white dark:hover:bg-dark-800
         transition-colors duration-150 ${className}`}
     >
       {isNepali ? "EN" : "नेपाली"}

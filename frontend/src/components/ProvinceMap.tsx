@@ -8,7 +8,7 @@ import type { ApiHotel } from "@/types/hotel";
 const SUDURPASHCHIM_CENTER: [number, number] = [28.9, 80.5];
 const DEFAULT_ZOOM = 8;
 
-// Custom forest-green pin (SVG divIcon) — avoids Leaflet's classic broken
+// Custom ink-green pin (SVG divIcon) — avoids Leaflet's classic broken
 // default-marker-image issue under bundlers, and matches the brand color.
 const greenIcon = L.divIcon({
   className: "",
@@ -32,7 +32,7 @@ export default function ProvinceMap({ hotels, className = "h-[560px]" }: Provinc
   );
 
   return (
-    <div className={`${className} w-full rounded-xl overflow-hidden border border-surface-200 dark:border-dark-700`}>
+    <div className={`${className} w-full rounded-xl overflow-hidden border border-border`}>
       <MapContainer
         center={SUDURPASHCHIM_CENTER}
         zoom={DEFAULT_ZOOM}
@@ -51,8 +51,8 @@ export default function ProvinceMap({ hotels, className = "h-[560px]" }: Provinc
           >
             <Popup>
               <div className="min-w-[160px]">
-                <p className="font-bold text-surface-900 text-sm mb-1">{hotel.name}</p>
-                <p className="text-xs text-surface-500 mb-2">
+                <p className="font-bold text-foreground text-sm mb-1">{hotel.name}</p>
+                <p className="text-xs text-foreground-muted mb-2">
                   {hotel.district} District · {hotel.category}
                 </p>
                 <Link

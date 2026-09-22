@@ -18,7 +18,7 @@ export default function WhatWeDo() {
   const items = t("home.whatWeDo.items", { returnObjects: true }) as MandateItem[];
 
   return (
-    <section className="bg-white py-24 lg:py-32 dark:bg-dark-950">
+    <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -27,10 +27,10 @@ export default function WhatWeDo() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-16 max-w-2xl"
         >
-          <span className="mb-4 block text-xs uppercase tracking-widest text-river-600 dark:text-river-400">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
             {t("home.whatWeDo.eyebrow")}
           </span>
-          <h2 className="font-serif text-4xl font-bold leading-tight text-forest-900 md:text-5xl dark:text-white">
+          <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
             {t("home.whatWeDo.title")}
           </h2>
         </motion.div>
@@ -45,15 +45,15 @@ export default function WhatWeDo() {
               transition={{ duration: 0.6, ease: "easeOut", delay: i * 0.12 }}
               className="group"
             >
-              <span className="block font-serif text-5xl font-bold leading-none text-stone-200 transition-colors duration-300 group-hover:text-river-600 dark:text-dark-700 dark:group-hover:text-river-400">
+              <span className="block font-serif text-5xl font-bold leading-none text-border-strong transition-colors duration-300 group-hover:text-accent dark:text-dark-700 dark:group-hover:text-river-400">
                 {String(i + 1).padStart(2, "0")}
               </span>
 
-              <h3 className="mb-4 mt-6 font-serif text-2xl font-bold text-forest-900 transition-transform duration-300 group-hover:translate-x-2 dark:text-white">
+              <h3 className="mb-4 mt-6 font-serif text-2xl font-bold text-foreground transition-transform duration-300 group-hover:translate-x-2">
                 {item.title}
               </h3>
 
-              <p className="leading-relaxed text-stone-600 dark:text-dark-300">{item.desc}</p>
+              <p className="leading-relaxed text-foreground-secondary">{item.desc}</p>
             </motion.div>
           ))}
         </div>
