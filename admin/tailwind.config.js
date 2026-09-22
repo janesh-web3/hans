@@ -33,8 +33,6 @@ export default {
         },
 
         // ── Brand: Forest Green (primary) ────────────────────────────────
-        // Full numeric scale for existing utility classes (bg-primary-700 etc.)
-        // plus DEFAULT/foreground so shadcn components (bg-primary) resolve too.
         primary: {
           50: "#f0fdf4",
           100: "#dcfce7",
@@ -68,7 +66,6 @@ export default {
           foreground: "#ffffff",
         },
 
-        // Light theme surface colors
         surface: {
           50: "#ffffff",
           100: "#f9fafb",
@@ -82,7 +79,6 @@ export default {
           900: "#1f2937",
           950: "#111827",
         },
-        // Dark theme surfaces
         dark: {
           50: "#f8fafc",
           100: "#f1f5f9",
@@ -104,17 +100,8 @@ export default {
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        serif: ['"Playfair Display"', "Georgia", "serif"],
       },
       keyframes: {
-        fadeUp: {
-          from: { opacity: "0", transform: "translateY(16px)" },
-          to: { opacity: "1", transform: "translateY(0)" },
-        },
-        pulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.4" },
-        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -125,8 +112,6 @@ export default {
         },
       },
       animation: {
-        fadeUp: "fadeUp 0.5s ease-out forwards",
-        pulse: "pulse 2s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

@@ -3,7 +3,62 @@
 @tailwind utilities;
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    /* Forest-green focus ring ties shadcn primitives back to the brand */
+    --ring: 142 71% 29%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+
+    --ring: 142 71% 45%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
     @apply bg-white text-surface-900 font-sans antialiased;
@@ -12,7 +67,9 @@
     @apply bg-dark-950 text-dark-100;
   }
 
-  * { -webkit-tap-highlight-color: transparent; }
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
 
   select option {
     @apply bg-white text-surface-900;
@@ -21,8 +78,11 @@
     @apply bg-dark-800 text-dark-100;
   }
 
-  /* Consistent heading weight */
-  h1, h2, h3, h4 {
+  /* Serif for headings — the "premium hospitality" editorial feel */
+  h1, h2, h3 {
+    @apply font-serif font-bold leading-tight tracking-tight;
+  }
+  h4 {
     @apply font-bold leading-tight tracking-tight;
   }
 }
@@ -32,24 +92,24 @@
   /* ── Buttons ─────────────────────────────── */
   .btn-primary {
     @apply inline-flex items-center gap-2
-           bg-primary-600 hover:bg-primary-700 active:bg-primary-800
+           bg-primary-700 hover:bg-primary-800 active:bg-primary-900
            text-white text-sm font-semibold
-           px-6 py-3
+           px-6 py-3 rounded-lg shadow-sm
            transition-colors duration-150;
   }
   .btn-secondary {
     @apply inline-flex items-center gap-2
            bg-secondary-600 hover:bg-secondary-700 active:bg-secondary-800
            text-white text-sm font-semibold
-           px-6 py-3
+           px-6 py-3 rounded-lg shadow-sm
            transition-colors duration-150;
   }
   .btn-ghost {
     @apply inline-flex items-center gap-2
-           border border-surface-300 hover:border-primary-600
+           border border-surface-300 hover:border-primary-700
            text-surface-700 hover:text-primary-700
            text-sm font-semibold
-           px-6 py-3
+           px-6 py-3 rounded-lg
            transition-colors duration-150;
   }
   .dark .btn-ghost {
@@ -59,13 +119,13 @@
     @apply inline-flex items-center gap-2
            border border-white/60 hover:border-white hover:bg-white/10
            text-white text-sm font-semibold
-           px-6 py-3
+           px-6 py-3 rounded-lg
            transition-colors duration-150;
   }
 
   /* ── Cards ───────────────────────────────── */
   .card {
-    @apply bg-white border border-surface-200;
+    @apply bg-white border border-surface-200 rounded-lg shadow-sm;
   }
   .dark .card {
     @apply bg-dark-900 border-dark-800;
@@ -74,7 +134,7 @@
   /* ── Section chrome ──────────────────────── */
   /* Overline label above a heading */
   .section-label {
-    @apply block text-primary-600 text-xs font-bold uppercase tracking-[0.18em] mb-3;
+    @apply block text-primary-700 text-xs font-bold uppercase tracking-[0.18em] mb-3;
   }
   .dark .section-label {
     @apply text-primary-400;
@@ -82,7 +142,7 @@
 
   /* Bold editorial heading */
   .section-heading {
-    @apply text-surface-900 text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-4;
+    @apply text-surface-900 text-3xl sm:text-4xl font-serif font-bold leading-tight tracking-tight mb-4;
   }
   .dark .section-heading {
     @apply text-white;
@@ -98,7 +158,7 @@
 
   /* Green left-rule accent block */
   .section-rule {
-    @apply border-l-4 border-primary-500 pl-5;
+    @apply border-l-4 border-primary-600 pl-5 rounded-r-lg;
   }
 
   /* Horizontal rule between sections */
@@ -112,9 +172,9 @@
   /* ── Forms ───────────────────────────────── */
   .input {
     @apply w-full bg-white border border-surface-300 text-surface-900
-           placeholder-surface-400 px-4 py-3 text-sm
-           focus:outline-none focus:border-primary-500 focus:ring-2
-           focus:ring-primary-500/20 transition-colors;
+           placeholder-surface-400 px-4 py-3 text-sm rounded-lg
+           focus:outline-none focus:border-primary-600 focus:ring-2
+           focus:ring-primary-600/20 transition-colors;
   }
   .dark .input {
     @apply bg-dark-800 border-dark-700 text-dark-100
@@ -151,9 +211,15 @@
 
   /* Crisp top border accent on a block */
   .border-top-primary {
-    border-top: 3px solid theme('colors.primary.600');
+    border-top: 3px solid theme('colors.primary.700');
   }
   .border-top-secondary {
     border-top: 3px solid theme('colors.secondary.600');
+  }
+
+  /* Faint topographic contour texture — subtle mountain-map motif */
+  .bg-topo {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%2315803d' stroke-opacity='0.06' stroke-width='1'%3E%3Cpath d='M-20 180 Q40 140 90 170 T200 150'/%3E%3Cpath d='M-20 140 Q40 100 90 130 T200 110'/%3E%3Cpath d='M-20 100 Q40 60 90 90 T200 70'/%3E%3Cpath d='M-20 60 Q40 20 90 50 T200 30'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
   }
 }
