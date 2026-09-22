@@ -4,6 +4,7 @@ import { FiArrowRight } from "react-icons/fi";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SUDURPASHCHIM_DISTRICTS, DISTRICT_INFO } from "@/constants/districts";
 
 interface TeamMember {
@@ -50,50 +51,54 @@ export default function AboutPage() {
       <section className="section-pad bg-white dark:bg-dark-900 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="max-w-xl mb-12">
-            <span className="section-label">{t("about.missionVision.label")}</span>
+          <Reveal className="max-w-xl mb-12">
+            <span className="overline mb-3">{t("about.missionVision.label")}</span>
             <h2 className="section-heading">{t("about.missionVision.title")}</h2>
-          </div>
+          </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <RevealGroup className="grid md:grid-cols-2 gap-6">
 
             {/* Mission */}
-            <Card className="p-10 rounded-lg border-t-4 border-t-primary-600">
-              <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">
-                {t("about.missionVision.mission.title")}
-              </h3>
-              <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
-                {t("about.missionVision.mission.body")}
-              </p>
-              <ul className="space-y-3">
-                {missionPoints.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
-                    <span className="w-[3px] h-4 bg-primary-500 flex-shrink-0 mt-0.5 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Card>
+            <RevealItem>
+              <Card className="p-10 rounded-xl border-t-4 border-t-primary-600 h-full">
+                <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">
+                  {t("about.missionVision.mission.title")}
+                </h3>
+                <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
+                  {t("about.missionVision.mission.body")}
+                </p>
+                <ul className="space-y-3">
+                  {missionPoints.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
+                      <span className="w-[3px] h-4 bg-primary-500 flex-shrink-0 mt-0.5 rounded-full" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </RevealItem>
 
             {/* Vision */}
-            <Card className="p-10 rounded-lg border-t-4 border-t-secondary-600">
-              <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">
-                {t("about.missionVision.vision.title")}
-              </h3>
-              <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
-                {t("about.missionVision.vision.body")}
-              </p>
-              <ul className="space-y-3">
-                {visionPoints.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
-                    <span className="w-[3px] h-4 bg-secondary-500 flex-shrink-0 mt-0.5 rounded-full" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Card>
+            <RevealItem>
+              <Card className="p-10 rounded-xl border-t-4 border-t-gold-500 h-full">
+                <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-4">
+                  {t("about.missionVision.vision.title")}
+                </h3>
+                <p className="text-surface-600 dark:text-dark-400 text-sm leading-relaxed mb-6">
+                  {t("about.missionVision.vision.body")}
+                </p>
+                <ul className="space-y-3">
+                  {visionPoints.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-surface-600 dark:text-dark-400">
+                      <span className="w-[3px] h-4 bg-gold-500 flex-shrink-0 mt-0.5 rounded-full" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </Card>
+            </RevealItem>
 
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
@@ -103,21 +108,31 @@ export default function AboutPage() {
 
           <div className="grid lg:grid-cols-[380px_1fr] gap-16">
 
-            <div className="lg:sticky lg:top-28 lg:self-start">
-              <span className="section-label">{t("about.history.label")}</span>
+            <Reveal className="lg:sticky lg:top-28 lg:self-start">
+              <span className="overline mb-3">{t("about.history.label")}</span>
               <h2 className="section-heading">{t("about.history.title")}</h2>
               <p className="section-body">{t("about.history.subtitle")}</p>
-            </div>
+            </Reveal>
 
             <div className="relative">
               <div className="absolute left-[18px] top-0 bottom-0 w-px bg-surface-200 dark:bg-dark-700" />
 
-              <div className="space-y-0">
-                {timeline.map((item) => (
-                  <div key={item.year} className="flex gap-8 pb-10 last:pb-0">
+              <RevealGroup className="space-y-0">
+                {timeline.map((item, i) => (
+                  <RevealItem key={item.year} className="flex gap-8 pb-10 last:pb-0">
                     <div className="relative flex-shrink-0 mt-1">
-                      <div className="w-9 h-9 rounded-full bg-white dark:bg-dark-950 border-2 border-primary-500 flex items-center justify-center z-10 relative">
-                        <span className="text-[10px] font-bold text-primary-600 dark:text-primary-400">
+                      <div
+                        className={`w-9 h-9 rounded-full bg-white dark:bg-dark-950 border-2 flex items-center justify-center z-10 relative ${
+                          i === timeline.length - 1 ? "border-gold-500" : "border-primary-500"
+                        }`}
+                      >
+                        <span
+                          className={`text-[10px] font-bold ${
+                            i === timeline.length - 1
+                              ? "text-gold-600 dark:text-gold-400"
+                              : "text-primary-600 dark:text-primary-400"
+                          }`}
+                        >
                           {item.year.slice(2)}
                         </span>
                       </div>
@@ -133,9 +148,9 @@ export default function AboutPage() {
                         {item.desc}
                       </p>
                     </div>
-                  </div>
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             </div>
           </div>
         </div>
@@ -145,26 +160,28 @@ export default function AboutPage() {
       <section className="section-pad bg-white dark:bg-dark-900 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="max-w-xl mb-12">
-            <span className="section-label">{t("about.committee.label")}</span>
+          <Reveal className="max-w-xl mb-12">
+            <span className="overline mb-3">{t("about.committee.label")}</span>
             <h2 className="section-heading">{t("about.committee.title")}</h2>
             <p className="section-body">{t("about.committee.subtitle")}</p>
-          </div>
+          </Reveal>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          <RevealGroup className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {team.map((m) => (
-              <Card key={m.name} className="p-6 rounded-lg hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 rounded-full bg-primary-700 flex items-center justify-center mb-4">
-                  <span className="text-white font-bold text-sm">{m.initials}</span>
-                </div>
-                <p className="text-surface-900 dark:text-white font-bold text-sm leading-snug mb-1">{m.name}</p>
-                <p className="text-primary-600 dark:text-primary-400 text-xs font-semibold uppercase tracking-wide mb-1">
-                  {t(`about.committee.roles.${m.role}`)}
-                </p>
-                <p className="text-surface-400 dark:text-dark-500 text-xs">{m.district}</p>
-              </Card>
+              <RevealItem key={m.name}>
+                <Card className="p-6 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
+                  <div className="w-12 h-12 rounded-full bg-primary-700 ring-2 ring-gold-400/60 ring-offset-2 ring-offset-white dark:ring-offset-dark-900 flex items-center justify-center mb-4">
+                    <span className="text-white font-bold text-sm">{m.initials}</span>
+                  </div>
+                  <p className="text-surface-900 dark:text-white font-bold text-sm leading-snug mb-1">{m.name}</p>
+                  <p className="text-primary-600 dark:text-primary-400 text-xs font-semibold uppercase tracking-wide mb-1">
+                    {t(`about.committee.roles.${m.role}`)}
+                  </p>
+                  <p className="text-surface-400 dark:text-dark-500 text-xs">{m.district}</p>
+                </Card>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
@@ -172,36 +189,38 @@ export default function AboutPage() {
       <section className="section-pad bg-surface-50 dark:bg-dark-950 border-b border-surface-100 dark:border-dark-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="max-w-xl mb-12">
-            <span className="section-label">{t("about.districts.label")}</span>
+          <Reveal className="max-w-xl mb-12">
+            <span className="overline mb-3">{t("about.districts.label")}</span>
             <h2 className="section-heading">{t("about.districts.title")}</h2>
-          </div>
+          </Reveal>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {SUDURPASHCHIM_DISTRICTS.map((name, i) => (
-              <Card key={name} className="p-6 rounded-lg hover:shadow-md transition-shadow">
-                <p className="text-3xl font-bold text-surface-200 dark:text-dark-700 leading-none mb-3">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <h3 className="text-surface-900 dark:text-white font-bold text-base mb-1">{name}</h3>
-                <p className="text-surface-400 dark:text-dark-500 text-xs font-medium mb-2">{DISTRICT_INFO[name].hq}</p>
-                <p className="text-surface-500 dark:text-dark-400 text-sm leading-relaxed">{DISTRICT_INFO[name].knownFor}</p>
-              </Card>
+              <RevealItem key={name}>
+                <Card className="p-6 rounded-xl hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
+                  <p className="text-3xl font-bold text-surface-200 dark:text-dark-700 leading-none mb-3">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="text-surface-900 dark:text-white font-bold text-base mb-1">{name}</h3>
+                  <p className="text-surface-400 dark:text-dark-500 text-xs font-medium mb-2">{DISTRICT_INFO[name].hq}</p>
+                  <p className="text-surface-500 dark:text-dark-400 text-sm leading-relaxed">{DISTRICT_INFO[name].knownFor}</p>
+                </Card>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────────────── */}
       <section className="bg-primary-800 dark:bg-primary-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+          <Reveal className="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
             <div>
-              <span className="block text-primary-300 text-xs font-bold uppercase tracking-[0.2em] mb-4">
+              <span className="overline-light block mb-4">
                 {t("about.cta.label")}
               </span>
               <h2
-                className="text-white font-bold leading-tight mb-4"
+                className="font-serif text-white font-bold leading-tight mb-4"
                 style={{ fontSize: "clamp(1.6rem, 3.5vw, 2.5rem)", letterSpacing: "-0.02em" }}
               >
                 {t("about.cta.title")}
@@ -223,7 +242,7 @@ export default function AboutPage() {
                 <Link to="/membership">{t("about.cta.secondary")}</Link>
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

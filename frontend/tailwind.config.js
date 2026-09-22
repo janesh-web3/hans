@@ -82,6 +82,55 @@ export default {
           900: "#1f2937",
           950: "#111827",
         },
+        // ── Accent: Gold/Amber — premium badges, ratings, quote marks ─────
+        gold: {
+          50: "#fbf7ef",
+          100: "#f5ead4",
+          200: "#ecd6ac",
+          300: "#dfbc7d",
+          400: "#d4a574",
+          500: "#c9a961",
+          600: "#b08d45",
+          700: "#8f7038",
+          800: "#725a30",
+          900: "#5e4b2a",
+          DEFAULT: "#c9a961",
+          foreground: "#1a1206",
+        },
+        // ── Luxury editorial: Forest Green (deep, muted) ────────────────
+        forest: {
+          50: "#f2faf6",
+          100: "#e5f4ec",
+          200: "#cdebdc",
+          300: "#a9dac2",
+          400: "#7cc2a0",
+          500: "#52a47b",
+          600: "#3a8562",
+          700: "#2D6A4F",
+          800: "#235239",
+          900: "#1B4332",
+          950: "#0f2a1e",
+          DEFAULT: "#2D6A4F",
+          foreground: "#ffffff",
+        },
+
+        // ── Luxury editorial: River Blue (deep, muted) ──────────────────
+        river: {
+          50: "#f1f6fb",
+          100: "#e1ecf5",
+          200: "#c4d8ea",
+          300: "#9bbcdb",
+          400: "#6b99c6",
+          500: "#3f76ab",
+          600: "#2E5C8A",
+          700: "#2a5180",
+          800: "#254672",
+          900: "#1E3A5F",
+          950: "#14283f",
+          DEFAULT: "#2E5C8A",
+          foreground: "#ffffff",
+        },
+
         // Dark theme surfaces
         dark: {
           50: "#f8fafc",
@@ -106,6 +155,15 @@ export default {
         sans: ["Inter", "system-ui", "sans-serif"],
         serif: ['"Playfair Display"', "Georgia", "serif"],
       },
+      fontSize: {
+        // Luxury editorial hero scale — fluid via clamp() so it works without a plugin
+        hero: ["clamp(2.5rem, 6vw, 5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
+        "hero-lg": ["clamp(2.75rem, 7vw, 5.5rem)", { lineHeight: "1.02", letterSpacing: "-0.02em" }],
+      },
+      letterSpacing: {
+        luxury: "0.18em",
+        "luxury-lg": "0.24em",
+      },
       keyframes: {
         fadeUp: {
           from: { opacity: "0", transform: "translateY(16px)" },
@@ -114,6 +172,10 @@ export default {
         pulse: {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.4" },
+        },
+        bounceSlow: {
+          "0%, 100%": { transform: "translateY(0)", opacity: "0.8" },
+          "50%": { transform: "translateY(8px)", opacity: "1" },
         },
         "accordion-down": {
           from: { height: "0" },
@@ -127,6 +189,7 @@ export default {
       animation: {
         fadeUp: "fadeUp 0.5s ease-out forwards",
         pulse: "pulse 2s ease-in-out infinite",
+        "bounce-slow": "bounceSlow 2.2s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

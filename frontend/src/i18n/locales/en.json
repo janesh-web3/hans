@@ -8,9 +8,9 @@
       "overline": "Sudurpashchim Province · Nepal",
       "titlePrefix": "Discover the Heart of",
       "titleHighlight": "Hospitality",
-      "subtitle": "Uniting hospitality businesses across eight districts of Sudurpashchim Province — elevating tourism, upholding standards, and advocating for our members.",
-      "ctaPrimary": "View Member Hotels",
-      "ctaSecondary": "Join the Association",
+      "subtitle": "Discover a curated collection of verified hotels, resorts, and homestays across the 8 districts of Nepal's far-west.",
+      "ctaPrimary": "Explore Hotels",
+      "ctaSecondary": "Become a Member",
       "stats": {
         "hotels": "Member Hotels",
         "districts": "Districts",
@@ -28,50 +28,175 @@
           "events": "Annual Events"
         },
         "cta": "Apply for Membership"
-      }
+      },
+      "eyebrow": "Welcome to Sudurpashchim",
+      "title": "Where the Mountains Meet Unmatched Hospitality",
+      "scroll": "Scroll"
     },
     "aboutStrip": {
       "label": "About HAN Sudurpashchim",
       "titleLine1": "The Unified Voice of",
       "titleLine2": "Far-Western Hospitality",
-      "body1": "The Hotel Association of Nepal — Sudurpashchim Province is the official body representing hotels, resorts, lodges, guest houses, and homestays across all eight districts of Province No. 7.",
-      "body2": "From the wildlife-rich plains of Kailali and Kanchanpur to the high Himalayan valleys of Bajura and Bajhang, we support businesses of every size and category.",
+      "body1": "The Hotel Association of Nepal — Sudurpashchim Province is the official voice of hospitality across the far-west. We represent hotels, resorts, boutique lodges, and family homestays in all eight districts of the province.",
+      "body2": "From the wildlife-rich plains of Kailali and Kanchanpur to the high Himalayan valleys of Bajhang and Bajura, our members share one commitment: warm, dependable, and unmistakably local hospitality.",
       "cta": "Read Our Story",
       "stats": {
         "established": "Established",
         "districts": "Districts",
         "hotelTypes": "Hotel Types",
         "eventsPerYear": "Events / Year"
-      }
+      },
+      "eyebrow": "About HAN Sudurpashchim",
+      "title": "Preserving Heritage, Elevating Hospitality.",
+      "body3": "We set the standards, we train the teams, and we carry our members' concerns to provincial and federal government — so that every guest who travels here leaves with a story worth retelling.",
+      "badge": "Est. 1998",
+      "badgeSub": "Serving the far-west"
     },
     "services": {
       "label": "Our Services",
       "title": "What We Do",
       "subtitle": "From setting quality standards to advocating for favourable policy — we work every day to strengthen hospitality across Province No. 7.",
       "items": [
-        { "title": "Quality Assurance", "desc": "Setting and enforcing hospitality standards across all member hotels in Province No. 7." },
-        { "title": "Tourism Promotion", "desc": "Promoting Sudurpashchim as a premier destination for domestic and international travellers." },
-        { "title": "Member Support", "desc": "Training, legal guidance, and business support for every registered member establishment." },
-        { "title": "Advocacy & Policy", "desc": "Representing hospitality businesses before provincial and federal government bodies." }
+        {
+          "title": "Quality Assurance",
+          "desc": "Setting and enforcing hospitality standards across all member hotels in Province No. 7."
+        },
+        {
+          "title": "Tourism Promotion",
+          "desc": "Promoting Sudurpashchim as a premier destination for domestic and international travellers."
+        },
+        {
+          "title": "Member Support",
+          "desc": "Training, legal guidance, and business support for every registered member establishment."
+        },
+        {
+          "title": "Advocacy & Policy",
+          "desc": "Representing hospitality businesses before provincial and federal government bodies."
+        }
       ]
     },
     "featured": {
       "label": "Member Spotlight",
-      "title": "Featured Member Hotels",
-      "viewAll": "View all members"
+      "title": "Featured Member Properties",
+      "viewAll": "View all properties",
+      "eyebrow": "Curated Stays",
+      "verified": "HAN Verified",
+      "details": "Details",
+      "empty": "Member properties are being added. Please check back shortly.",
+      "errorTitle": "Couldn't load featured properties",
+      "errorBody": "Please refresh the page to try again."
     },
     "whyVisit": {
       "label": "Destinations",
-      "title": "Why Visit Sudurpashchim?",
+      "title": "Three Reasons to Travel Far West",
       "subtitle": "The province offers some of Nepal's most diverse natural and cultural attractions — from high Himalayan routes to protected wildlife reserves.",
       "highlights": [
-        { "name": "Shuklaphanta National Park", "district": "Kanchanpur", "desc": "One of Nepal's largest open grasslands, home to endangered wildlife." },
-        { "name": "Badimalika Temple", "district": "Bajura", "desc": "A revered Shakti Peetha and major pilgrimage site set in the high hills." },
-        { "name": "Khaptad National Park", "district": "Bajhang", "desc": "Alpine plateau of meadows and forest — sacred to pilgrims and trekkers alike." },
-        { "name": "Mahakali River", "district": "Kanchanpur", "desc": "Pristine border river ideal for rafting and nature exploration." },
-        { "name": "Ramaroshan Lakes", "district": "Achham", "desc": "Sacred lake cluster in lush forests, perfect for spiritual tourism." },
-        { "name": "Ugratara Temple", "district": "Kailali", "desc": "Historic temple and key cultural heritage of the far-western region." }
+        {
+          "name": "Shuklaphanta National Park",
+          "district": "Kanchanpur",
+          "desc": "One of Nepal's largest open grasslands, home to endangered wildlife."
+        },
+        {
+          "name": "Badimalika Temple",
+          "district": "Bajura",
+          "desc": "A revered Shakti Peetha and major pilgrimage site set in the high hills."
+        },
+        {
+          "name": "Khaptad National Park",
+          "district": "Bajhang",
+          "desc": "Alpine plateau of meadows and forest — sacred to pilgrims and trekkers alike."
+        },
+        {
+          "name": "Mahakali River",
+          "district": "Kanchanpur",
+          "desc": "Pristine border river ideal for rafting and nature exploration."
+        },
+        {
+          "name": "Ramaroshan Lakes",
+          "district": "Achham",
+          "desc": "Sacred lake cluster in lush forests, perfect for spiritual tourism."
+        },
+        {
+          "name": "Ugratara Temple",
+          "district": "Kailali",
+          "desc": "Historic temple and key cultural heritage of the far-western region."
+        }
+      ],
+      "eyebrow": "Why Sudurpashchim",
+      "items": [
+        {
+          "eyebrow": "Untouched Nature",
+          "title": "Landscapes Few Travellers Have Seen",
+          "body": "Sudurpashchim holds some of Nepal's last genuinely quiet wilderness — alpine meadows, open grassland, and Himalayan skyline, all without the crowds of the central trekking routes.",
+          "points": [
+            "Khaptad National Park, a sacred plateau of rolling meadows",
+            "Shuklaphanta National Park, grassland home of the swamp deer",
+            "Api Nampa Conservation Area, the far-west Himalaya up close"
+          ]
+        },
+        {
+          "eyebrow": "Rich Culture",
+          "title": "Living Tharu and Himalayan Heritage",
+          "body": "The province is home to Tharu communities of the Terai and hill cultures of the high districts, each with distinct festivals, craft, and cuisine that visitors are genuinely welcomed into.",
+          "points": [
+            "Tharu stick dance, cuisine, and village homestays",
+            "Badimalika and Tripurasundari pilgrimage traditions",
+            "Deuda song and dance performed across the hill districts"
+          ]
+        },
+        {
+          "eyebrow": "Seamless Travel",
+          "title": "Easier to Reach Than You Think",
+          "body": "Daily flights into Dhangadhi, an improving highway network, and a directory of verified member properties make planning a far-west trip straightforward from start to finish.",
+          "points": [
+            "Direct flights from Kathmandu to Dhangadhi",
+            "Verified hotels in every one of the eight districts",
+            "One association to contact for trip planning support"
+          ]
+        }
       ]
+    },
+    "stats": {
+      "hotels": "Member Hotels",
+      "districts": "Districts Covered",
+      "rooms": "Rooms Available",
+      "years": "Years of Service"
+    },
+    "districts": {
+      "label": "Explore Sudurpashchim",
+      "title": "8 Districts, Infinite Experiences",
+      "subtitle": "Every district in Sudurpashchim carries its own landscape, cuisine, and welcome. Choose where your journey begins.",
+      "eyebrow": "Explore the Province",
+      "propertiesLabel": "Member properties"
+    },
+    "testimonials": {
+      "label": "Testimonials",
+      "title": "In Their Words",
+      "items": [
+        {
+          "quote": "Being a HAN Sudurpashchim member gave our lodge real credibility. The training programmes alone were worth joining for.",
+          "name": "Rajendra K.",
+          "role": "Hotel Owner, Dhangadhi"
+        },
+        {
+          "quote": "We travelled from Kathmandu to Khaptad and every member hotel along the way felt genuinely welcoming and well run.",
+          "name": "Sabina T.",
+          "role": "Guest, Domestic Traveller"
+        },
+        {
+          "quote": "The association's advocacy work has made a real difference for small homestays like ours in Bajura.",
+          "name": "Dipendra B.",
+          "role": "Homestay Owner, Bajura"
+        },
+        {
+          "quote": "Professional, warm, and rooted in local culture — Sudurpashchim exceeded every expectation we had.",
+          "name": "Marco R.",
+          "role": "Guest, International Traveller"
+        }
+      ],
+      "eyebrow": "Testimonials",
+      "prev": "Previous testimonial",
+      "next": "Next testimonial"
     },
     "cta": {
       "label": "Membership",
@@ -79,6 +204,35 @@
       "body": "Register your hotel with HAN Sudurpashchim and benefit from collective advocacy, training programmes, and provincial tourism promotion.",
       "primary": "Apply for Membership",
       "secondary": "Learn More"
+    },
+    "statsBand": {
+      "hotels": "Verified Hotels",
+      "districts": "Districts Covered",
+      "years": "Years of Service",
+      "guests": "Guests Hosted"
+    },
+    "whatWeDo": {
+      "eyebrow": "Our Mandate",
+      "title": "What We Do",
+      "items": [
+        {
+          "title": "Advocacy & Support",
+          "desc": "Empowering local hoteliers with resources, training, and direct government liaison on the policies that shape their business."
+        },
+        {
+          "title": "Quality Assurance",
+          "desc": "Rigorous verification of every member property, so guests arrive knowing exactly the standard of stay awaiting them."
+        },
+        {
+          "title": "Sustainable Tourism",
+          "desc": "Promoting eco-friendly practices that protect Sudurpashchim's forests, rivers, and mountain communities for generations to come."
+        }
+      ]
+    },
+    "joinCta": {
+      "title": "Elevate Your Hospitality Business",
+      "subtitle": "Join a network of 150+ verified properties. Gain visibility, resources, and a unified voice for Sudurpashchim's tourism.",
+      "button": "Apply for Membership"
     }
   },
   "about": {
@@ -116,13 +270,41 @@
       "title": "History & Milestones",
       "subtitle": "Over two decades of serving the hospitality industry of far-western Nepal — growing from five founding hotels to a province-wide network.",
       "timeline": [
-        { "year": "1998", "event": "Association Founded", "desc": "Established in Dhangadhi with 5 founding member hotels." },
-        { "year": "2002", "event": "Provincial Expansion", "desc": "Membership expanded to all seven districts of the Far-Western Development Region." },
-        { "year": "2008", "event": "Tourism Promotion", "desc": "Launched first regional campaign highlighting Shuklaphanta and the Kailash route." },
-        { "year": "2015", "event": "Standards Framework", "desc": "Introduced hotel classification and quality standards for member establishments." },
-        { "year": "2018", "event": "Province Restructuring", "desc": "Re-registered as HAN Sudurpashchim Province (Province No. 7) after federal restructuring." },
-        { "year": "2022", "event": "Digital Initiative", "desc": "Launched digital platform to improve member visibility and booking capabilities." },
-        { "year": "2024", "event": "Growing Strong", "desc": "Membership surpassed 15 registered hotels with ongoing expansion plans." }
+        {
+          "year": "1998",
+          "event": "Association Founded",
+          "desc": "Established in Dhangadhi with 5 founding member hotels."
+        },
+        {
+          "year": "2002",
+          "event": "Provincial Expansion",
+          "desc": "Membership expanded to all seven districts of the Far-Western Development Region."
+        },
+        {
+          "year": "2008",
+          "event": "Tourism Promotion",
+          "desc": "Launched first regional campaign highlighting Shuklaphanta and the Kailash route."
+        },
+        {
+          "year": "2015",
+          "event": "Standards Framework",
+          "desc": "Introduced hotel classification and quality standards for member establishments."
+        },
+        {
+          "year": "2018",
+          "event": "Province Restructuring",
+          "desc": "Re-registered as HAN Sudurpashchim Province (Province No. 7) after federal restructuring."
+        },
+        {
+          "year": "2022",
+          "event": "Digital Initiative",
+          "desc": "Launched digital platform to improve member visibility and booking capabilities."
+        },
+        {
+          "year": "2024",
+          "event": "Growing Strong",
+          "desc": "Membership surpassed 15 registered hotels with ongoing expansion plans."
+        }
       ]
     },
     "committee": {
@@ -157,10 +339,22 @@
       "subtitle": "Have a question, want to join our association, or need support? Our team is ready to help."
     },
     "info": {
-      "address": { "title": "Office Address", "line1": "Dhangadhi-4, Kailali", "line2": "Sudurpashchim Province, Nepal" },
-      "phone": { "title": "Phone" },
-      "email": { "title": "Email" },
-      "hours": { "title": "Office Hours", "line1": "Sun–Fri: 9:00 AM – 5:00 PM", "line2": "Saturday & Holidays: Closed" }
+      "address": {
+        "title": "Office Address",
+        "line1": "Dhangadhi-4, Kailali",
+        "line2": "Sudurpashchim Province, Nepal"
+      },
+      "phone": {
+        "title": "Phone"
+      },
+      "email": {
+        "title": "Email"
+      },
+      "hours": {
+        "title": "Office Hours",
+        "line1": "Sun–Fri: 9:00 AM – 5:00 PM",
+        "line2": "Saturday & Holidays: Closed"
+      }
     },
     "form": {
       "label": "Send a Message",

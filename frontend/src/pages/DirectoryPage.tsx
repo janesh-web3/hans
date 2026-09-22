@@ -6,6 +6,7 @@ import HotelCard from "@/components/HotelCard";
 import DirectoryFilters from "@/components/DirectoryFilters";
 import PageHero from "@/components/PageHero";
 import ProvinceMap from "@/components/ProvinceMap";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -132,18 +133,18 @@ export default function DirectoryPage() {
             {/* Search + view toggle + mobile filter trigger */}
             <div className="flex flex-wrap gap-2 mb-6">
               <div className="relative flex-1 min-w-[200px]">
-                <MdSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-surface-400 dark:text-dark-500" size={17} />
+                <MdSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-surface-400 dark:text-dark-500" size={18} />
                 <input
                   type="text"
                   placeholder="Search by name or district…"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  className="input pl-10 pr-8 py-2.5 text-sm"
+                  className="input pl-11 pr-9 py-3 text-sm rounded-xl"
                 />
                 {search && (
                   <button
                     onClick={() => setSearch("")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-surface-400 hover:text-surface-700 dark:text-dark-500 dark:hover:text-white"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-surface-400 hover:text-surface-700 dark:text-dark-500 dark:hover:text-white"
                   >
                     <MdClose size={14} />
                   </button>
@@ -232,11 +233,13 @@ export default function DirectoryPage() {
 
                 {filtered.length > 0 ? (
                   view === "grid" ? (
-                    <div className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    <RevealGroup className="grid sm:grid-cols-2 xl:grid-cols-3 gap-6">
                       {filtered.map((hotel) => (
-                        <HotelCard key={hotel._id} hotel={hotel} />
+                        <RevealItem key={hotel._id}>
+                          <HotelCard hotel={hotel} />
+                        </RevealItem>
                       ))}
-                    </div>
+                    </RevealGroup>
                   ) : (
                     <ProvinceMap hotels={filtered} />
                   )
@@ -281,8 +284,9 @@ export default function DirectoryPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
+              <span className="overline-light block mb-3">Membership</span>
               <h2
-                className="text-white font-bold leading-tight mb-3"
+                className="font-serif text-white font-bold leading-tight mb-3"
                 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "-0.02em" }}
               >
                 Is Your Hotel Not Listed?

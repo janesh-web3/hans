@@ -5,6 +5,7 @@ import { FiFacebook, FiInstagram } from "react-icons/fi";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
 
 interface ContactForm {
@@ -89,26 +90,28 @@ export default function ContactPage() {
       {/* ── Info cards ───────────────────────────────────────────────────── */}
       <section className="border-b border-surface-100 dark:border-dark-800 bg-white dark:bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {INFO.map((c) => (
-              <Card key={c.key} className="p-8 rounded-lg border-t-4 border-t-primary-600">
-                <c.Icon className="text-primary-600 dark:text-primary-400 mb-4" size={24} />
-                <h3 className="text-surface-900 dark:text-white font-bold text-sm mb-3">{c.title}</h3>
-                <div className="space-y-1.5">
-                  {c.lines.map((line, i) =>
-                    c.link && i === 0 ? (
-                      <a key={line} href={c.link}
-                        className="block text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
-                        {line}
-                      </a>
-                    ) : (
-                      <p key={line} className="text-sm text-surface-500 dark:text-dark-400">{line}</p>
-                    )
-                  )}
-                </div>
-              </Card>
+              <RevealItem key={c.key}>
+                <Card className="p-8 rounded-xl border-t-4 border-t-primary-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
+                  <c.Icon className="text-primary-600 dark:text-primary-400 mb-4" size={24} />
+                  <h3 className="text-surface-900 dark:text-white font-bold text-sm mb-3">{c.title}</h3>
+                  <div className="space-y-1.5">
+                    {c.lines.map((line, i) =>
+                      c.link && i === 0 ? (
+                        <a key={line} href={c.link}
+                          className="block text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+                          {line}
+                        </a>
+                      ) : (
+                        <p key={line} className="text-sm text-surface-500 dark:text-dark-400">{line}</p>
+                      )
+                    )}
+                  </div>
+                </Card>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
 
@@ -118,12 +121,12 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-[1fr_380px] gap-12 lg:gap-20">
 
             {/* ── Form ─────────────────────────────────────────────────── */}
-            <div>
-              <span className="section-label">{t("contact.form.label")}</span>
+            <Reveal>
+              <span className="overline mb-3">{t("contact.form.label")}</span>
               <h2 className="section-heading">{t("contact.form.title")}</h2>
 
               {submitted ? (
-                <Card className="rounded-lg p-12 text-center">
+                <Card className="rounded-xl p-12 text-center border-t-4 border-t-gold-500">
                   <MdCheckCircle className="text-primary-500 mx-auto mb-5" size={48} />
                   <h3 className="text-surface-900 dark:text-white font-bold text-xl mb-2">{t("contact.form.sentTitle")}</h3>
                   <p className="text-surface-500 dark:text-dark-400 text-sm mb-8">{t("contact.form.sentBody")}</p>
@@ -132,7 +135,7 @@ export default function ContactPage() {
                   </Button>
                 </Card>
               ) : (
-                <Card className="rounded-lg p-8">
+                <Card className="rounded-xl p-8">
                   <form onSubmit={onSubmit} noValidate className="space-y-5">
 
                     <div className="grid sm:grid-cols-2 gap-5">
@@ -208,13 +211,13 @@ export default function ContactPage() {
                   </form>
                 </Card>
               )}
-            </div>
+            </Reveal>
 
             {/* ── Side panel ───────────────────────────────────────────── */}
-            <div className="space-y-6">
+            <Reveal delay={0.1} className="space-y-6">
 
               {/* Membership benefits */}
-              <Card className="rounded-lg overflow-hidden border-t-4 border-t-primary-600 py-0">
+              <Card className="rounded-xl overflow-hidden border-t-4 border-t-gold-500 py-0">
                 <div className="flex items-center gap-3 px-6 py-5 border-b border-surface-100 dark:border-dark-800">
                   <img src="/logo.png" alt="HAN" className="h-9 w-auto object-contain" />
                   <h3 className="text-surface-900 dark:text-white font-bold text-sm">{t("contact.benefits.title")}</h3>
@@ -230,7 +233,7 @@ export default function ContactPage() {
               </Card>
 
               {/* Map placeholder */}
-              <Card className="rounded-lg overflow-hidden py-0">
+              <Card className="rounded-xl overflow-hidden py-0">
                 <div className="bg-surface-100 dark:bg-dark-800 h-44 flex flex-col items-center justify-center text-center px-6">
                   <MdLocationOn className="text-primary-600 mb-2" size={32} />
                   <p className="text-surface-800 dark:text-white font-bold text-sm">{t("contact.map.title")}</p>
@@ -246,7 +249,7 @@ export default function ContactPage() {
               </Card>
 
               {/* Social */}
-              <Card className="rounded-lg px-6 py-5">
+              <Card className="rounded-xl px-6 py-5">
                 <h3 className="text-surface-900 dark:text-white font-bold text-sm mb-4">{t("contact.social.title")}</h3>
                 <div className="flex gap-3">
                   {[
@@ -261,7 +264,7 @@ export default function ContactPage() {
                   ))}
                 </div>
               </Card>
-            </div>
+            </Reveal>
 
           </div>
         </div>

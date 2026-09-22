@@ -161,6 +161,20 @@
     @apply border-l-4 border-primary-600 pl-5 rounded-r-lg;
   }
 
+  /* Wide-tracked uppercase eyebrow label, luxury-editorial style */
+  .overline {
+    @apply inline-block text-[11px] font-bold uppercase tracking-luxury text-primary-700 dark:text-primary-400;
+  }
+  .overline-light {
+    @apply inline-block text-[11px] font-bold uppercase tracking-luxury text-white/70;
+  }
+
+  /* Gold pill badge — premium accents, ratings, "verified" markers */
+  .badge-gold {
+    @apply inline-flex items-center gap-1 rounded-full bg-gold-500 text-gold-foreground
+           text-[11px] font-bold uppercase tracking-wide px-3 py-1;
+  }
+
   /* Horizontal rule between sections */
   .divider {
     @apply border-t border-surface-200;
@@ -203,6 +217,12 @@
 }
 
 @layer utilities {
+  /* Decorative oversized serif quotation mark for testimonials */
+  .quote-mark {
+    @apply font-serif text-gold-400/40 leading-none select-none;
+    font-size: 6rem;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;

@@ -56,7 +56,7 @@ export default function HotelDetailPage() {
         {hotel && (
           <>
             {/* ── Gallery ──────────────────────────────────────────────── */}
-            <div className="relative h-72 sm:h-96 rounded-xl overflow-hidden bg-surface-100 dark:bg-dark-800 mb-6">
+            <div className="relative h-80 sm:h-[28rem] rounded-xl overflow-hidden bg-surface-100 dark:bg-dark-800 mb-6">
               {images.length > 0 ? (
                 <>
                   <img
@@ -99,7 +99,8 @@ export default function HotelDetailPage() {
                   <span className="text-surface-400 dark:text-dark-600 text-sm">No photos available</span>
                 </div>
               )}
-              <Badge className="absolute top-4 left-4 bg-primary-700 hover:bg-primary-700 rounded-full px-3 py-1 text-[11px] uppercase tracking-widest">
+              <span className="badge-gold absolute top-4 left-4 shadow-sm">Verified Member</span>
+              <Badge className="absolute top-4 right-4 bg-black/50 hover:bg-black/50 backdrop-blur-sm rounded-full px-3 py-1 text-[11px] uppercase tracking-widest">
                 {hotel.category}
               </Badge>
             </div>
@@ -108,7 +109,7 @@ export default function HotelDetailPage() {
 
               {/* ── Main content ─────────────────────────────────────── */}
               <div>
-                <h1 className="font-serif text-2xl sm:text-3xl font-bold text-surface-900 dark:text-white mb-2">
+                <h1 className="font-serif text-3xl sm:text-4xl font-bold text-surface-900 dark:text-white mb-2 tracking-tight">
                   {hotel.name}
                 </h1>
                 <p className="flex items-center gap-1.5 text-surface-500 dark:text-dark-400 text-sm mb-6">
@@ -142,7 +143,7 @@ export default function HotelDetailPage() {
 
               {/* ── Contact card ─────────────────────────────────────── */}
               <div>
-                <Card className="rounded-xl overflow-hidden sticky top-24">
+                <Card className="rounded-xl overflow-hidden border-t-4 border-t-gold-500 shadow-lg sticky top-24">
                   <div className="bg-primary-800 px-6 py-4">
                     <p className="text-white font-bold text-sm">Contact Details</p>
                   </div>
