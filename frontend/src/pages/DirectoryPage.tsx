@@ -169,7 +169,7 @@ export default function DirectoryPage() {
                   <Button variant="outline" className="lg:hidden flex-shrink-0 relative">
                     <FiFilter size={15} /> Filters
                     {activeFilterCount > 0 && (
-                      <span className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 rounded-full bg-primary-700 text-white text-[10px] font-bold flex items-center justify-center">
+                      <span className="absolute -top-1.5 -right-1.5 w-4.5 h-4.5 rounded-full bg-accent text-accent-foreground text-[10px] font-bold flex items-center justify-center">
                         {activeFilterCount}
                       </span>
                     )}
@@ -225,7 +225,7 @@ export default function DirectoryPage() {
                   <strong className="text-foreground">{pagination?.total ?? 0}</strong>
                   {" "}hotels
                   {hasActiveFilters && (
-                    <button onClick={clearFilters} className="ml-4 text-primary-600 dark:text-primary-400 hover:underline text-xs font-semibold">
+                    <button onClick={clearFilters} className="ml-4 text-accent hover:underline text-xs font-semibold">
                       Clear filters
                     </button>
                   )}
@@ -280,22 +280,22 @@ export default function DirectoryPage() {
       </div>
 
       {/* ── Join CTA ─────────────────────────────────────────────────────── */}
-      <section className="bg-primary-800 dark:bg-primary-900">
+      <section className="border-y border-border bg-background-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
-              <span className="overline-light block mb-3">Membership</span>
+              <span className="overline block mb-3">Membership</span>
               <h2
-                className="font-serif text-white font-bold leading-tight mb-3"
+                className="font-serif text-foreground font-bold leading-tight mb-3"
                 style={{ fontSize: "clamp(1.4rem, 3vw, 2.2rem)", letterSpacing: "-0.02em" }}
               >
                 Is Your Hotel Not Listed?
               </h2>
-              <p className="text-white/70 text-base max-w-xl">
+              <p className="text-foreground-secondary text-base max-w-xl">
                 Register with HAN Sudurpashchim and gain visibility, training access, and membership benefits across Province No. 7.
               </p>
             </div>
-            <Button asChild size="lg" className="bg-white text-primary-700 hover:bg-primary-50 flex-shrink-0">
+            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent-vivid flex-shrink-0">
               <Link to="/contact">
                 Apply for Membership <FiArrowRight size={14} />
               </Link>

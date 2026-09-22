@@ -47,7 +47,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
       <div className="flex flex-col flex-1 p-6">
 
         {/* Name + district */}
-        <h3 className="text-foreground font-bold text-base leading-snug mb-1.5 line-clamp-2 group-hover:text-primary-700 dark:group-hover:text-primary-400 transition-colors">
+        <h3 className="text-foreground font-bold text-base leading-snug mb-1.5 line-clamp-2 group-hover:text-accent dark:group-hover:text-accent transition-colors">
           {hotel.name}
         </h3>
         <p className="flex items-center gap-1.5 text-foreground-muted text-xs font-medium mb-3">
@@ -65,7 +65,7 @@ export default function HotelCard({ hotel }: HotelCardProps) {
           <p className="text-foreground-muted text-xs truncate">
             {hotel.contactInfo.address}
           </p>
-          <span className="text-primary-600 dark:text-primary-400 text-xs font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-4px] transition-all flex-shrink-0 ml-2">
+          <span className="text-accent text-xs font-bold flex items-center gap-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 translate-x-[-4px] transition-all flex-shrink-0 ml-2">
             View details <FiArrowUpRight size={12} />
           </span>
         </div>

@@ -94,13 +94,13 @@ export default function ContactPage() {
             {INFO.map((c) => (
               <RevealItem key={c.key}>
                 <Card className="p-8 rounded-xl border-t-4 border-t-primary-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full">
-                  <c.Icon className="text-primary-600 dark:text-primary-400 mb-4" size={24} />
+                  <c.Icon className="text-accent mb-4" size={24} />
                   <h3 className="text-foreground font-bold text-sm mb-3">{c.title}</h3>
                   <div className="space-y-1.5">
                     {c.lines.map((line, i) =>
                       c.link && i === 0 ? (
                         <a key={line} href={c.link}
-                          className="block text-sm font-semibold text-primary-600 dark:text-primary-400 hover:underline">
+                          className="block text-sm font-semibold text-accent hover:underline">
                           {line}
                         </a>
                       ) : (
@@ -127,7 +127,7 @@ export default function ContactPage() {
 
               {submitted ? (
                 <Card className="rounded-xl p-12 text-center border-t-4 border-t-river-500">
-                  <MdCheckCircle className="text-primary-500 mx-auto mb-5" size={48} />
+                  <MdCheckCircle className="text-accent mx-auto mb-5" size={48} />
                   <h3 className="text-foreground font-bold text-xl mb-2">{t("contact.form.sentTitle")}</h3>
                   <p className="text-foreground-muted text-sm mb-8">{t("contact.form.sentBody")}</p>
                   <Button onClick={() => { setForm(blank); setErrors({}); setSubmitted(false); }}>
@@ -225,7 +225,7 @@ export default function ContactPage() {
                 <ul className="p-6 space-y-3">
                   {(t("contact.benefits.items", { returnObjects: true }) as string[]).map((b) => (
                     <li key={b} className="flex items-start gap-3 text-sm text-foreground-secondary">
-                      <span className="w-[3px] h-4 bg-primary-500 flex-shrink-0 mt-0.5 rounded-full" />
+                      <span className="w-[3px] h-4 bg-accent flex-shrink-0 mt-0.5 rounded-full" />
                       {b}
                     </li>
                   ))}
@@ -235,13 +235,13 @@ export default function ContactPage() {
               {/* Map placeholder */}
               <Card className="rounded-xl overflow-hidden py-0">
                 <div className="bg-muted h-44 flex flex-col items-center justify-center text-center px-6">
-                  <MdLocationOn className="text-primary-600 mb-2" size={32} />
+                  <MdLocationOn className="text-accent mb-2" size={32} />
                   <p className="text-foreground font-bold text-sm">{t("contact.map.title")}</p>
                   <p className="text-foreground-muted text-xs mt-1">{t("contact.map.subtitle")}</p>
                   <a
                     href="https://maps.google.com/?q=Dhangadhi,Kailali,Nepal"
                     target="_blank" rel="noopener noreferrer"
-                    className="mt-3 text-primary-600 dark:text-primary-400 hover:underline text-xs font-semibold"
+                    className="mt-3 text-accent hover:underline text-xs font-semibold"
                   >
                     {t("contact.map.link")} →
                   </a>

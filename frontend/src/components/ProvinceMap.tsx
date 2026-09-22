@@ -57,7 +57,7 @@ export default function ProvinceMap({ hotels, className = "h-[560px]" }: Provinc
                 </p>
                 <Link
                   to={`/hotel/${hotel._id}`}
-                  className="text-primary-700 text-xs font-semibold hover:underline"
+                  className="text-accent text-xs font-semibold hover:underline"
                 >
                   View Details →
                 </Link>

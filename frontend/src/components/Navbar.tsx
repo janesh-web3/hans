@@ -71,18 +71,18 @@ export default function Navbar() {
     <header className={`sticky top-0 z-50 transition-shadow duration-200 ${scrolled ? "shadow-md" : ""}`}>
 
       {/* ── Utility bar ─────────────────────────────────────────────────── */}
-      <div className="bg-primary-800 dark:bg-primary-900 text-white">
+      <div className="border-b border-border bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
-          <span className="text-[11px] font-medium tracking-wide text-white/80">
+          <span className="text-[11px] font-medium tracking-wide text-foreground-secondary">
             Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
           </span>
           <div className="hidden sm:flex items-center gap-5">
             <a href="tel:+977091521000"
-               className="flex items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors">
+               className="flex items-center gap-1.5 text-[11px] text-foreground-secondary hover:text-accent transition-colors">
               <FiPhone size={11} /> +977-091-521000
             </a>
             <a href="mailto:info@hansudurpashchim.org.np"
-               className="flex items-center gap-1.5 text-[11px] text-white/80 hover:text-white transition-colors">
+               className="flex items-center gap-1.5 text-[11px] text-foreground-secondary hover:text-accent transition-colors">
               <FiMail size={11} /> info@hansudurpashchim.org.np
             </a>
           </div>
@@ -90,7 +90,7 @@ export default function Navbar() {
       </div>
 
       {/* ── Main nav bar ─────────────────────────────────────────────────── */}
-      <div className="bg-background-card border-b-2 border-primary-700">
+      <div className="bg-background border-b border-border">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16 gap-8">
 
@@ -116,8 +116,8 @@ export default function Navbar() {
                     `relative flex items-center h-full px-4 text-sm font-semibold transition-colors duration-150
                      after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
                      ${isActive
-                       ? "text-primary-700 dark:text-primary-400 after:bg-primary-700"
-                       : "text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200 dark:hover:after:bg-primary-900"
+                       ? "text-accent after:bg-accent"
+                       : "text-foreground-secondary hover:text-accent after:bg-transparent hover:after:bg-border-strong"
                      }`
                   }
                 >
@@ -136,8 +136,8 @@ export default function Navbar() {
                   className={`relative flex items-center gap-1.5 h-full px-4 text-sm font-semibold transition-colors duration-150
                     after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:transition-colors
                     ${megaOpen
-                      ? "text-primary-700 dark:text-primary-400 after:bg-primary-700"
-                      : "text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 after:bg-transparent hover:after:bg-primary-200"
+                      ? "text-accent after:bg-accent"
+                      : "text-foreground-secondary hover:text-accent after:bg-transparent hover:after:bg-border-strong"
                     }`}
                 >
                   Member Hotels
@@ -159,14 +159,14 @@ export default function Navbar() {
                         rounded-xl shadow-xl overflow-hidden"
                     >
                       {/* Dropdown header */}
-                      <div className="bg-primary-700 px-6 py-4 flex items-center justify-between">
+                      <div className="border-b border-border bg-muted px-6 py-4 flex items-center justify-between">
                         <div>
-                          <p className="text-white font-bold text-sm">Member Hotels Directory</p>
-                          <p className="text-white/70 text-xs mt-0.5">All 8 districts · Province No. 7</p>
+                          <p className="text-foreground font-bold text-sm">Member Hotels Directory</p>
+                          <p className="text-foreground-secondary text-xs mt-0.5">All 8 districts · Province No. 7</p>
                         </div>
                         <button
                           onClick={() => go("/membership")}
-                          className="flex items-center gap-1.5 bg-white text-primary-700 text-xs font-bold px-4 py-2 rounded-lg hover:bg-primary-50 transition-colors"
+                          className="flex items-center gap-1.5 bg-accent text-accent-foreground text-xs font-bold px-4 py-2 rounded-lg hover:bg-accent-vivid transition-colors"
                         >
                           View All <FiArrowRight size={11} />
                         </button>
@@ -185,8 +185,8 @@ export default function Navbar() {
                                 onClick={() => go(cat === ALL_CATEGORIES ? "/membership" : `/membership?category=${encodeURIComponent(cat)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
                                   text-foreground-secondary
-                                  hover:bg-primary-50 dark:hover:bg-primary-950/30
-                                  hover:text-primary-700 dark:hover:text-primary-400
+                                  hover:bg-muted
+                                  hover:text-accent
                                   transition-colors"
                               >
                                 {cat}
@@ -207,8 +207,8 @@ export default function Navbar() {
                                 onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
                                 className="w-full text-left px-3 py-2 text-sm rounded-md
                                   text-foreground-secondary
-                                  hover:bg-primary-50 dark:hover:bg-primary-950/30
-                                  hover:text-primary-700 dark:hover:text-primary-400
+                                  hover:bg-muted
+                                  hover:text-accent
                                   transition-colors truncate"
                               >
                                 {d}
@@ -238,7 +238,7 @@ export default function Navbar() {
               <ThemeToggle />
               <button
                 className="w-9 h-9 flex items-center justify-center rounded-lg
-                  text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400
+                  text-foreground-secondary hover:text-accent
                   transition-colors"
                 onClick={() => setMenuOpen((o) => !o)}
                 aria-label="Toggle menu"
@@ -278,8 +278,8 @@ export default function Navbar() {
                   className={({ isActive }) =>
                     `block py-3 px-4 text-sm font-semibold border-l-4 rounded-r-lg transition-colors
                      ${isActive
-                       ? "border-primary-700 text-primary-700 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/20"
-                       : "border-transparent text-foreground-secondary hover:border-primary-400 hover:text-primary-700 dark:hover:text-primary-400"
+                       ? "border-accent text-accent bg-muted"
+                       : "border-transparent text-foreground-secondary hover:border-accent hover:text-accent"
                      }`
                   }
                 >
@@ -293,7 +293,7 @@ export default function Navbar() {
                   onClick={() => setMobileSubOpen((o) => !o)}
                   className={`w-full flex items-center justify-between py-3 px-4 text-sm font-semibold rounded-r-lg transition-colors
                     ${mobileSubOpen
-                      ? "text-primary-700 dark:text-primary-400"
+                      ? "text-accent"
                       : "text-foreground-secondary"
                     }`}
                 >
@@ -313,7 +313,7 @@ export default function Navbar() {
                       <button
                         onClick={() => go("/membership")}
                         className="w-full flex items-center gap-2 px-5 py-3
-                          bg-primary-700 text-white text-sm font-semibold"
+                          bg-accent text-accent-foreground text-sm font-semibold"
                       >
                         View All Member Hotels
                         <FiArrowRight className="ml-auto" size={13} />
@@ -324,7 +324,7 @@ export default function Navbar() {
                           <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">Category</p>
                           {HOTEL_CATEGORIES.map((cat) => (
                             <button key={cat} onClick={() => go(`/membership?category=${encodeURIComponent(cat)}`)}
-                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 transition-colors">
+                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-accent transition-colors">
                               {cat}
                             </button>
                           ))}
@@ -333,7 +333,7 @@ export default function Navbar() {
                           <p className="text-[10px] font-bold text-foreground-muted uppercase tracking-widest mb-2">District</p>
                           {SUDURPASHCHIM_DISTRICTS.map((d) => (
                             <button key={d} onClick={() => go(`/membership?district=${encodeURIComponent(d)}`)}
-                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 transition-colors truncate">
+                              className="block w-full text-left py-1.5 text-sm text-foreground-secondary hover:text-accent transition-colors truncate">
                               {d}
                             </button>
                           ))}

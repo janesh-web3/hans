@@ -43,7 +43,7 @@ export default function DirectoryFilters({
         {hasActiveFilters && (
           <button
             onClick={onClear}
-            className="flex items-center gap-1 text-xs font-semibold text-primary-700 dark:text-primary-400 hover:underline"
+            className="flex items-center gap-1 text-xs font-semibold text-accent hover:underline"
           >
             <FiX size={12} /> Clear all
           </button>

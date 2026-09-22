@@ -24,7 +24,7 @@ export default function HotelDetailPage() {
 
         <Link
           to="/membership"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 dark:text-primary-400 hover:underline mb-6"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:underline mb-6"
         >
           <FiArrowLeft size={14} /> Back to Directory
         </Link>
@@ -132,7 +132,7 @@ export default function HotelDetailPage() {
                     <ul className="grid grid-cols-2 sm:grid-cols-3 gap-y-2.5 gap-x-4 mb-8">
                       {hotel.amenities.map((a) => (
                         <li key={a} className="flex items-center gap-2 text-sm text-foreground-secondary">
-                          <FiCheckCircle size={14} className="text-primary-600 dark:text-primary-400 flex-shrink-0" />
+                          <FiCheckCircle size={14} className="text-accent flex-shrink-0" />
                           {a}
                         </li>
                       ))}
@@ -144,32 +144,32 @@ export default function HotelDetailPage() {
               {/* ── Contact card ─────────────────────────────────────── */}
               <div>
                 <Card className="rounded-xl overflow-hidden border-t-4 border-t-river-500 shadow-lg sticky top-24">
-                  <div className="bg-primary-800 px-6 py-4">
-                    <p className="text-white font-bold text-sm">Contact Details</p>
+                  <div className="border-b border-border bg-muted px-6 py-4">
+                    <p className="text-foreground font-bold text-sm">Contact Details</p>
                   </div>
                   <CardContent className="p-6 space-y-4">
                     <div className="flex items-start gap-3">
-                      <FiMapPin className="text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" size={16} />
+                      <FiMapPin className="text-accent flex-shrink-0 mt-0.5" size={16} />
                       <span className="text-sm text-foreground-secondary leading-relaxed">
                         {hotel.contactInfo.address}
                       </span>
                     </div>
                     <div className="flex items-center gap-3">
-                      <FiPhone className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                      <a href={`tel:${hotel.contactInfo.phone}`} className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400">
+                      <FiPhone className="text-accent flex-shrink-0" size={16} />
+                      <a href={`tel:${hotel.contactInfo.phone}`} className="text-sm text-foreground-secondary hover:text-accent dark:hover:text-accent">
                         {hotel.contactInfo.phone}
                       </a>
                     </div>
                     <div className="flex items-center gap-3">
-                      <FiMail className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                      <a href={`mailto:${hotel.contactInfo.email}`} className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 break-all">
+                      <FiMail className="text-accent flex-shrink-0" size={16} />
+                      <a href={`mailto:${hotel.contactInfo.email}`} className="text-sm text-foreground-secondary hover:text-accent dark:hover:text-accent break-all">
                         {hotel.contactInfo.email}
                       </a>
                     </div>
                     {hotel.websiteUrl && (
                       <div className="flex items-center gap-3">
-                        <FiGlobe className="text-primary-600 dark:text-primary-400 flex-shrink-0" size={16} />
-                        <a href={hotel.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary hover:text-primary-700 dark:hover:text-primary-400 break-all">
+                        <FiGlobe className="text-accent flex-shrink-0" size={16} />
+                        <a href={hotel.websiteUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-foreground-secondary hover:text-accent dark:hover:text-accent break-all">
                           Visit Website
                         </a>
                       </div>
@@ -179,7 +179,7 @@ export default function HotelDetailPage() {
                       href={`https://maps.google.com/?q=${encodeURIComponent(`${hotel.name} ${hotel.contactInfo.address}`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-center text-xs font-semibold text-primary-700 dark:text-primary-400 hover:underline pt-2"
+                      className="block text-center text-xs font-semibold text-accent hover:underline pt-2"
                     >
                       View on Google Maps →
                     </a>
