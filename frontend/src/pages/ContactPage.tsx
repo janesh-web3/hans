@@ -89,7 +89,7 @@ export default function ContactPage() {
 
       {/* ── Info cards ───────────────────────────────────────────────────── */}
       <section className="border-b border-border bg-background-card">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <RevealGroup className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {INFO.map((c) => (
               <RevealItem key={c.key}>
@@ -117,7 +117,7 @@ export default function ContactPage() {
 
       {/* ── Form + Side panel ────────────────────────────────────────────── */}
       <section className="section-pad bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_380px] gap-12 lg:gap-20">
 
             {/* ── Form ─────────────────────────────────────────────────── */}

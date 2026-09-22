@@ -24,7 +24,7 @@ export default function OurStory() {
 
   return (
     <section className="bg-background py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-8 lg:px-12">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,45fr)_minmax(0,55fr)] lg:gap-20">
           {/* ── Left: sticky mission copy ─────────────────────────────── */}
           <motion.div

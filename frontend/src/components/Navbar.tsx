@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiMenu, FiX, FiChevronDown, FiArrowRight, FiPhone, FiMail } from "react-icons/fi";
@@ -27,9 +27,33 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   const megaWrapRef = useRef<HTMLDivElement>(null);
+  const barsRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  /**
+   * Publish the real header height as --nav-height, which `.hero-frame`
+   * subtracts from the viewport so a hero plus this header is exactly 100vh.
+   *
+   * Measured rather than hardcoded: the two bars are 36px and 64px but each
+   * carries a 1px bottom border, and the total shifts again if a bar is
+   * hidden at a breakpoint or the font renders taller. A ResizeObserver keeps
+   * it correct through every one of those.
+   */
+  useLayoutEffect(() => {
+    const el = barsRef.current;
+    if (!el) return;
+
+    const apply = () => {
+      document.documentElement.style.setProperty("--nav-height", `${el.offsetHeight}px`);
+    };
+
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -68,12 +92,21 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 transition-shadow duration-200 ${scrolled ? "shadow-md" : ""}`}>
+    <header
+      className={`sticky top-0 z-50 transition-shadow duration-200 ${scrolled ? "shadow-md" : ""}`}
+    >
+
+      {/* The measured region: the two permanent bars only. The mobile drawer
+          below is deliberately outside it, so opening the menu does not
+          change --nav-height and resize every hero on the page. */}
+      <div ref={barsRef}>
 
       {/* ── Utility bar ─────────────────────────────────────────────────── */}
       <div className="border-b border-border bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between">
-          <span className="text-[11px] font-medium tracking-wide text-foreground-secondary">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between gap-4">
+          {/* Truncates rather than wrapping — wrapping would overflow the
+              fixed 36px bar on narrow phones and throw off the header height. */}
+          <span className="min-w-0 truncate text-[11px] font-medium tracking-wide text-foreground-secondary">
             Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
           </span>
           <div className="hidden sm:flex items-center gap-5">
@@ -91,20 +124,15 @@ export default function Navbar() {
 
       {/* ── Main nav bar ─────────────────────────────────────────────────── */}
       <div className="bg-background border-b border-border">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center h-16 gap-8">
 
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
-              <img src="/logo.png" alt="HAN Sudurpashchim" className="h-10 w-auto object-contain" />
-              <div className="hidden sm:block">
-                <p className="font-bold text-foreground text-sm leading-none tracking-tight">
-                  HAN Sudurpashchim
-                </p>
-                <p className="text-[11px] text-foreground-muted mt-0.5 font-medium">
-                  Province No. 7 · Nepal
-                </p>
-              </div>
+              <img src="/logo.png" alt="HANS" className="h-10 w-auto object-contain" />
+              <span className="font-serif text-xl font-bold leading-none tracking-tight text-foreground">
+                HANS
+              </span>
             </Link>
 
             {/* Desktop links */}
@@ -260,6 +288,9 @@ export default function Navbar() {
           </div>
         </nav>
       </div>
+
+      </div>
+      {/* ── end measured region ───────────────────────────────────────────── */}
 
       {/* ── Mobile drawer ─────────────────────────────────────────────────── */}
       <AnimatePresence>

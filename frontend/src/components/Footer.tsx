@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
 import { FiFacebook, FiTwitter, FiInstagram, FiYoutube, FiArrowRight } from "react-icons/fi";
 import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 
 const SOCIAL_LINKS = [
   { Icon: FiFacebook, label: "Facebook" },
@@ -29,11 +30,11 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       {/* ── Main footer body ───────────────────────────────────────────── */}
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+        <RevealGroup className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
 
           {/* Brand column */}
-          <div className="lg:col-span-1">
+          <RevealItem className="lg:col-span-1">
             <Link to="/" className="mb-6 flex items-center gap-3">
               {/* The mark is dark artwork, so it only needs inverting on navy. */}
               <img
@@ -72,10 +73,10 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </RevealItem>
 
           {/* Quick links */}
-          <div>
+          <RevealItem>
             <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
               Quick Links
             </h4>
@@ -95,10 +96,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </RevealItem>
 
           {/* Districts */}
-          <div>
+          <RevealItem>
             <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
               Districts Covered
             </h4>
@@ -110,10 +111,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </RevealItem>
 
           {/* Contact */}
-          <div>
+          <RevealItem>
             <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
               Contact Us
             </h4>
@@ -157,14 +158,14 @@ export default function Footer() {
                 Join the Association <FiArrowRight size={11} />
               </Link>
             </div>
-          </div>
+          </RevealItem>
 
-        </div>
+        </RevealGroup>
       </div>
 
       {/* ── Bottom bar ─────────────────────────────────────────────────── */}
       <div className="border-t border-border">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-2 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
           <p className="text-xs font-medium text-foreground-muted">
             &copy; {new Date().getFullYear()} Hotel Association of Nepal — Sudurpashchim Province.
             All rights reserved.

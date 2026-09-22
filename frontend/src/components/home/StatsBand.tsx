@@ -110,7 +110,7 @@ export default function StatsBand() {
 
   return (
     <section className="border-y border-border bg-background-secondary">
-      <div ref={ref} className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div ref={ref} className="mx-auto max-w-screen-2xl px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {STATS.map((stat, i) => {
             const Icon = stat.icon;

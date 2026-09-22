@@ -28,7 +28,7 @@ export default function JoinCTA() {
       <div className="absolute inset-0 bg-ink-900/90" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
 
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-24 text-center sm:px-8 lg:px-12 lg:py-32">
+      <div className="relative z-10 mx-auto max-w-screen-2xl px-6 py-24 text-center sm:px-8 lg:px-12 lg:py-32">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

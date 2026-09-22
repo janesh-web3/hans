@@ -20,7 +20,7 @@ export default function PartnersStrip() {
 
   return (
     <section className="border-y border-border bg-background py-16">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-8 lg:px-12">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

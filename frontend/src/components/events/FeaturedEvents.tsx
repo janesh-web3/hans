@@ -150,7 +150,7 @@ export default function FeaturedEvents() {
 
   return (
     <section className="bg-background py-24 lg:py-32">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-8 lg:px-12">
         {/* ── Header ───────────────────────────────────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

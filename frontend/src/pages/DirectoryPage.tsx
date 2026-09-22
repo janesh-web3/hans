@@ -119,7 +119,7 @@ export default function DirectoryPage() {
         subtitle="A searchable directory of registered hotels, resorts, lodges, and guest houses across Sudurpashchim Province."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="lg:flex lg:gap-10 lg:items-start">
 
           {/* ── Desktop sidebar ──────────────────────────────────────────── */}
@@ -281,7 +281,7 @@ export default function DirectoryPage() {
 
       {/* ── Join CTA ─────────────────────────────────────────────────────── */}
       <section className="border-y border-border bg-background-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-16">
           <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
             <div>
               <span className="overline block mb-3">Membership</span>

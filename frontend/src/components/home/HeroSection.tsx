@@ -19,16 +19,15 @@ export default function HeroSection() {
   const title = t("home.hero.title");
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
-      {/* ── Photographic bed + editorial gradients ─────────────────────── */}
+    <section className="hero-frame relative flex items-center overflow-hidden">
+      {/* ── Photographic bed + the shared hero colour layer ────────────── */}
       <div className="absolute inset-0 z-0">
         <HeroSlider images={HOME_HERO_IMAGES} alt="Sudurpashchim Province, Nepal" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/25 to-transparent" />
+        <div className="hero-scrim absolute inset-0" />
       </div>
 
       {/* ── Content ────────────────────────────────────────────────────── */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
+      <div className="relative z-10 mx-auto w-full max-w-screen-2xl px-6 py-28 sm:px-8 lg:px-12 lg:py-36">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -63,7 +62,7 @@ export default function HeroSection() {
           >
             <Link
               to="/membership"
-              className="inline-flex items-center justify-center rounded-sm bg-ink-700 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-ink-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+              className="inline-flex items-center justify-center rounded-sm bg-accent px-8 py-4 text-sm font-medium uppercase tracking-widest text-accent-foreground transition-all duration-300 hover:bg-accent-vivid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
               {t("home.hero.ctaPrimary")}
             </Link>
