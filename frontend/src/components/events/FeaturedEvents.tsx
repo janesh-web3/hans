@@ -64,11 +64,11 @@ function EventCard({ event, language }: EventCardProps) {
           className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
-        <div className="absolute left-4 top-4 rounded-sm bg-white p-3 text-center shadow-sm">
-          <span className="block font-serif text-2xl font-bold leading-none text-foreground">
+        <div className="absolute left-4 top-4 rounded-sm bg-white  p-3 text-center shadow-sm">
+          <span className="block font-serif text-2xl font-bold leading-none text-foreground dark:text-black">
             {badge.day}
           </span>
-          <span className="mt-1 block text-xs uppercase tracking-wider text-foreground/70">
+          <span className="mt-1 block text-xs uppercase tracking-wider text-foreground/70 dark:text-black">
             {badge.month}
           </span>
         </div>

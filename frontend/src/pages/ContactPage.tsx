@@ -63,7 +63,6 @@ export default function ContactPage() {
   return (
     <div className="bg-background">
       <ContactHero />
-      <ContactInfoSplit />
 
       {/* ── Form + Side panel ────────────────────────────────────────────── */}
       <section className="section-pad bg-background">
@@ -219,6 +218,9 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      <ContactInfoSplit />
+
     </div>
   );
 }

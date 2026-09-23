@@ -35,7 +35,6 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mb-6 flex items-center justify-center gap-4"
           >
-            <span className="block h-px w-12 bg-white/70" />
             <span className="text-sm font-medium uppercase tracking-widest text-white/80">
               {t("home.hero.eyebrow")}
             </span>

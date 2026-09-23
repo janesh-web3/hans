@@ -44,7 +44,7 @@ export default function AboutCTA() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
               to="/membership"
-              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-white px-8 py-4 font-medium text-foreground transition-all duration-300 hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900"
+              className="group inline-flex items-center justify-center gap-2 rounded-sm bg-white dark:text-black px-8 py-4 font-medium text-foreground transition-all duration-300 hover:bg-surface-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900"
             >
               {t("about.aboutCta.primary")}
               <ArrowRight

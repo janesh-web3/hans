@@ -95,7 +95,6 @@ export default function PageHero({
               transition={{ duration: 0.7, ease }}
               className="mb-5 flex items-center justify-center gap-3"
             >
-              <span className="block h-[2px] w-8 bg-white/70" />
               <span className="text-xs font-bold uppercase tracking-luxury text-white/80">
                 {badge}
               </span>
