@@ -11,9 +11,9 @@ interface VisitReason {
 
 /** One photograph per reason, in the order the copy is written. */
 const IMAGES: string[] = [
-  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?w=1200&auto=format&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=1200&auto=format&fit=crop&q=80",
+  "/assets/api.jpg",
+  "/assets/khaptad.jfif",
+  "/assets/sipall.jpg",
 ];
 
 /**

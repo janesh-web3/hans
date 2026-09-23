@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import PageHero from "@/components/PageHero";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1800&auto=format&fit=crop&q=80";
+  "/district/surma.jfif";
 
 /**
  * Opening statement for the Membership page.
@@ -21,7 +21,7 @@ export default function MembershipHero() {
       badge={t("membership.hero.eyebrow")}
       title={t("membership.hero.title")}
       subtitle={t("membership.hero.subtitle")}
-      primaryCta={{ label: t("membership.hero.cta"), to: "/contact", href: "#application" }}
+      primaryCta={{ label: t("membership.hero.cta"), to: "/contact", href: "/#/contact" }}
     />
   );
 }

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const BACKGROUND =
-  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1800&auto=format&fit=crop&q=80";
+  "/assets/hero5.jpg";
 
 /**
  * Closing membership appeal.

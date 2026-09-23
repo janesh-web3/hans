@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const BACKGROUND =
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&auto=format&fit=crop&q=80";
+  "/district/surma_bhagang.jpg";
 
 /**
  * Closing invitation, addressed to hoteliers and travellers alike.

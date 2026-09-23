@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const EDITORIAL_IMAGE =
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=80";
+  "/assets/hero2.webp";
 
 /**
  * Asymmetric editorial split introducing the association.

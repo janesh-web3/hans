@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import PageHero from "@/components/PageHero";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1800&auto=format&fit=crop&q=80";
+  "/district/ramarosan.webp";
 
 /**
  * Opening statement for the Events page.

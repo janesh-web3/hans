@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 
 const STORY_IMAGES: { src: string; alt: string }[] = [
   {
-    src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=80",
+    src: "/assets/hero1.jpg",
     alt: "Member hotel interior in Sudurpashchim Province",
   },
   {
-    src: "https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?w=1400&auto=format&fit=crop&q=80",
+    src: "/assets/hero3.webp",
     alt: "Highland landscape in the far-western hills",
   },
 ];

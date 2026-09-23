@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import PageHero from "@/components/PageHero";
 
 const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1800&auto=format&fit=crop&q=80";
+  "/assets/hero7.jpg";
 
 /**
  * Opening statement for the About page.
