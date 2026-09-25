@@ -8,12 +8,11 @@ import type { ApiHotel } from "@/types/hotel";
 const SUDURPASHCHIM_CENTER: [number, number] = [28.9, 80.5];
 const DEFAULT_ZOOM = 8;
 
-// Custom ink-green pin (SVG divIcon) — avoids Leaflet's classic broken
-// default-marker-image issue under bundlers, and matches the brand color.
-const greenIcon = L.divIcon({
+// Custom sky-blue pin avoids Leaflet's default-marker asset issue in Vite.
+const hotelIcon = L.divIcon({
   className: "",
   html: `<svg width="26" height="34" viewBox="0 0 26 34" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13 0C5.82 0 0 5.82 0 13c0 9.75 13 21 13 21s13-11.25 13-21C26 5.82 20.18 0 13 0z" fill="#15803d" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M13 0C5.82 0 0 5.82 0 13c0 9.75 13 21 13 21s13-11.25 13-21C26 5.82 20.18 0 13 0z" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
     <circle cx="13" cy="13" r="4.5" fill="#ffffff"/>
   </svg>`,
   iconSize: [26, 34],
@@ -47,7 +46,7 @@ export default function ProvinceMap({ hotels, className = "h-[560px]" }: Provinc
           <Marker
             key={hotel._id}
             position={[hotel.coordinates.lat, hotel.coordinates.lng]}
-            icon={greenIcon}
+            icon={hotelIcon}
           >
             <Popup>
               <div className="min-w-[160px]">

@@ -19,7 +19,7 @@ export default function HeroSection() {
   const title = t("home.hero.title");
 
   return (
-    <section className="hero-frame relative flex items-center overflow-hidden">
+    <section className="hero-frame-home relative flex items-center overflow-hidden">
       {/* ── Photographic bed + the shared hero colour layer ────────────── */}
       <div className="absolute inset-0 z-0">
         <HeroSlider images={HOME_HERO_IMAGES} alt="Sudurpashchim Province, Nepal" />

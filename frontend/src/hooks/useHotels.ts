@@ -7,14 +7,27 @@ export interface UseHotelsParams {
   category?: string;
   page?: number;
   limit?: number;
+  allPages?: boolean;
 }
 
 export function useHotels(params: UseHotelsParams = {}) {
   return useQuery({
     queryKey: ["hotels", params],
     queryFn: async () => {
-      const { data } = await api.get<HotelsResponse>("/hotels", { params });
-      return data;
+      const { allPages, ...requestParams } = params;
+      const { data: firstPage } = await api.get<HotelsResponse>("/hotels", {
+        params: allPages ? { ...requestParams, page: 1, limit: 100 } : requestParams,
+      });
+      if (!allPages || firstPage.pagination.totalPages <= 1) return firstPage;
+
+      const pages = await Promise.all(
+        Array.from({ length: firstPage.pagination.totalPages - 1 }, (_, index) =>
+          api.get<HotelsResponse>("/hotels", {
+            params: { ...requestParams, page: index + 2, limit: 100 },
+          }).then((response) => response.data.data)
+        )
+      );
+      return { ...firstPage, data: [...firstPage.data, ...pages.flat()] };
     },
   });
 }

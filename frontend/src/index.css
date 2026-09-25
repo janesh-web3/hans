@@ -329,26 +329,49 @@
    * which is what left the page heroes mismatched. Fixed keeps every hero
    * using the same class identical.
    *
-   * The svh repeats each rule for mobile browsers, where vh counts the area
-   * behind the address bar and the hero would otherwise jump as that bar
-   * hides. min-height is the floor for very short viewports (a landscape
-   * phone), applied equally so heroes stay matched there too.
+   * The svh repeat keeps hero heights stable when mobile browser chrome
+   * expands or collapses.
    */
 
-  /* Page heroes — About, Events, Membership, Directory, Contact. Fills the
-     screen alongside the sticky header, so header + hero is exactly 100vh. */
+  /* Page heroes — About, Events, Membership, Directory, Contact. */
   .hero-frame {
-    height: calc(100vh - var(--nav-height));
-    height: calc(100svh - var(--nav-height));
-    min-height: 32rem;
-  }
-
-  /* Homepage hero only — deliberately shorter, so the page opens onto the
-     content below rather than a full screen of photography. */
-  .hero-frame-home {
     height: 70vh;
     height: 70svh;
-    min-height: 32rem;
+  }
+
+  .hero-frame:not(.hero-frame-home)::after {
+    content: "";
+    position: absolute;
+    z-index: 20;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3rem;
+    background: hsl(var(--background));
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 35 C120 5 240 5 360 35 S600 65 720 35 S960 5 1080 35 S1320 65 1440 35 V80 H0 Z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0 35 C120 5 240 5 360 35 S600 65 720 35 S960 5 1080 35 S1320 65 1440 35 V80 H0 Z'/%3E%3C/svg%3E");
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  /* Homepage hero only. */
+  .hero-frame-home {
+    height: 100vh;
+    height: 100svh;
+  }
+
+  /* Keep Leaflet's internal pane z-indexes inside the hotel map's own layer. */
+  .hotel-detail-map .leaflet-pane { z-index: 1 !important; }
+  .hotel-detail-map .leaflet-top,
+  .hotel-detail-map .leaflet-bottom { z-index: 2 !important; }
+  .hotel-detail-map .leaflet-control-container { z-index: 3 !important; }
+
+  /* Section anchors clear both the site navbar and the compact detail tabs. */
+  .hotel-detail-section {
+    scroll-margin-top: calc(var(--nav-height, 100px) + 4rem);
   }
 
   /*

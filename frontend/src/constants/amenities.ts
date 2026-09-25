@@ -12,4 +12,7 @@ export const COMMON_AMENITIES = [
   "Garden",
   "Conference Hall",
   "Room Service",
+  "Airport Pickup",
+  "Pet Friendly",
+  "Conference Hall",
 ] as const;

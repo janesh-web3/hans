@@ -36,8 +36,7 @@ export default function Navbar() {
   /**
    * Publish the real header height as --nav-height, used as the page's
    * scroll-padding so anchor targets land below this header rather than
-   * underneath it. (Heroes no longer subtract it — `.hero-frame` is a flat
-   * 70vh, which leaves room for this header inside one screen.)
+   * underneath it. Heroes use their own viewport-based heights.
    *
    * Measured rather than hardcoded: the two bars are 36px and 64px but each
    * carries a 1px bottom border, and the total shifts again if a bar is

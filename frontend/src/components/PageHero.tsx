@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { FiArrowDown, FiArrowRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import HeroSlider from "@/components/HeroSlider";
 import { HeroText } from "@/components/motion/HeroText";
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,6 @@ interface PageHeroProps {
   subtitle?: string;
   primaryCta?: HeroCta;
   secondaryCta?: HeroCta;
-  scrollIndicator?: boolean;
 }
 
 /** Shared reveal timing, so every hero animates identically. */
@@ -52,7 +51,6 @@ export default function PageHero({
   subtitle,
   primaryCta,
   secondaryCta,
-  scrollIndicator = true,
 }: PageHeroProps) {
   const slides = images && images.length > 0 ? images : image ? [image] : [];
 
@@ -158,19 +156,6 @@ export default function PageHero({
         </div>
       </motion.div>
 
-      {scrollIndicator && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 animate-bounce-slow"
-        >
-          <span className="text-[10px] font-bold uppercase tracking-luxury text-white/50">
-            Scroll
-          </span>
-          <FiArrowDown className="text-white/50" size={16} />
-        </motion.div>
-      )}
     </section>
   );
 }
