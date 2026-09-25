@@ -5,6 +5,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { pageVariants } from "@/lib/animations";
+import DeudaMusicPlayer from "@/components/DeudaMusicPlayer";
 
 export default function Layout() {
   const location = useLocation();
@@ -35,6 +36,7 @@ export default function Layout() {
           </AnimatePresence>
         </main>
         <Footer />
+        <DeudaMusicPlayer />
       </div>
     </ThemeProvider>
   );
