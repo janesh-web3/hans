@@ -6,6 +6,8 @@ import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
 import { HOTEL_CATEGORIES, ALL_CATEGORIES } from "@/constants/hotelCategories";
 import ThemeToggle from "./ThemeToggle";
 import LanguageToggle from "./LanguageToggle";
+import { CONTACT, telHref } from "@/constants/contact";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 interface NavItem {
   to: string;
@@ -32,6 +34,9 @@ export default function Navbar() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { data: siteSettings } = useSiteSettings();
+  const officePhone = siteSettings?.contact?.officePhone || CONTACT.phone.office;
+  const officialEmail = siteSettings?.contact?.generalEmail || CONTACT.email.general;
 
   /**
    * Publish the real header height as --nav-height, used as the page's
@@ -112,13 +117,13 @@ export default function Navbar() {
             Hotel Association of Nepal — Sudurpashchim Province (Province No. 7)
           </span>
           <div className="hidden sm:flex items-center gap-5">
-            <a href="tel:+977091521000"
+            <a href={telHref(officePhone)}
                className="flex items-center gap-1.5 text-[11px] text-foreground-secondary hover:text-accent transition-colors">
-              <FiPhone size={11} /> +977-091-521000
+              <FiPhone size={11} /> {officePhone}
             </a>
-            <a href="mailto:info@hansudurpashchim.org.np"
+            <a href={`mailto:${officialEmail}`}
                className="flex items-center gap-1.5 text-[11px] text-foreground-secondary hover:text-accent transition-colors">
-              <FiMail size={11} /> info@hansudurpashchim.org.np
+              <FiMail size={11} /> {officialEmail}
             </a>
           </div>
         </div>

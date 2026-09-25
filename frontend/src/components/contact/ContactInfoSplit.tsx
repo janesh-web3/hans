@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Clock, Mail, MapPin, MessageCircle, Newspaper, Phone, UserPlus } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { CONTACT, OFFICE_ADDRESS_LINES, telHref } from "@/constants/contact";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 interface CardCopy {
   title: string;
@@ -16,11 +17,11 @@ interface CardCopy {
  * files. `external` marks a mailto/tel target, which needs an anchor rather
  * than a router link.
  */
-const CARD_TARGETS: { icon: LucideIcon; href: string; external: boolean }[] = [
-  { icon: MessageCircle, href: `mailto:${CONTACT.email.general}`, external: true },
-  { icon: UserPlus, href: "/membership", external: false },
-  { icon: Newspaper, href: `mailto:${CONTACT.email.press}`, external: true },
-  { icon: Phone, href: telHref(CONTACT.phone.emergency), external: true },
+const CARD_TARGETS: { icon: LucideIcon; destination: "general" | "membership" | "press" | "join" | "emergency" }[] = [
+  { icon: MessageCircle, destination: "general" },
+  { icon: UserPlus, destination: "join" },
+  { icon: Newspaper, destination: "press" },
+  { icon: Phone, destination: "emergency" },
 ];
 
 const reveal = {
@@ -61,6 +62,15 @@ function DetailRow({
  */
 export default function ContactInfoSplit() {
   const { t } = useTranslation();
+  const { data: settings } = useSiteSettings();
+  const contact = settings?.contact;
+  const addressLines = contact?.addressLines?.filter(Boolean).length ? contact.addressLines : OFFICE_ADDRESS_LINES;
+  const officePhone = contact?.officePhone || CONTACT.phone.office;
+  const membershipPhone = contact?.membershipPhone || CONTACT.phone.membership;
+  const generalEmail = contact?.generalEmail || CONTACT.email.general;
+  const membershipEmail = contact?.membershipEmail || CONTACT.email.membership;
+  const pressEmail = contact?.pressEmail || CONTACT.email.press;
+  const emergencyPhone = contact?.emergencyPhone || CONTACT.phone.emergency;
   const cards = t("contact.infoSplit.cards", { returnObjects: true }) as CardCopy[];
 
   return (
@@ -83,7 +93,7 @@ export default function ContactInfoSplit() {
 
             <div className="space-y-8">
               <DetailRow icon={MapPin} label={t("contact.infoSplit.addressLabel")}>
-                {OFFICE_ADDRESS_LINES.map((line) => (
+                {addressLines.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
               </DetailRow>
@@ -91,19 +101,19 @@ export default function ContactInfoSplit() {
               <DetailRow icon={Phone} label={t("contact.infoSplit.phoneLabel")}>
                 <p>
                   <a
-                    href={telHref(CONTACT.phone.office)}
+                    href={telHref(officePhone)}
                     className="transition-colors hover:text-accent"
                   >
-                    {CONTACT.phone.office}
+                    {officePhone}
                   </a>
                   <span className="text-foreground-muted"> · {t("contact.infoSplit.officeLabel")}</span>
                 </p>
                 <p>
                   <a
-                    href={telHref(CONTACT.phone.membership)}
+                    href={telHref(membershipPhone)}
                     className="transition-colors hover:text-accent"
                   >
-                    {CONTACT.phone.membership}
+                    {membershipPhone}
                   </a>
                   <span className="text-foreground-muted">
                     {" "}
@@ -115,25 +125,25 @@ export default function ContactInfoSplit() {
               <DetailRow icon={Mail} label={t("contact.infoSplit.emailLabel")}>
                 <p>
                   <a
-                    href={`mailto:${CONTACT.email.general}`}
+                    href={`mailto:${generalEmail}`}
                     className="break-all transition-colors hover:text-accent"
                   >
-                    {CONTACT.email.general}
+                    {generalEmail}
                   </a>
                 </p>
                 <p>
                   <a
-                    href={`mailto:${CONTACT.email.membership}`}
+                    href={`mailto:${membershipEmail}`}
                     className="break-all transition-colors hover:text-accent"
                   >
-                    {CONTACT.email.membership}
+                    {membershipEmail}
                   </a>
                 </p>
               </DetailRow>
 
               <DetailRow icon={Clock} label={t("contact.infoSplit.hoursLabel")}>
-                <p>{t("contact.infoSplit.hoursWeekday")}</p>
-                <p>{t("contact.infoSplit.hoursWeekend")}</p>
+                <p>{contact?.officeHoursWeekday || t("contact.infoSplit.hoursWeekday")}</p>
+                <p>{contact?.officeHoursWeekend || t("contact.infoSplit.hoursWeekend")}</p>
               </DetailRow>
             </div>
           </motion.div>
@@ -141,7 +151,9 @@ export default function ContactInfoSplit() {
           {/* ── Right: the four routes in ─────────────────────────────── */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:col-span-3">
             {cards.map((card, i) => {
-              const { icon: Icon, href, external } = CARD_TARGETS[i % CARD_TARGETS.length];
+              const { icon: Icon, destination } = CARD_TARGETS[i % CARD_TARGETS.length];
+              const href = destination === "join" ? "/membership" : destination === "emergency" ? telHref(emergencyPhone) : `mailto:${destination === "press" ? pressEmail : destination === "membership" ? membershipEmail : generalEmail}`;
+              const external = destination !== "join";
 
               const body = (
                 <>

@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, Headphones, Music2, Play, X } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
-const DEUDA_VIDEOS = [
+interface DeudaVideo { id: string; title: string; artists: string }
+
+const DEUDA_VIDEOS: DeudaVideo[] = [
   {
     id: "oVr-Gh7o4WI",
     title: "Chamkeli Bauju",
@@ -28,11 +31,13 @@ const DEUDA_VIDEOS = [
     title: "Mera Gau Rahadi Bhuwa",
     artists: "Gauri Bhatta · Jaganath Nepali Bairagi",
   },
-] as const;
+];
 
 export default function DeudaMusicPlayer() {
   const [open, setOpen] = useState(false);
-  const [activeVideo, setActiveVideo] = useState<(typeof DEUDA_VIDEOS)[number] | null>(null);
+  const [activeVideo, setActiveVideo] = useState<DeudaVideo | null>(null);
+  const { data: settings } = useSiteSettings();
+  const videos = settings?.musicVideos?.length ? settings.musicVideos : DEUDA_VIDEOS;
 
   useEffect(() => {
     if (!open) return;
@@ -85,7 +90,7 @@ export default function DeudaMusicPlayer() {
 
           <div className="min-h-0 overflow-y-auto p-2">
             <p className="px-2 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-foreground-muted">Deuda videos</p>
-            {DEUDA_VIDEOS.map((video) => <button key={video.id} type="button" onClick={() => setActiveVideo(video)} className={`flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left transition ${activeVideo?.id === video.id ? "bg-sky-50 dark:bg-sky-950/40" : "hover:bg-background-secondary"}`}>
+            {videos.map((video) => <button key={video.id} type="button" onClick={() => setActiveVideo(video)} className={`flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left transition ${activeVideo?.id === video.id ? "bg-sky-50 dark:bg-sky-950/40" : "hover:bg-background-secondary"}`}>
               <span className="relative h-12 w-[68px] shrink-0 overflow-hidden rounded bg-slate-200 dark:bg-slate-800"><img src={`https://i.ytimg.com/vi/${video.id}/mqdefault.jpg`} alt="" loading="lazy" className="h-full w-full object-cover" /><span className="absolute inset-0 grid place-items-center bg-black/20 text-white"><Play size={15} fill="currentColor" /></span></span>
               <span className="min-w-0 flex-1"><span className="block truncate text-xs font-medium text-foreground">{video.title}</span><span className="mt-1 block truncate text-[10px] text-foreground-muted">{video.artists}</span></span>
               {activeVideo?.id === video.id && <span className="mr-1 h-2 w-2 shrink-0 animate-pulse rounded-full bg-sky-500" aria-label="Now playing" />}

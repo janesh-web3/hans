@@ -7,6 +7,7 @@ export interface IUser extends Document {
   email: string;
   password: string;
   role: UserRole;
+  tokenVersion: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -35,6 +36,7 @@ const userSchema = new Schema<IUser>(
       enum: ["admin"],
       default: "admin",
     },
+    tokenVersion: { type: Number, default: 0 },
   },
   { timestamps: true }
 );

@@ -15,21 +15,35 @@ declare global {
 
 interface JwtPayload {
   id: string;
+  tokenVersion?: number;
 }
 
 export const protect = asyncHandler(
   async (req: Request, _res: Response, next: NextFunction): Promise<void> => {
     let token: string | undefined;
 
-    const authHeader = req.headers.authorization;
-    if (authHeader && authHeader.startsWith("Bearer ")) {
-      token = authHeader.split(" ")[1];
-    }
+    const cookieHeader = req.headers.cookie ?? "";
+    const session = cookieHeader.split(";").map((part) => part.trim()).find((part) => part.startsWith("hans_admin_session="));
+    token = session?.slice("hans_admin_session=".length);
 
     if (!token) {
       const error: ApiError = new Error("Not authorized, no token");
       error.statusCode = 401;
       throw error;
+    }
+
+    // Reject cross-origin state changes even if a browser sends an ambient cookie.
+    if (["POST", "PUT", "PATCH", "DELETE"].includes(req.method)) {
+      const origin = req.get("origin");
+      const allowedOrigins = [
+        process.env.FRONTEND_URL ?? "http://localhost:5173",
+        process.env.ADMIN_URL ?? "http://localhost:5190",
+      ];
+      if (origin && !allowedOrigins.includes(origin)) {
+        const error: ApiError = new Error("Request origin is not allowed.");
+        error.statusCode = 403;
+        throw error;
+      }
     }
 
     let decoded: JwtPayload;
@@ -42,7 +56,7 @@ export const protect = asyncHandler(
     }
 
     const user = await User.findById(decoded.id);
-    if (!user) {
+    if (!user || (decoded.tokenVersion ?? 0) !== (user.tokenVersion ?? 0)) {
       const error: ApiError = new Error("Not authorized, user not found");
       error.statusCode = 401;
       throw error;

@@ -1,5 +1,5 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { LayoutDashboard, Building2, Newspaper, CalendarDays, LogOut } from "lucide-react";
+import { LayoutDashboard, Building2, Settings2, CalendarDays, LogOut, Inbox, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/context/AuthContext";
 
@@ -13,8 +13,10 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
   { to: "/hotels", label: "Hotels", icon: Building2 },
-  { to: "/news", label: "News", icon: Newspaper },
+  { to: "/content", label: "Site Content", icon: Settings2 },
   { to: "/events", label: "Events", icon: CalendarDays },
+  { to: "/inquiries", label: "Inquiries", icon: Inbox },
+  { to: "/security", label: "Security", icon: Shield },
 ];
 
 export default function Layout() {

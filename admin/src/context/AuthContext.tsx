@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import api from "@/lib/api";
 
 export interface AuthUser {
@@ -11,12 +11,10 @@ export interface AuthUser {
 interface LoginResponse {
   success: boolean;
   data: AuthUser;
-  token: string;
 }
 
 interface AuthContextValue {
   user: AuthUser | null;
-  token: string | null;
   isAuthenticated: boolean;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
@@ -25,47 +23,38 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
-const TOKEN_KEY = "token";
-const USER_KEY = "user";
-
-function readStoredUser(): AuthUser | null {
-  const raw = localStorage.getItem(USER_KEY);
-  if (!raw) return null;
-  try {
-    return JSON.parse(raw) as AuthUser;
-  } catch {
-    return null;
-  }
-}
-
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem(TOKEN_KEY));
-  const [user, setUser] = useState<AuthUser | null>(readStoredUser);
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Remove credentials left by older builds that stored bearer tokens in localStorage.
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    api.get<{ success: boolean; data: AuthUser }>("/auth/me")
+      .then(({ data }) => setUser(data.data))
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
+  }, []);
 
   async function login(email: string, password: string): Promise<void> {
     setLoading(true);
     try {
       const { data } = await api.post<LoginResponse>("/auth/login", { email, password });
-      setToken(data.token);
       setUser(data.data);
-      localStorage.setItem(TOKEN_KEY, data.token);
-      localStorage.setItem(USER_KEY, JSON.stringify(data.data));
     } finally {
       setLoading(false);
     }
   }
 
   function logout(): void {
-    setToken(null);
     setUser(null);
-    localStorage.removeItem(TOKEN_KEY);
-    localStorage.removeItem(USER_KEY);
+    void api.post("/auth/logout");
   }
 
   return (
     <AuthContext.Provider
-      value={{ user, token, isAuthenticated: Boolean(token), loading, login, logout }}
+      value={{ user, isAuthenticated: Boolean(user), loading, login, logout }}
     >
       {children}
     </AuthContext.Provider>

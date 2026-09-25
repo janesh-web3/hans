@@ -9,7 +9,9 @@ import HotelsListPage from "@/pages/HotelsListPage";
 import HotelFormPage from "@/pages/HotelFormPage";
 import EventsListPage from "@/pages/EventsListPage";
 import EventFormPage from "@/pages/EventFormPage";
-import News from "@/pages/News";
+import ContactInbox from "@/pages/ContactInbox";
+import SiteContent from "@/pages/SiteContent";
+import Security from "@/pages/Security";
 
 export default function App() {
   return (
@@ -28,7 +30,10 @@ export default function App() {
               <Route path="events" element={<EventsListPage />} />
               <Route path="events/new" element={<EventFormPage />} />
               <Route path="events/:id/edit" element={<EventFormPage />} />
-              <Route path="news" element={<News />} />
+              <Route path="content" element={<SiteContent />} />
+              <Route path="news" element={<Navigate to="/content" replace />} />
+              <Route path="inquiries" element={<ContactInbox />} />
+              <Route path="security" element={<Security />} />
             </Route>
           </Route>
 

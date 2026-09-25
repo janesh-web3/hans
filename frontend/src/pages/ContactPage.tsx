@@ -1,5 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { isAxiosError } from "axios";
 import { MdSend, MdCheckCircle, MdLocationOn } from "react-icons/md";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 import ContactHero from "@/components/contact/ContactHero";
@@ -8,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/Reveal";
 import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
+import api from "@/lib/api";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 interface ContactForm {
   name: string;
@@ -17,18 +20,22 @@ interface ContactForm {
   hotelName: string;
   reason: string;
   message: string;
+  website: string;
 }
 
-const blank: ContactForm = { name: "", email: "", phone: "", district: "", hotelName: "", reason: "", message: "" };
+const blank: ContactForm = { name: "", email: "", phone: "", district: "", hotelName: "", reason: "", message: "", website: "" };
 
 type FormErrors = Partial<Record<keyof ContactForm, string>>;
 
 export default function ContactPage() {
   const { t } = useTranslation();
+  const { data: siteSettings } = useSiteSettings();
 
   const [form, setForm] = useState<ContactForm>(blank);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
 
   const reasons = t("contact.form.reasons", { returnObjects: true }) as string[];
 
@@ -48,14 +55,24 @@ export default function ContactPage() {
     setErrors((p) => ({ ...p, [name]: undefined }));
   }
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const er = validate();
     if (Object.keys(er).length) {
       setErrors(er);
       return;
     }
-    setSubmitted(true);
+    setSubmitting(true);
+    setSubmissionError("");
+    try {
+      await api.post("/contact", form);
+      setSubmitted(true);
+    } catch (error) {
+      const serverMessage = isAxiosError<{ message?: string }>(error) ? error.response?.data?.message : undefined;
+      setSubmissionError(serverMessage ?? "We couldn’t send your message. Please try again in a moment.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const ic = (f: keyof ContactForm) => `input${errors[f] ? " input-error" : ""}`;
@@ -86,6 +103,10 @@ export default function ContactPage() {
               ) : (
                 <Card className="rounded-xl p-8">
                   <form onSubmit={onSubmit} noValidate className="space-y-5">
+                    <div aria-hidden="true" className="absolute -left-[10000px] h-px w-px overflow-hidden">
+                      <label htmlFor="contact-website">Leave this field empty</label>
+                      <input id="contact-website" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={onChange} />
+                    </div>
 
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
@@ -154,8 +175,10 @@ export default function ContactPage() {
                       {errors.message && <p className="text-red-500 text-xs mt-1.5">{errors.message}</p>}
                     </div>
 
-                    <Button type="submit" className="w-full">
-                      <MdSend size={16} /> {t("contact.form.submit")}
+                    {submissionError && <p role="alert" className="text-sm text-red-600">{submissionError}</p>}
+
+                    <Button type="submit" className="w-full" disabled={submitting}>
+                      <MdSend size={16} /> {submitting ? "Sending…" : t("contact.form.submit")}
                     </Button>
                   </form>
                 </Card>
@@ -188,7 +211,7 @@ export default function ContactPage() {
                   <p className="text-foreground font-bold text-sm">{t("contact.map.title")}</p>
                   <p className="text-foreground-muted text-xs mt-1">{t("contact.map.subtitle")}</p>
                   <a
-                    href="https://maps.google.com/?q=Dhangadhi,Kailali,Nepal"
+                    href={siteSettings?.contact?.mapUrl || "https://maps.google.com/?q=Dhangadhi,Kailali,Nepal"}
                     target="_blank" rel="noopener noreferrer"
                     className="mt-3 text-accent hover:underline text-xs font-semibold"
                   >

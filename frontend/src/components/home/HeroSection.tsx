@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import { HeroText } from "@/components/motion/HeroText";
 import { HOME_HERO_IMAGES } from "@/constants/districtImages";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 /**
  * Full-bleed opening statement for the homepage.
@@ -15,14 +16,18 @@ import { HOME_HERO_IMAGES } from "@/constants/districtImages";
  * invites the first scroll.
  */
 export default function HeroSection() {
-  const { t } = useTranslation();
-  const title = t("home.hero.title");
+  const { t, i18n } = useTranslation();
+  const { data: settings } = useSiteSettings();
+  const language = i18n.language.startsWith("np") || i18n.language.startsWith("ne") ? "np" : "en";
+  const copy = settings?.hero?.[language];
+  const title = copy?.title || t("home.hero.title");
+  const images = settings?.hero?.images?.length ? settings.hero.images : HOME_HERO_IMAGES;
 
   return (
     <section className="hero-frame-home relative flex items-center overflow-hidden">
       {/* ── Photographic bed + the shared hero colour layer ────────────── */}
       <div className="absolute inset-0 z-0">
-        <HeroSlider images={HOME_HERO_IMAGES} alt="Sudurpashchim Province, Nepal" />
+        <HeroSlider images={images} alt="Sudurpashchim Province, Nepal" />
         <div className="hero-scrim absolute inset-0" />
       </div>
 
@@ -36,7 +41,7 @@ export default function HeroSection() {
             className="mb-6 flex items-center justify-center gap-4"
           >
             <span className="text-sm font-medium uppercase tracking-widest text-white/80">
-              {t("home.hero.eyebrow")}
+              {copy?.eyebrow || t("home.hero.eyebrow")}
             </span>
           </motion.div>
 
@@ -50,7 +55,7 @@ export default function HeroSection() {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.45 }}
             className="mx-auto mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/90 md:text-xl"
           >
-            {t("home.hero.subtitle")}
+            {copy?.subtitle || t("home.hero.subtitle")}
           </motion.p>
 
           <motion.div
@@ -63,13 +68,13 @@ export default function HeroSection() {
               to="/directory"
               className="inline-flex items-center justify-center rounded-sm bg-accent px-8 py-4 text-sm font-medium uppercase tracking-widest text-accent-foreground transition-all duration-300 hover:bg-accent-vivid focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
-              {t("home.hero.ctaPrimary")}
+              {copy?.primaryCta || t("home.hero.ctaPrimary")}
             </Link>
             <Link
               to="/membership"
               className="inline-flex items-center justify-center rounded-sm border border-white/50 px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-white hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
-              {t("home.hero.ctaSecondary")}
+              {copy?.secondaryCta || t("home.hero.ctaSecondary")}
             </Link>
           </motion.div>
         </div>

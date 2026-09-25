@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { pageVariants } from "@/lib/animations";
 import DeudaMusicPlayer from "@/components/DeudaMusicPlayer";
+import SeoManager from "@/components/SeoManager";
 
 export default function Layout() {
   const location = useLocation();
@@ -21,6 +22,7 @@ export default function Layout() {
   return (
     <ThemeProvider>
       <div className="flex flex-col min-h-screen bg-background transition-colors duration-200">
+        <SeoManager />
         <Navbar />
         <main className="flex-1">
           <AnimatePresence mode="wait" initial={false}>

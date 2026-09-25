@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Award, Megaphone, TrendingUp, Users } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 interface BenefitItem {
   title: string;
@@ -19,8 +20,11 @@ const ICONS: LucideIcon[] = [Megaphone, TrendingUp, Users, Award];
  * is the only movement in the section.
  */
 export default function MembershipBenefits() {
-  const { t } = useTranslation();
-  const items = t("membership.benefits.items", { returnObjects: true }) as BenefitItem[];
+  const { t, i18n } = useTranslation();
+  const { data: settings } = useSiteSettings();
+  const language = i18n.language.startsWith("np") || i18n.language.startsWith("ne") ? "np" : "en";
+  const copy = settings?.membership?.[language];
+  const items = copy?.benefits?.length ? copy.benefits : t("membership.benefits.items", { returnObjects: true }) as BenefitItem[];
 
   return (
     <section className="bg-background py-24 lg:py-32">
@@ -33,10 +37,10 @@ export default function MembershipBenefits() {
           className="mx-auto mb-16 max-w-2xl text-center lg:mb-24"
         >
           <span className="mb-4 block text-xs uppercase tracking-[0.2em] text-accent">
-            {t("membership.benefits.eyebrow")}
+              {copy?.benefitsEyebrow || t("membership.benefits.eyebrow")}
           </span>
           <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
-            {t("membership.benefits.title")}
+            {copy?.benefitsTitle || t("membership.benefits.title")}
           </h2>
         </motion.div>
 

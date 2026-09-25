@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const STORY_IMAGES: { src: string; alt: string }[] = [
   {
@@ -20,7 +21,10 @@ const STORY_IMAGES: { src: string; alt: string }[] = [
  * right and pulled up so the two plates overlap rather than stack squarely.
  */
 export default function OurStory() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { data: settings } = useSiteSettings();
+  const language = i18n.language.startsWith("np") || i18n.language.startsWith("ne") ? "np" : "en";
+  const copy = settings?.about?.[language];
 
   return (
     <section className="bg-background py-24 lg:py-32">
@@ -35,19 +39,19 @@ export default function OurStory() {
             className="self-start lg:sticky lg:top-32"
           >
             <span className="mb-4 block text-xs uppercase tracking-widest text-accent">
-              {t("about.ourStory.eyebrow")}
+              {copy?.eyebrow || t("about.ourStory.eyebrow")}
             </span>
 
             <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
-              {t("about.ourStory.title")}
+              {copy?.title || t("about.ourStory.title")}
             </h2>
 
             <div className="mt-8 space-y-6">
               <p className="text-lg leading-relaxed text-foreground-secondary">
-                {t("about.ourStory.body1")}
+                {copy?.body1 || t("about.ourStory.body1")}
               </p>
               <p className="text-lg leading-relaxed text-foreground-secondary">
-                {t("about.ourStory.body2")}
+                {copy?.body2 || t("about.ourStory.body2")}
               </p>
             </div>
           </motion.div>

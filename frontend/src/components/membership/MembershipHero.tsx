@@ -21,7 +21,7 @@ export default function MembershipHero() {
       badge={t("membership.hero.eyebrow")}
       title={t("membership.hero.title")}
       subtitle={t("membership.hero.subtitle")}
-      primaryCta={{ label: t("membership.hero.cta"), to: "/contact", href: "/#/contact" }}
+      primaryCta={{ label: t("membership.hero.cta"), to: "/contact" }}
     />
   );
 }

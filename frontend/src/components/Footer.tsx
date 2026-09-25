@@ -1,15 +1,10 @@
 import { Link } from "react-router-dom";
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
-import { FiFacebook, FiTwitter, FiInstagram, FiYoutube, FiArrowRight } from "react-icons/fi";
+import { FiFacebook, FiInstagram, FiYoutube, FiArrowRight } from "react-icons/fi";
 import { SUDURPASHCHIM_DISTRICTS } from "@/constants/districts";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
-
-const SOCIAL_LINKS = [
-  { Icon: FiFacebook, label: "Facebook" },
-  { Icon: FiTwitter, label: "Twitter" },
-  { Icon: FiInstagram, label: "Instagram" },
-  { Icon: FiYoutube, label: "YouTube" },
-];
+import { CONTACT, OFFICE_ADDRESS_LINES, telHref } from "@/constants/contact";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const QUICK_LINKS = [
   { l: "Home", to: "/" },
@@ -28,6 +23,17 @@ const QUICK_LINKS = [
  * saturated blue in here is the one call-to-action button.
  */
 export default function Footer() {
+  const { data: settings } = useSiteSettings();
+  const contact = settings?.contact;
+  const address = contact?.addressLines?.filter(Boolean).length ? contact.addressLines : OFFICE_ADDRESS_LINES;
+  const phone = contact?.officePhone || CONTACT.phone.office;
+  const email = contact?.generalEmail || CONTACT.email.general;
+  const socialLinks = [
+    { Icon: FiFacebook, label: "Facebook", href: contact?.facebookUrl },
+    { Icon: FiInstagram, label: "Instagram", href: contact?.instagramUrl },
+    { Icon: FiYoutube, label: "YouTube", href: contact?.youtubeUrl },
+  ].filter((item) => item.href);
+
   return (
     <footer className="border-t border-border bg-background">
       {/* ── Main footer body ───────────────────────────────────────────── */}
@@ -60,11 +66,13 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="flex gap-2">
-              {SOCIAL_LINKS.map(({ Icon, label }) => (
+              {socialLinks.map(({ Icon, label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
                   aria-label={label}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg
                     border border-border text-foreground-muted
                     transition-colors duration-300
@@ -123,27 +131,25 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MdLocationOn className="mt-0.5 flex-shrink-0 text-foreground-muted" size={17} />
                 <span className="text-sm leading-relaxed text-foreground-secondary">
-                  Dhangadhi-4, Kailali
-                  <br />
-                  Sudurpashchim Province, Nepal
+                  {address.map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <MdPhone className="flex-shrink-0 text-foreground-muted" size={17} />
                 <a
-                  href="tel:+977091521000"
+                  href={telHref(phone)}
                   className="text-sm text-foreground-secondary transition-colors hover:text-accent"
                 >
-                  +977-091-521000
+                  {phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MdEmail className="mt-0.5 flex-shrink-0 text-foreground-muted" size={17} />
                 <a
-                  href="mailto:info@hansudurpashchim.org.np"
+                  href={`mailto:${email}`}
                   className="break-all text-sm leading-relaxed text-foreground-secondary transition-colors hover:text-accent"
                 >
-                  info@hansudurpashchim.org.np
+                  {email}
                 </a>
               </li>
             </ul>
