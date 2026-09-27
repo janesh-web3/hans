@@ -7,6 +7,7 @@ export const SUDURPASHCHIM_DISTRICTS = [
   "Achham",
   "Dadeldhura",
   "Baitadi",
+  "Darchula",
 ] as const;
 
 export type District = (typeof SUDURPASHCHIM_DISTRICTS)[number];

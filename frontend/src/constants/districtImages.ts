@@ -10,6 +10,7 @@ export const DISTRICT_IMAGES: Record<District, string> = {
   Achham: "/district/achham.jfif",
   Dadeldhura: "/district/dadeldhura.webp",
   Baitadi: "/district/baitadi.webp",
+  Darchula: "/assets/api.jpg",
 };
 
 /**

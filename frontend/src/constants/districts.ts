@@ -7,6 +7,7 @@ export const SUDURPASHCHIM_DISTRICTS = [
   "Achham",
   "Dadeldhura",
   "Baitadi",
+  "Darchula",
 ] as const;
 
 export type District = (typeof SUDURPASHCHIM_DISTRICTS)[number];
@@ -20,4 +21,5 @@ export const DISTRICT_INFO: Record<District, { hq: string; knownFor: string }> =
   Achham: { hq: "Mangalsen", knownFor: "Ramaroshan lakes" },
   Dadeldhura: { hq: "Amargadhi", knownFor: "Tripurasundari Temple" },
   Baitadi: { hq: "Dasharathchand", knownFor: "Pancheswar confluence" },
+  Darchula: { hq: "Darchula", knownFor: "Api Himal & Mahakali valley" },
 };

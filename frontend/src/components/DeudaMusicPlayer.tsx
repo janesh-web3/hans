@@ -49,7 +49,7 @@ export default function DeudaMusicPlayer() {
   }, [open]);
 
   return (
-    <div className="fixed bottom-24 right-4 z-[70] sm:right-6 lg:bottom-6">
+    <div className="fixed bottom-24 right-4 z-[70] sm:right-6 lg:bottom-6 lg:right-24">
       <AnimatePresence>
         {open && <motion.section
           role="dialog"

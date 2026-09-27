@@ -8,7 +8,7 @@
       "overline": "Sudurpashchim Province · Nepal",
       "titlePrefix": "Discover the Heart of",
       "titleHighlight": "Hospitality",
-      "subtitle": "Discover a curated collection of verified hotels, resorts, and homestays across the 8 districts of Nepal's far-west.",
+      "subtitle": "Discover a curated collection of verified hotels, resorts, and homestays across the 9 districts of Nepal's far-west.",
       "ctaPrimary": "Explore Hotels",
       "ctaSecondary": "Become a Member",
       "stats": {
@@ -37,7 +37,7 @@
       "label": "About HAN Sudurpashchim",
       "titleLine1": "The Unified Voice of",
       "titleLine2": "Far-Western Hospitality",
-      "body1": "The Hotel Association of Nepal — Sudurpashchim Province is the official voice of hospitality across the far-west. We represent hotels, resorts, boutique lodges, and family homestays in all eight districts of the province.",
+      "body1": "The Hotel Association of Nepal — Sudurpashchim Province is the official voice of hospitality across the far-west. We represent hotels, resorts, boutique lodges, and family homestays in all nine districts of the province.",
       "body2": "From the wildlife-rich plains of Kailali and Kanchanpur to the high Himalayan valleys of Bajhang and Bajura, our members share one commitment: warm, dependable, and unmistakably local hospitality.",
       "cta": "Read Our Story",
       "stats": {
@@ -89,7 +89,7 @@
     "whyVisit": {
       "label": "Destinations",
       "title": "Three Reasons to Travel Far West",
-      "subtitle": "The province offers some of Nepal's most diverse natural and cultural attractions — from high Himalayan routes to protected wildlife reserves.",
+      "subtitle": "Travel from the Api and Saipal Himalaya through green hill country to the wildlife-rich Terai plains.",
       "highlights": [
         {
           "name": "Shuklaphanta National Park",
@@ -125,33 +125,33 @@
       "eyebrow": "Why Sudurpashchim",
       "items": [
         {
-          "eyebrow": "Untouched Nature",
-          "title": "Landscapes Few Travellers Have Seen",
-          "body": "Sudurpashchim holds some of Nepal's last genuinely quiet wilderness — alpine meadows, open grassland, and Himalayan skyline, all without the crowds of the central trekking routes.",
+          "eyebrow": "Himalaya · Api & Saipal",
+          "title": "High peaks and quiet Himalayan trails",
+          "body": "In the far north, Api and Saipal rise above remote valleys, alpine pastures and welcoming mountain communities. Darchula and Bajhang offer a slower journey into the high Himalaya, with landscapes made for trekking, village stays and clear-sky views.",
           "points": [
-            "Khaptad National Park, a sacred plateau of rolling meadows",
-            "Shuklaphanta National Park, grassland home of the swamp deer",
-            "Api Nampa Conservation Area, the far-west Himalaya up close"
+            "Explore the Api Nampa Conservation Area and routes around Api Himal",
+            "See Saipal from the highlands of Bajhang and nearby mountain trails",
+            "Meet local communities and plan a responsible stay with time to acclimatise"
           ]
         },
         {
-          "eyebrow": "Rich Culture",
-          "title": "Living Tharu and Himalayan Heritage",
-          "body": "The province is home to Tharu communities of the Terai and hill cultures of the high districts, each with distinct festivals, craft, and cuisine that visitors are genuinely welcomed into.",
+          "eyebrow": "Pahad · Hills & Valleys",
+          "title": "Green hills, sacred meadows and living heritage",
+          "body": "The middle hills bring together forested ridges, river valleys, pilgrimage routes and distinctive local traditions. Khaptad’s open grasslands, Ramaroshan’s lakes and Badimalika’s highland trails reward travellers who take time to explore.",
           "points": [
-            "Tharu stick dance, cuisine, and village homestays",
-            "Badimalika and Tripurasundari pilgrimage traditions",
-            "Deuda song and dance performed across the hill districts"
+            "Walk Khaptad’s meadows and forest trails across the hill districts",
+            "Discover Ramaroshan lakes in Achham and Badimalika in Bajura",
+            "Experience Deuda music, local food and family-run homestays"
           ]
         },
         {
-          "eyebrow": "Seamless Travel",
-          "title": "Easier to Reach Than You Think",
-          "body": "Daily flights into Dhangadhi, an improving highway network, and a directory of verified member properties make planning a far-west trip straightforward from start to finish.",
+          "eyebrow": "Terai · Plains & Wetlands",
+          "title": "Wildlife, rivers and warm Terai hospitality",
+          "body": "In Kailali and Kanchanpur, fertile plains meet wetlands, river landscapes and rich Tharu culture. Visit protected grasslands, look for wildlife with local guides and enjoy the region’s distinctive food and village hospitality.",
           "points": [
-            "Direct flights from Kathmandu to Dhangadhi",
-            "Verified hotels in every one of the eight districts",
-            "One association to contact for trip planning support"
+            "Look for swamp deer and birdlife in Shuklaphanta National Park",
+            "Explore wetlands and river landscapes around Kailali and Kanchanpur",
+            "Share Tharu food, traditions and homestay experiences"
           ]
         }
       ]
@@ -164,7 +164,7 @@
     },
     "districts": {
       "label": "Explore Sudurpashchim",
-      "title": "8 Districts, Infinite Experiences",
+      "title": "9 Districts, Infinite Experiences",
       "subtitle": "Every district in Sudurpashchim carries its own landscape, cuisine, and welcome. Choose where your journey begins.",
       "eyebrow": "Explore the Province",
       "propertiesLabel": "Member properties"
@@ -339,7 +339,7 @@
     "ourStory": {
       "eyebrow": "Our Mission",
       "title": "Preserving Heritage, Crafting Unforgettable Stays.",
-      "body1": "The Hotel Association of Nepal, Sudurpashchim Province, was founded in 1998 by five hoteliers in Dhangadhi who believed the far-west deserved a seat at the table. Today we represent member properties across all eight districts, from Terai guest houses to high-valley homestays, and we carry their case to provincial and federal government alike.",
+      "body1": "The Hotel Association of Nepal, Sudurpashchim Province, was founded in 1998 by five hoteliers in Dhangadhi who believed the far-west deserved a seat at the table. Today we represent member properties across all nine districts, from Terai guest houses to high-valley homestays, and we carry their case to provincial and federal government alike.",
       "body2": "Our work is unglamorous and essential. We set the standards a member property must meet, we train the teams who meet them, and we verify every listing before it reaches a traveller. The result is a promise a guest can rely on anywhere in the province, and a business environment where a family-run lodge can compete on service rather than on marketing spend."
     },
     "coreValues": {
@@ -363,7 +363,7 @@
     "leadership": {
       "eyebrow": "Leadership",
       "title": "The Voices Guiding Our Vision",
-      "subtitle": "Elected office bearers drawn from member properties across all eight districts of the province."
+      "subtitle": "Elected office bearers drawn from member properties across all nine districts of the province."
     },
     "provinceImpact": {
       "eyebrow": "Our Reach",

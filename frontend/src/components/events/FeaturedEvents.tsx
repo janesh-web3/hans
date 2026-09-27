@@ -65,10 +65,10 @@ function EventCard({ event, language }: EventCardProps) {
         />
 
         <div className="absolute left-4 top-4 rounded-sm bg-white  p-3 text-center shadow-sm">
-          <span className="block font-serif text-2xl font-bold leading-none text-foreground dark:text-black">
+          <span className="block font-serif text-2xl font-bold leading-none text-slate-900">
             {badge.day}
           </span>
-          <span className="mt-1 block text-xs uppercase tracking-wider text-foreground/70 dark:text-black">
+          <span className="mt-1 block text-xs uppercase tracking-wider text-slate-700">
             {badge.month}
           </span>
         </div>

@@ -7,11 +7,7 @@ import type { District } from "@/constants/districts";
 import { DISTRICT_IMAGES } from "@/constants/districtImages";
 import { useHotels } from "@/hooks/useHotels";
 
-/**
- * Column spans that turn a plain four-column grid into an editorial mosaic:
- * a wide plate, two uprights, two uprights, a wide plate, then a pair of
- * wide plates closing the section out.
- */
+/** Keep the original editorial mosaic, with three district cards per row. */
 const SPANS: string[] = [
   "lg:col-span-2",
   "lg:col-span-1",
@@ -20,11 +16,12 @@ const SPANS: string[] = [
   "lg:col-span-1",
   "lg:col-span-2",
   "lg:col-span-2",
-  "lg:col-span-2",
+  "lg:col-span-1",
+  "lg:col-span-1",
 ];
 
 /**
- * The eight districts of Sudurpashchim as a magazine-style photo mosaic.
+ * The nine districts of Sudurpashchim in the existing editorial photo mosaic.
  *
  * Each plate links straight into the member directory pre-filtered to that
  * district, and carries a live count of verified member properties when the
@@ -66,7 +63,7 @@ export default function FeaturedDistricts() {
           </p>
         </motion.div>
 
-        {/* ── Mosaic ────────────────────────────────────────────────── */}
+        {/* ── District mosaic ────────────────────────────────────────── */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {SUDURPASHCHIM_DISTRICTS.map((district, i) => {
             const count = countsByDistrict[district];
@@ -76,7 +73,7 @@ export default function FeaturedDistricts() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: (i % 4) * 0.08 }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: (i % 3) * 0.08 }}
                 className={SPANS[i]}
               >
                 <Link

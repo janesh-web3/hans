@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import { ThemeProvider } from "@/context/ThemeContext";
 import { pageVariants } from "@/lib/animations";
 import DeudaMusicPlayer from "@/components/DeudaMusicPlayer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import SeoManager from "@/components/SeoManager";
 
 export default function Layout() {
@@ -39,6 +40,7 @@ export default function Layout() {
         </main>
         <Footer />
         <DeudaMusicPlayer />
+        <WhatsAppButton />
       </div>
     </ThemeProvider>
   );

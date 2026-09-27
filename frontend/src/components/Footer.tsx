@@ -35,7 +35,7 @@ export default function Footer() {
   ].filter((item) => item.href);
 
   return (
-    <footer className="border-t border-border bg-background">
+    <footer className="border-t border-blue-800 bg-blue-900 text-white">
       {/* ── Main footer body ───────────────────────────────────────────── */}
       <div className="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <RevealGroup className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -47,21 +47,21 @@ export default function Footer() {
               <img
                 src="/logo.png"
                 alt="HAN Sudurpashchim"
-                className="h-12 w-auto object-contain dark:brightness-0 dark:invert dark:opacity-90"
+                className="h-12 w-auto object-contain brightness-0 invert opacity-90"
               />
               <div>
-                <p className="text-sm font-bold leading-none tracking-tight text-foreground">
+                <p className="text-sm font-bold leading-none tracking-tight text-white">
                   HAN Sudurpashchim
                 </p>
-                <p className="mt-1 text-xs font-medium text-foreground-muted">
+                <p className="mt-1 text-xs font-medium text-blue-200">
                   Province No. 7 · Nepal
                 </p>
               </div>
             </Link>
 
-            <p className="mb-6 text-sm leading-relaxed text-foreground-secondary">
+            <p className="mb-6 text-sm leading-relaxed text-blue-100">
               Hotel Association of Nepal — Sudurpashchim Province. The unified voice of
-              hospitality across all eight districts of Province No. 7.
+              hospitality across all nine districts of Sudurpashchim Province.
             </p>
 
             {/* Social icons */}
@@ -74,9 +74,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-lg
-                    border border-border text-foreground-muted
+                    border border-blue-700 text-blue-100
                     transition-colors duration-300
-                    hover:border-accent hover:text-accent"
+                    hover:border-white hover:text-white"
                 >
                   <Icon size={15} />
                 </a>
@@ -86,7 +86,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <RevealItem>
-            <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
+            <h4 className="mb-6 border-b border-blue-700 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-white">
               Quick Links
             </h4>
             <ul className="space-y-3">
@@ -94,7 +94,7 @@ export default function Footer() {
                 <li key={to}>
                   <Link
                     to={to}
-                    className="group flex items-center gap-2 text-sm text-foreground-secondary transition-colors hover:text-accent"
+                    className="group flex items-center gap-2 text-sm text-blue-100 transition-colors hover:text-white"
                   >
                     <FiArrowRight
                       size={11}
@@ -109,12 +109,12 @@ export default function Footer() {
 
           {/* Districts */}
           <RevealItem>
-            <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
+            <h4 className="mb-6 border-b border-blue-700 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-white">
               Districts Covered
             </h4>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
               {SUDURPASHCHIM_DISTRICTS.map((d) => (
-                <li key={d} className="flex items-center gap-2 text-sm text-foreground-secondary">
+                <li key={d} className="flex items-center gap-2 text-sm text-blue-100">
                   <span className="h-1 w-1 flex-shrink-0 rounded-full bg-accent" />
                   {d}
                 </li>
@@ -124,30 +124,30 @@ export default function Footer() {
 
           {/* Contact */}
           <RevealItem>
-            <h4 className="mb-6 border-b border-border pb-3 text-xs font-bold uppercase tracking-[0.18em] text-foreground">
+            <h4 className="mb-6 border-b border-blue-700 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-white">
               Contact Us
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MdLocationOn className="mt-0.5 flex-shrink-0 text-foreground-muted" size={17} />
-                <span className="text-sm leading-relaxed text-foreground-secondary">
+                <MdLocationOn className="mt-0.5 flex-shrink-0 text-blue-200" size={17} />
+                <span className="text-sm leading-relaxed text-blue-100">
                   {address.map((line, index) => <span key={line}>{index > 0 && <br />}{line}</span>)}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <MdPhone className="flex-shrink-0 text-foreground-muted" size={17} />
+                <MdPhone className="flex-shrink-0 text-blue-200" size={17} />
                 <a
                   href={telHref(phone)}
-                  className="text-sm text-foreground-secondary transition-colors hover:text-accent"
+                  className="text-sm text-blue-100 transition-colors hover:text-white"
                 >
                   {phone}
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <MdEmail className="mt-0.5 flex-shrink-0 text-foreground-muted" size={17} />
+                <MdEmail className="mt-0.5 flex-shrink-0 text-blue-200" size={17} />
                 <a
                   href={`mailto:${email}`}
-                  className="break-all text-sm leading-relaxed text-foreground-secondary transition-colors hover:text-accent"
+                  className="break-all text-sm leading-relaxed text-blue-100 transition-colors hover:text-white"
                 >
                   {email}
                 </a>
@@ -158,9 +158,9 @@ export default function Footer() {
             <div className="mt-6">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5
-                  text-xs font-bold text-accent-foreground
-                  transition-colors duration-300 hover:bg-accent-vivid"
+                className="inline-flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5
+                  text-xs font-bold text-white
+                  transition-colors duration-300 hover:bg-sky-400"
               >
                 Join the Association <FiArrowRight size={11} />
               </Link>
@@ -171,7 +171,7 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ─────────────────────────────────────────────────── */}
-      <div className="border-t border-border">
+      <div className="border-t border-blue-800 bg-blue-950">
         <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-between gap-2 px-4 py-5 sm:flex-row sm:px-6 lg:px-8">
           <p className="text-xs font-medium text-foreground-muted">
             &copy; {new Date().getFullYear()} Hotel Association of Nepal — Sudurpashchim Province.

@@ -127,7 +127,7 @@ export default function HotelsListPage() {
         <div>
           <h2 className="text-xl font-bold text-surface-900 dark:text-white">Hotels</h2>
           <p className="text-sm text-surface-500 dark:text-dark-400 mt-1">
-            Manage member hotel listings across all 8 districts.
+            Manage member hotel listings across all 9 districts.
           </p>
         </div>
         <Button asChild>

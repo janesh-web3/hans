@@ -49,9 +49,9 @@ export const SEED_EVENTS: SeedEvent[] = [
     titleEn: "Sudurpashchim Tourism Expo 2026",
     titleNp: "सुदूरपश्चिम पर्यटन प्रदर्शनी २०२६",
     descriptionEn:
-      "The province's largest hospitality and travel trade fair, bringing together member hotels, homestay networks, transport operators, trekking agencies and handicraft producers from all eight districts. Three days of exhibition, a buyer-seller meet with inbound operators from Kathmandu and Delhi, and an evening programme of Deuda and Tharu performance.",
+      "The province's largest hospitality and travel trade fair, bringing together member hotels, homestay networks, transport operators, trekking agencies and handicraft producers from all nine districts. Three days of exhibition, a buyer-seller meet with inbound operators from Kathmandu and Delhi, and an evening programme of Deuda and Tharu performance.",
     descriptionNp:
-      "प्रदेशको सबैभन्दा ठूलो आतिथ्य तथा पर्यटन व्यापार मेला, जसमा आठै जिल्लाका सदस्य होटल, होमस्टे सञ्जाल, यातायात व्यवसायी, पदयात्रा एजेन्सी र हस्तकला उत्पादकहरू सहभागी हुनेछन्। तीन दिनको प्रदर्शनी, काठमाडौँ र दिल्लीका आगमन व्यवसायीहरूसँग क्रेता-विक्रेता भेटघाट तथा साँझमा देउडा र थारू सांस्कृतिक प्रस्तुति।",
+      "प्रदेशको सबैभन्दा ठूलो आतिथ्य तथा पर्यटन व्यापार मेला, जसमा नौवटै जिल्लाका सदस्य होटल, होमस्टे सञ्जाल, यातायात व्यवसायी, पदयात्रा एजेन्सी र हस्तकला उत्पादकहरू सहभागी हुनेछन्। तीन दिनको प्रदर्शनी, काठमाडौँ र दिल्लीका आगमन व्यवसायीहरूसँग क्रेता-विक्रेता भेटघाट तथा साँझमा देउडा र थारू सांस्कृतिक प्रस्तुति।",
     startDate: new Date("2026-10-17T10:00:00+05:45"),
     endDate: new Date("2026-10-19T19:00:00+05:45"),
     location: "Dhangadhi Exhibition Ground, Ward 4, Dhangadhi, Kailali",

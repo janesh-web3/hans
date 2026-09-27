@@ -11,9 +11,9 @@ interface VisitReason {
 
 /** One photograph per reason, in the order the copy is written. */
 const IMAGES: string[] = [
-  "/assets/api.jpg",
-  "/assets/khaptad.jfif",
   "/assets/sipall.jpg",
+  "/assets/khaptad.jfif",
+  "/district/kanchanpur.JPG",
 ];
 
 /**
